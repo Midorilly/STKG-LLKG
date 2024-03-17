@@ -228,6 +228,7 @@ Linked Linguistic Knowledge Graph
 ### Prefixes
 
 **wn** : <https://globalwordnet.github.io/schemas/wn#>  
+**powla** : http://purl.org/powla/powla.owl#
 
 ### Entities
 
@@ -241,10 +242,10 @@ Linked Linguistic Knowledge Graph
 
 | LKG | L-LKG |
 |-----|---------|
-|(:HAS_EXAMPLE) begin: int|wn:Example :beginOffset xsd:unsignedInt|
-|(:HAS_OCCURENCE) begin: int|wn:Example :beginOffset xsd:unsignedInt|
-|(:HAS_EXAMPLE) end: int|wn:Example :endOffset xsd:unsignedInt|
-|(:HAS_OCCURENCE) end: int|wn:Example :endOffset xsd:unsignedInt|
+|(:HAS_EXAMPLE) begin: int|wn:Example [powla:start](http://purl.org/powla/powla.owl#start) xsd:unsignedInt|
+|(:HAS_OCCURENCE) begin: int|wn:Example [powla:start](http://purl.org/powla/powla.owl#start) xsd:unsignedInt|
+|(:HAS_EXAMPLE) end: int|wn:Example [powla:end](http://purl.org/powla/powla.owl#end) xsd:unsignedInt|
+|(:HAS_OCCURENCE) end: int|wn:Example [powla:end](http://purl.org/powla/powla.owl#end) xsd:unsignedInt|
 |(:HAS_EXAMPLE) grade: float|wn:Example :grade xsd:float | 
 
 ### Relations
@@ -261,6 +262,7 @@ Linked Linguistic Knowledge Graph
 | L-LKG |
 |---------|
 |wn:Example dct:isPartOf schema:Quotation| 
+
 
  ---
  ---

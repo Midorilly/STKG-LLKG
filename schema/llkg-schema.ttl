@@ -12,6 +12,7 @@
 @prefix vartrans: <http://www.w3.org/ns/lemon/vartrans#> .
 @prefix loc: <http://id.loc.gov/vocabulary/> .
 @prefix lexinfo: <http://www.lexinfo.net/ontology/2.0/lexinfo#> .
+@prefix powla: <http://purl.org/powla/powla.owl#> .
 #@prefix lime: <http://www.w3.org/ns/lemon/lime#> .
 
 @prefix wn: <https://globalwordnet.github.io/schemas/wn#> .
@@ -253,11 +254,11 @@ wn:example a rdf:Property ; # An example usage of a sense or synset
     rdfs:label "example"@en ;
     rdfs:domain ontolex:LexicalSense ;
     rdfs:range wn:Example .
-:beginOffset a rdf:Property ;
-    rdfs:label "begin"@en ;
+powla:start a rdf:Property ;
+    rdfs:lable "start"@en ;
     rdfs:domain wn:Example ;
-    rdfs:range xsd:unsignedInt .
-:endOffset a rdf:Property ;
+    rdfs:range xsd:unisgnedInt .
+powla:end a rdf:Property ;
     rdfs:label "end"@en ;
     rdfs:domain wn:Example ;
     rdfs:range xsd:unsignedInt .  
@@ -265,5 +266,11 @@ wn:example a rdf:Property ; # An example usage of a sense or synset
     rdfs:label "grade"@en ;
     rdfs:domain wn:Example ;
     rdfs:range xsd:float .
+# powla:next a rdf:Property ;
+#    rdfs:label "next"@en ;
+#    rdfs:domain wn:Example .
+# powla:previous a rdf:Property ;
+#    rdfs:label "previous"@en ;
+#    rdfs:domain wn:Example .
 
 wn:Example dct:isPartOf schema:Quotation .
