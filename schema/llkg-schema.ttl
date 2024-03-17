@@ -1,0 +1,269 @@
+@prefix : <http://prova.org#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+#@prefix cc: <https://creativecommons.org/ns#> .
+#@prefix void: <http://rdfs.org/ns/void#>.
+@prefix schema: <https://schema.org/> .
+
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix vartrans: <http://www.w3.org/ns/lemon/vartrans#> .
+@prefix loc: <http://id.loc.gov/vocabulary/> .
+@prefix lexinfo: <http://www.lexinfo.net/ontology/2.0/lexinfo#> .
+#@prefix lime: <http://www.w3.org/ns/lemon/lime#> .
+
+@prefix wn: <https://globalwordnet.github.io/schemas/wn#> .
+#@prefix wordnetlicense: <http://wordnet.princeton.edu/wordnet/license/> .
+
+dct:title a rdf:Property ;
+    rdfs:label "title"@en ;
+    rdfs:range rdfs:Literal .
+
+dct:isPartOf a rdf:Property ;
+    rdfs:label "isPartOf"@en .
+
+dct:description a rdf:Property ;
+    rdfs:label "description"@en ;
+    rdfs:range rdfs:Literal .
+
+####################################################
+############### Linguistic sub-graph ###############
+####################################################
+
+# LinguisticSystem 
+
+dct:LinguisticSystem a rdfs:Class ;
+    rdfs:label "Language"@en .
+
+dct:identifier a rdf:Property .
+:iso6391 rdfs:subPropertyOf dct:identifier ;
+    rdfs:label "ISO639-1"@en ;
+    rdfs:domain dct:LinguisticSystem ;
+    rdfs:range loc:iso639-1 .
+:iso6392 rdfs:subPropertyOf dct:identifier ;
+    rdfs:label "ISO639-2"@en ;
+    rdfs:domain dct:LinguisticSystem ;
+    rdfs:range loc:iso639-2 .
+dct:language a rdf:Property ;
+    rdfs:label "language"@en ;
+    rdfs:range dct:LinguisticSystem .
+
+# LexicalEntry 
+
+ontolex:LexicalEntry a rdfs:Class ;
+    rdfs:label "LexicalEntry"@en .
+ontolex:Word rdfs:subClassOf ontolex:LexicalEntry ;
+    rdfs:label "Word"@en .
+ontolex:MultiwordExpression rdfs:subClassOf ontolex:LexicalEntry ;
+    rdfs:label "MWE"@en .
+ontolex:Affix rdfs:subClassOf ontolex:LexicalEntry ;
+    rdfs:label "Affix"@en .
+ontolex:Form a rdfs:Class ;
+    rdfs:label "Form"@en .
+lexinfo:PartOfSpeech a rdfs:Class ;
+    rdfs:label "PartOfSpeech"@en .
+
+vartrans:lexicalRel a rdf:Property ;
+    rdfs:label "lexicalRelation"@en ;
+    rdfs:domain ontolex:LexicalEntry ;
+    rdfs:range ontolex:LexicalEntry .
+lexinfo:partOfSpeech a rdf:Property ;
+    rdfs:label "PoS"@en ;
+    rdfs:domain ontolex:LexicalEntry ;
+    rdfs:range lexinfo:PartOfSpeech .
+ontolex:canonicalForm a rdf:Property ;
+    rdfs:label "canonicalForm"@en ;
+    rdfs:domain ontolex:LexicalEntry ;
+    rdfs:range ontolex:Form .
+ontolex:lexicalForm a rdf:Property ;
+    rdfs:label "lexicalForm"@en ;
+    rdfs:domain ontolex:LexicalEntry ;
+    rdfs:range ontolex:Form .
+ontolex:writtenRep a rdf:Property ;
+    rdfs:label "writtenRep"@en ;
+    rdfs:domain ontolex:Form ;
+    rdfs:range rdf:langString .
+
+# LexicalSense
+
+ontolex:LexicalSense a rdfs:Class ;
+    rdfs:label "LexicalSense"@en .
+
+ontolex:sense a rdf:Property ;
+    rdfs:label "sense"@en ;
+    rdfs:domain ontolex:LexicalEntry ;
+    rdfs:range ontolex:LexicalSense .
+vartrans:senseRel a rdf:Property ;
+    rdfs:label "senseRelation"@en ;
+    rdfs:domain ontolex:LexicalSense ;
+    rdfs:range ontolex:LexicalSense .
+dct:source a rdf:Property ;
+    rdfs:label "source"@en ;
+    rdfs:domain ontolex:LexicalSense ;
+    rdfs:range rdfs:Resource .
+owl:sameAs a rdf:Property ;
+    rdfs:label "sameAs"@en ;
+    rdfs:domain ontolex:LexicalSense ;
+    rdfs:range ontolex:LexicalSense .
+
+ontolex:LexicalSense dct:title rdfs:Literal .
+ontolex:LexicalSense dct:description rdfs:Literal .
+
+# LexicalConcept
+
+ontolex:LexicaConcept a rdfs:Class ;
+    rdfs:label "LexicalConcept"@en .
+
+ontolex:isLexicalizedSenseOf a rdf:Property ;
+    rdfs:label "isLexicalizedSenseOf"@en ;
+    rdfs:domain ontolex:LexicalSense ;
+    rdfs:range ontolex:LexicalConcept .
+ontolex:evokes a rdf:Property ;
+    rdfs:label "evokes"@en ;
+    rdfs:domain ontolex:LexicalEntry ;
+    rdfs:range ontolex:LexicalConcept .
+
+# Etymological Wordnet 
+
+:etymology a rdf:Property ;
+    rdfs:label "etymology"@en ;
+    rdfs:comment "An etymology link ties a term to its etymology; in particular, object is the etymology of subject" ;
+    rdfs:domain ontolex:LexicalEntry ;
+    rdfs:range ontolex:LexicalEntry ;
+    owl:inverseOf :etymologicalOriginOf .
+
+:etymologicalOriginOf a rdf:Property ;
+    rdfs:label "etymologicalOriginOf"@en ;
+    rdfs:comment "An etymological origin link connects a term to one or more source forms which originates the term; precisely, subject etymologically originates object" ;
+    rdfs:domain ontolex:LexicalEntry ;
+    rdfs:range ontolex:LexicalEntry ;
+    owl:inverseOf :etymology .
+
+:etymologicallyRelated a rdf:Property ;
+    rdfs:label "etymologicallyRelated"@en ;
+    rdfs:comment "An etymological relatedness link can be interpreted as a generalisation that includes etymological origin but also connection between cognate forms; in particular, object is etymologically related to subject";
+    rdfs:domain ontolex:LexicalEntry ;
+    rdfs:range ontolex:LexicalEntry .
+
+:hasDerivedForm a rdf:Property ;
+    rdfs:label "hasDerivedForm"@en ;
+    rdfs:comment "subject has derived form object" ;
+    rdfs:domain ontolex:LexicalEntry ;
+    rdfs:range ontolex:LexicalEntry ;
+    owl:inverseOf :isDerivedFrom .
+
+:isDerivedFrom a rdf:Property ;
+    rdfs:label "isDerivedFrom"@en ;
+    rdfs:comment "subject is derived from object" ;
+    rdfs:domain ontolex:LexicalEntry ;
+    rdfs:range ontolex:LexicalEntry ;
+    owl:inversOf :hasDerivedForm .
+
+:orthographyVariant a rdf:Property ;
+    rdfs:label "orthographyVariant"@en ;
+    rdfs:comment "The variation link ties a word form and its variant in orthography and spelling; subject has a variant form object when they differ in a single or double letter, s in place of z, an hyphen instead of a space, as often happens in American and British English." ;
+    rdfs:domain ontolex:LexicalEntry ;
+    rdfs:range ontolex:LexicalEntry .
+    
+##############################################
+############### Date sub-graph ###############
+##############################################
+
+#ISO 8601 date format for both TimePoint (YYYY-MM-DD) and TemporalInterval (XXXX/YYYY)
+
+schema:Date a rdfs:Class ; 
+    rdfs:label "Date"@en .
+
+################################################
+############### Author sub-graph ###############
+################################################
+
+schema:Person a rdfs:Class ; #actual author
+    rdfs:label "Person"@en .
+schema:Occupation a rdfs:Class ;
+    rdfs:label "Occupation"@en .
+
+schema:birthdDate a rdf:Property ;
+    rdfs:label "birthDate"@en ;
+    rdfs:domain schema:Person ;
+    rdfs:range schema:Date .
+schema:deathDate a rdf:Property ;
+    rdfs:label "deathDate"@en ;
+    rdfs:domain schema:Person ;
+    rdfs:range schema:Date .
+schema:givenName a rdf:Property ;
+    rdfs:label "givenName"@en , "firstname"@en ;
+    rdfs:domain schema:Person ;
+    rdfs:range schema:Text .
+schema:familyName a rdf:Property ;
+    rdfs:label "familyName"@en , "surname"@en ;
+    rdfs:domain schema:Person ;
+    rdfs:range schema:Text .
+schema:hasOccupation a rdf:Property ;
+    rdfs:label "occupation"@en ;
+    rdfs:domain schema:Person ;
+    rdfs:range schema:Occupation .
+
+schema:Occupation dct:title rdfs:Literal .
+
+schema:Organization a rdfs:Class ; # research project publishing a resource
+    rdfs:label "Organization"@en .
+schema:Project rdfs:subClassOf schema:Organization ;
+    rdfs:label "Project"@en .
+schema:ResearchProject rdfs:subClassOf schema:Project ;
+    rdfs:label "ResearchProject"@en .
+
+schema:Organization dct:title rdfs:Literal .
+
+################################################
+############### Corpus sub-graph ###############
+################################################
+
+schema:CreativeWorks a rdf:Class ; 
+    rdfs:label "Document"@en .
+schema:Collection rdfs:subClassOf schema:CreativeWorks ;
+    rdfs:label "Corpus"@en, "Collection"@en .
+schema:Quotation rdfs:subClassOf schema:CreativeWorks ;
+    rdfs:label "Text"@en .
+
+schema:isPartOf a rdf:Property ;
+    rdfs:label "isPartOf"@en .
+schema:datePublished a rdf:Property ;
+    rdfs:label "datePublished"@en ;
+    rdfs:range schema:Date .
+schema:text a rdf:Property ;
+    rdfs:label "value"@en ;
+    rdfs:domain schema:Quotation ;
+    rdfs:range schema:Text .
+
+schema:CreativeWorks dct:title rdfs:Literal .
+
+#################################################
+############### Example sub-graph ###############
+#################################################
+
+wn:Example a rdfs:Class ;
+    rdfs:label "Example"@en , "Occurrence"@en .
+
+ontolex:LexicalEntry dct:isPartOf wn:Example .
+
+wn:example a rdf:Property ; # An example usage of a sense or synset
+    rdfs:label "example"@en ;
+    rdfs:domain ontolex:LexicalSense ;
+    rdfs:range wn:Example .
+:beginOffset a rdf:Property ;
+    rdfs:label "begin"@en ;
+    rdfs:domain wn:Example ;
+    rdfs:range xsd:unsignedInt .
+:endOffset a rdf:Property ;
+    rdfs:label "end"@en ;
+    rdfs:domain wn:Example ;
+    rdfs:range xsd:unsignedInt .  
+:grade a rdf:Property ;
+    rdfs:label "grade"@en ;
+    rdfs:domain wn:Example ;
+    rdfs:range xsd:float .
+
+wn:Example dct:isPartOf schema:Quotation .
