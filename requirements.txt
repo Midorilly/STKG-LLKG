@@ -1,3 +1,4 @@
 rdflib
 ipykernel
 pandas
+jsonlines
