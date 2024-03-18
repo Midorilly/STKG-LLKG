@@ -56,7 +56,7 @@ Linked Linguistic Knowledge Graph
 |(Language) enName: string|dct:LinguisticSystem [dct:title](http://purl.org/dc/terms/title) rdfs:Literal|
 |(Language) iso639-1: string|dct:LinguisticSystem [dct:identifier](    http://purl.org/dc/terms/identifier) [loc:iso639-1](http://id.loc.gov/vocabulary/iso639-1) |
 |(Language) iso639-2: string|dct:LinguisticSystem [dct:identifier](    http://purl.org/dc/terms/identifier) [loc:iso639-2](http://id.loc.gov/vocabulary/iso639-2) |
-|(LexiconEntry) value: string|ontolex:LexicalEntry [ontolex:lexicalForm](https://www.w3.org/2016/05/ontolex/#lexical-form-object-property) ontolex:Form ontolex:writtenRep rdf:langString |
+|(LexiconEntry) value: string|ontolex:LexicalEntry rdfs:label rdfs:Literal |
 |(LexiconConcept) alias: string|ontolex:LexicalSense dct:title rdfs:Literal|
 |(LexiconConcept) gloss: string|ontolex:LexicalSense dct:description rdfs:Literal|
 

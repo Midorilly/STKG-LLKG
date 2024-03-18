@@ -78,10 +78,6 @@ ontolex:canonicalForm a rdf:Property ;
     rdfs:label "canonicalForm"@en ;
     rdfs:domain ontolex:LexicalEntry ;
     rdfs:range ontolex:Form .
-ontolex:lexicalForm a rdf:Property ;
-    rdfs:label "lexicalForm"@en ;
-    rdfs:domain ontolex:LexicalEntry ;
-    rdfs:range ontolex:Form .
 ontolex:writtenRep a rdf:Property ;
     rdfs:label "writtenRep"@en ;
     rdfs:domain ontolex:Form ;
