@@ -2,3 +2,4 @@ rdflib
 ipykernel
 pandas
 jsonlines
+SPARQLWrapper
