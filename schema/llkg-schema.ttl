@@ -29,6 +29,9 @@ dct:description a rdf:Property ;
     rdfs:label "description"@en ;
     rdfs:range rdfs:Literal .
 
+dct:identifier a rdf:Property ;
+    rdfs:label "identifier"@en .
+
 ####################################################
 ############### Linguistic sub-graph ###############
 ####################################################
@@ -38,12 +41,11 @@ dct:description a rdf:Property ;
 dct:LinguisticSystem a rdfs:Class ;
     rdfs:label "Language"@en .
 
-dct:identifier a rdf:Property .
-:iso6391 rdfs:subPropertyOf dct:identifier ;
+:iso6391 rdfs:subPropertyOf dct:identifier ;######## review
     rdfs:label "ISO639-1"@en ;
     rdfs:domain dct:LinguisticSystem ;
     rdfs:range loc:iso639-1 .
-:iso6392 rdfs:subPropertyOf dct:identifier ;
+:iso6392 rdfs:subPropertyOf dct:identifier ; ######### review
     rdfs:label "ISO639-2"@en ;
     rdfs:domain dct:LinguisticSystem ;
     rdfs:range loc:iso639-2 .
@@ -66,13 +68,9 @@ ontolex:Form a rdfs:Class ;
 lexinfo:PartOfSpeech a rdfs:Class ;
     rdfs:label "PartOfSpeech"@en .
 
-vartrans:lexicalRel a rdf:Property ;
-    rdfs:label "lexicalRelation"@en ;
-    rdfs:domain ontolex:LexicalEntry ;
-    rdfs:range ontolex:LexicalEntry .
 lexinfo:partOfSpeech a rdf:Property ;
     rdfs:label "PoS"@en ;
-    rdfs:domain ontolex:LexicalEntry ;
+    rdfs:domain ontolex:Form ;
     rdfs:range lexinfo:PartOfSpeech .
 ontolex:canonicalForm a rdf:Property ;
     rdfs:label "canonicalForm"@en ;

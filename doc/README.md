@@ -53,7 +53,7 @@ Linked Linguistic Knowledge Graph
 |(Lemma) mwe: boolean| [ontolex:MultiwordExpession](https://www.w3.org/2016/05/ontolex/#multiword-expression-class) rdfs:subClassOf ontolex:LexicalEntry|
 |(Lemma) value: string| ontolex:LexicalEntry ontolex:canonicalForm ontolex:Form [ontolex:writtenRep](https://www.w3.org/2016/05/ontolex/#written-representation-datatype-property) rdf:langString|
 |(LexiconConcept) resource: string|ontolex:LexicalSense [dct:source](    http://purl.org/dc/terms/source) rdfs:Resource|
-|(Language) enName: string|dct:LinguisticSystem [dct:title](http://purl.org/dc/terms/title) rdfs:Literal|
+|(Language) enName: string|dct:LinguisticSystem rdfs:label rdfs:Literal|
 |(Language) iso639-1: string|dct:LinguisticSystem [dct:identifier](    http://purl.org/dc/terms/identifier) [loc:iso639-1](http://id.loc.gov/vocabulary/iso639-1) |
 |(Language) iso639-2: string|dct:LinguisticSystem [dct:identifier](    http://purl.org/dc/terms/identifier) [loc:iso639-2](http://id.loc.gov/vocabulary/iso639-2) |
 |(LexiconEntry) value: string|ontolex:LexicalEntry rdfs:label rdfs:Literal |
