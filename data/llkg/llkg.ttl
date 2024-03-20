@@ -1,0 +1,2707 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix lexinfo: <http://www.lexinfo.net/ontology/2.0/lexinfo#> .
+@prefix lime: <http://www.w3.org/ns/lemon/lime#> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+"LLKG" a lime:Lexicon ;
+    rdfs:label "Linked Linguistic Knowledge Graph"@en ;
+    dct:language "English" ;
+    lime:entry <http://lexvo.org/id/term/lat/acerbae>,
+        <http://lexvo.org/id/term/lat/acerbam>,
+        <http://lexvo.org/id/term/lat/acerbas>,
+        <http://lexvo.org/id/term/lat/acerbe>,
+        <http://lexvo.org/id/term/lat/acerbior>,
+        <http://lexvo.org/id/term/lat/acerbiorem>,
+        <http://lexvo.org/id/term/lat/acerbissima>,
+        <http://lexvo.org/id/term/lat/acerbissimae>,
+        <http://lexvo.org/id/term/lat/acerbissime>,
+        <http://lexvo.org/id/term/lat/acerbissimo>,
+        <http://lexvo.org/id/term/lat/acerbissimum>,
+        <http://lexvo.org/id/term/lat/acerbius>,
+        <http://lexvo.org/id/term/lat/acerbos>,
+        <http://lexvo.org/id/term/lat/acerbum>,
+        <http://lexvo.org/id/term/lat/adsumam>,
+        <http://lexvo.org/id/term/lat/adsumamus>,
+        <http://lexvo.org/id/term/lat/adsumat>,
+        <http://lexvo.org/id/term/lat/adsumebatur>,
+        <http://lexvo.org/id/term/lat/adsumenda>,
+        <http://lexvo.org/id/term/lat/adsumendae>,
+        <http://lexvo.org/id/term/lat/adsumendum>,
+        <http://lexvo.org/id/term/lat/adsumere>,
+        <http://lexvo.org/id/term/lat/adsumerent>,
+        <http://lexvo.org/id/term/lat/adsumerentur>,
+        <http://lexvo.org/id/term/lat/adsumeret>,
+        <http://lexvo.org/id/term/lat/adsumimus>,
+        <http://lexvo.org/id/term/lat/adsumitur>,
+        <http://lexvo.org/id/term/lat/adsumpserat>,
+        <http://lexvo.org/id/term/lat/adsumpserint>,
+        <http://lexvo.org/id/term/lat/adsumpserit>,
+        <http://lexvo.org/id/term/lat/adsumpserunt>,
+        <http://lexvo.org/id/term/lat/adsumpsisse>,
+        <http://lexvo.org/id/term/lat/adsumpta>,
+        <http://lexvo.org/id/term/lat/adsumptae>,
+        <http://lexvo.org/id/term/lat/adsumptam>,
+        <http://lexvo.org/id/term/lat/adsumpti>,
+        <http://lexvo.org/id/term/lat/adsumptos>,
+        <http://lexvo.org/id/term/lat/adsumuntur>,
+        <http://lexvo.org/id/term/lat/ancillae>,
+        <http://lexvo.org/id/term/lat/ancillam>,
+        <http://lexvo.org/id/term/lat/ancillarum>,
+        <http://lexvo.org/id/term/lat/ancillas>,
+        <http://lexvo.org/id/term/lat/ancillis>,
+        <http://lexvo.org/id/term/lat/beata>,
+        <http://lexvo.org/id/term/lat/beatae>,
+        <http://lexvo.org/id/term/lat/beatam>,
+        <http://lexvo.org/id/term/lat/beate>,
+        <http://lexvo.org/id/term/lat/beati>,
+        <http://lexvo.org/id/term/lat/beatorum>,
+        <http://lexvo.org/id/term/lat/beatos>,
+        <http://lexvo.org/id/term/lat/beatum>,
+        <http://lexvo.org/id/term/lat/ciuitatem>,
+        <http://lexvo.org/id/term/lat/ciuitatibus>,
+        <http://lexvo.org/id/term/lat/ciuitatis>,
+        <http://lexvo.org/id/term/lat/civitate>,
+        <http://lexvo.org/id/term/lat/civitatem>,
+        <http://lexvo.org/id/term/lat/civitates>,
+        <http://lexvo.org/id/term/lat/civitati>,
+        <http://lexvo.org/id/term/lat/civitatibus>,
+        <http://lexvo.org/id/term/lat/civitatis>,
+        <http://lexvo.org/id/term/lat/civitatium>,
+        <http://lexvo.org/id/term/lat/cohors>,
+        <http://lexvo.org/id/term/lat/cohorte>,
+        <http://lexvo.org/id/term/lat/cohortem>,
+        <http://lexvo.org/id/term/lat/cohortes>,
+        <http://lexvo.org/id/term/lat/cohorti>,
+        <http://lexvo.org/id/term/lat/cohortibus>,
+        <http://lexvo.org/id/term/lat/cohortis>,
+        <http://lexvo.org/id/term/lat/cohortium>,
+        <http://lexvo.org/id/term/lat/consili>,
+        <http://lexvo.org/id/term/lat/consilia>,
+        <http://lexvo.org/id/term/lat/consilii>,
+        <http://lexvo.org/id/term/lat/consiliis>,
+        <http://lexvo.org/id/term/lat/consilio>,
+        <http://lexvo.org/id/term/lat/consule>,
+        <http://lexvo.org/id/term/lat/consulem>,
+        <http://lexvo.org/id/term/lat/consules>,
+        <http://lexvo.org/id/term/lat/consuli>,
+        <http://lexvo.org/id/term/lat/consulibus>,
+        <http://lexvo.org/id/term/lat/consulis>,
+        <http://lexvo.org/id/term/lat/consulum>,
+        <http://lexvo.org/id/term/lat/credam>,
+        <http://lexvo.org/id/term/lat/credat>,
+        <http://lexvo.org/id/term/lat/credatis>,
+        <http://lexvo.org/id/term/lat/credatur>,
+        <http://lexvo.org/id/term/lat/crede>,
+        <http://lexvo.org/id/term/lat/credebam>,
+        <http://lexvo.org/id/term/lat/credebant>,
+        <http://lexvo.org/id/term/lat/credens>,
+        <http://lexvo.org/id/term/lat/credenti>,
+        <http://lexvo.org/id/term/lat/credere>,
+        <http://lexvo.org/id/term/lat/crederet>,
+        <http://lexvo.org/id/term/lat/credi>,
+        <http://lexvo.org/id/term/lat/credideram>,
+        <http://lexvo.org/id/term/lat/crediderint>,
+        <http://lexvo.org/id/term/lat/crediderit>,
+        <http://lexvo.org/id/term/lat/crediderunt>,
+        <http://lexvo.org/id/term/lat/credidi>,
+        <http://lexvo.org/id/term/lat/credidisti>,
+        <http://lexvo.org/id/term/lat/credimus>,
+        <http://lexvo.org/id/term/lat/credis>,
+        <http://lexvo.org/id/term/lat/credit>,
+        <http://lexvo.org/id/term/lat/credita>,
+        <http://lexvo.org/id/term/lat/creditas>,
+        <http://lexvo.org/id/term/lat/creditur>,
+        <http://lexvo.org/id/term/lat/credo>,
+        <http://lexvo.org/id/term/lat/credunt>,
+        <http://lexvo.org/id/term/lat/doli>,
+        <http://lexvo.org/id/term/lat/dolis>,
+        <http://lexvo.org/id/term/lat/dolo>,
+        <http://lexvo.org/id/term/lat/dolos>,
+        <http://lexvo.org/id/term/lat/dolum>,
+        <http://lexvo.org/id/term/lat/dubia>,
+        <http://lexvo.org/id/term/lat/dubiae>,
+        <http://lexvo.org/id/term/lat/dubiam>,
+        <http://lexvo.org/id/term/lat/dubias>,
+        <http://lexvo.org/id/term/lat/dubiis>,
+        <http://lexvo.org/id/term/lat/dubio>,
+        <http://lexvo.org/id/term/lat/dubios>,
+        <http://lexvo.org/id/term/lat/dubium>,
+        <http://lexvo.org/id/term/lat/duce>,
+        <http://lexvo.org/id/term/lat/ducem>,
+        <http://lexvo.org/id/term/lat/duces>,
+        <http://lexvo.org/id/term/lat/ducibus>,
+        <http://lexvo.org/id/term/lat/ducum>,
+        <http://lexvo.org/id/term/lat/fidele>,
+        <http://lexvo.org/id/term/lat/fidelem>,
+        <http://lexvo.org/id/term/lat/fideles>,
+        <http://lexvo.org/id/term/lat/fideli>,
+        <http://lexvo.org/id/term/lat/fidelibus>,
+        <http://lexvo.org/id/term/lat/fideliorem>,
+        <http://lexvo.org/id/term/lat/fideliores>,
+        <http://lexvo.org/id/term/lat/fideliori>,
+        <http://lexvo.org/id/term/lat/fidelissimae>,
+        <http://lexvo.org/id/term/lat/fidelissimam>,
+        <http://lexvo.org/id/term/lat/fidelissimi>,
+        <http://lexvo.org/id/term/lat/fidelissimis>,
+        <http://lexvo.org/id/term/lat/fidelissimorum>,
+        <http://lexvo.org/id/term/lat/fidelissimos>,
+        <http://lexvo.org/id/term/lat/fideliter>,
+        <http://lexvo.org/id/term/lat/fidelium>,
+        <http://lexvo.org/id/term/lat/fidelius>,
+        <http://lexvo.org/id/term/lat/honore>,
+        <http://lexvo.org/id/term/lat/honorem>,
+        <http://lexvo.org/id/term/lat/honores>,
+        <http://lexvo.org/id/term/lat/honori>,
+        <http://lexvo.org/id/term/lat/honoribus>,
+        <http://lexvo.org/id/term/lat/honoris>,
+        <http://lexvo.org/id/term/lat/honos>,
+        <http://lexvo.org/id/term/lat/hostem>,
+        <http://lexvo.org/id/term/lat/hostes>,
+        <http://lexvo.org/id/term/lat/hostibus>,
+        <http://lexvo.org/id/term/lat/humanitate>,
+        <http://lexvo.org/id/term/lat/humanitatem>,
+        <http://lexvo.org/id/term/lat/humanitati>,
+        <http://lexvo.org/id/term/lat/humanitatis>,
+        <http://lexvo.org/id/term/lat/imperator>,
+        <http://lexvo.org/id/term/lat/imperatore>,
+        <http://lexvo.org/id/term/lat/imperatorem>,
+        <http://lexvo.org/id/term/lat/imperatores>,
+        <http://lexvo.org/id/term/lat/imperatori>,
+        <http://lexvo.org/id/term/lat/imperatoribus>,
+        <http://lexvo.org/id/term/lat/imperatoris>,
+        <http://lexvo.org/id/term/lat/itera>,
+        <http://lexvo.org/id/term/lat/iteramus>,
+        <http://lexvo.org/id/term/lat/iterandam>,
+        <http://lexvo.org/id/term/lat/iterando>,
+        <http://lexvo.org/id/term/lat/iterandum>,
+        <http://lexvo.org/id/term/lat/iterans>,
+        <http://lexvo.org/id/term/lat/iterant>,
+        <http://lexvo.org/id/term/lat/iterantur>,
+        <http://lexvo.org/id/term/lat/iterare>,
+        <http://lexvo.org/id/term/lat/iterat>,
+        <http://lexvo.org/id/term/lat/iterata>,
+        <http://lexvo.org/id/term/lat/iteratis>,
+        <http://lexvo.org/id/term/lat/iteratum>,
+        <http://lexvo.org/id/term/lat/iteratur>,
+        <http://lexvo.org/id/term/lat/iterem>,
+        <http://lexvo.org/id/term/lat/iteremus>,
+        <http://lexvo.org/id/term/lat/iterentur>,
+        <http://lexvo.org/id/term/lat/iteret>,
+        <http://lexvo.org/id/term/lat/iura>,
+        <http://lexvo.org/id/term/lat/iure>,
+        <http://lexvo.org/id/term/lat/iuris>,
+        <http://lexvo.org/id/term/lat/jure>,
+        <http://lexvo.org/id/term/lat/liceat>,
+        <http://lexvo.org/id/term/lat/licebat>,
+        <http://lexvo.org/id/term/lat/licere>,
+        <http://lexvo.org/id/term/lat/liceret>,
+        <http://lexvo.org/id/term/lat/licet>,
+        <http://lexvo.org/id/term/lat/necessaria>,
+        <http://lexvo.org/id/term/lat/necessariam>,
+        <http://lexvo.org/id/term/lat/necessarii>,
+        <http://lexvo.org/id/term/lat/necessariis>,
+        <http://lexvo.org/id/term/lat/necessario>,
+        <http://lexvo.org/id/term/lat/necessariorum>,
+        <http://lexvo.org/id/term/lat/necessarios>,
+        <http://lexvo.org/id/term/lat/necessarium>,
+        <http://lexvo.org/id/term/lat/nepote>,
+        <http://lexvo.org/id/term/lat/nepotem>,
+        <http://lexvo.org/id/term/lat/nepotes>,
+        <http://lexvo.org/id/term/lat/nepoti>,
+        <http://lexvo.org/id/term/lat/nepotibus>,
+        <http://lexvo.org/id/term/lat/nepotis>,
+        <http://lexvo.org/id/term/lat/nepotum>,
+        <http://lexvo.org/id/term/lat/nobilitate>,
+        <http://lexvo.org/id/term/lat/nobilitatem>,
+        <http://lexvo.org/id/term/lat/nobilitati>,
+        <http://lexvo.org/id/term/lat/nobilitatis>,
+        <http://lexvo.org/id/term/lat/poenae>,
+        <http://lexvo.org/id/term/lat/poenam>,
+        <http://lexvo.org/id/term/lat/poenarum>,
+        <http://lexvo.org/id/term/lat/poenas>,
+        <http://lexvo.org/id/term/lat/poenis>,
+        <http://lexvo.org/id/term/lat/pontificem>,
+        <http://lexvo.org/id/term/lat/pontifices>,
+        <http://lexvo.org/id/term/lat/pontificis>,
+        <http://lexvo.org/id/term/lat/potestate>,
+        <http://lexvo.org/id/term/lat/potestatem>,
+        <http://lexvo.org/id/term/lat/potestates>,
+        <http://lexvo.org/id/term/lat/potestati>,
+        <http://lexvo.org/id/term/lat/potestatibus>,
+        <http://lexvo.org/id/term/lat/potestatis>,
+        <http://lexvo.org/id/term/lat/regna>,
+        <http://lexvo.org/id/term/lat/regni>,
+        <http://lexvo.org/id/term/lat/regno>,
+        <http://lexvo.org/id/term/lat/sacramenta>,
+        <http://lexvo.org/id/term/lat/sacramenti>,
+        <http://lexvo.org/id/term/lat/sacramentis>,
+        <http://lexvo.org/id/term/lat/sacramento>,
+        <http://lexvo.org/id/term/lat/sacramentorum>,
+        <http://lexvo.org/id/term/lat/salute>,
+        <http://lexvo.org/id/term/lat/salutem>,
+        <http://lexvo.org/id/term/lat/saluti>,
+        <http://lexvo.org/id/term/lat/salutis>,
+        <http://lexvo.org/id/term/lat/sancta>,
+        <http://lexvo.org/id/term/lat/sanctae>,
+        <http://lexvo.org/id/term/lat/sanctam>,
+        <http://lexvo.org/id/term/lat/sanctarum>,
+        <http://lexvo.org/id/term/lat/sancte>,
+        <http://lexvo.org/id/term/lat/sancti>,
+        <http://lexvo.org/id/term/lat/sanctis>,
+        <http://lexvo.org/id/term/lat/sanctissima>,
+        <http://lexvo.org/id/term/lat/sanctissimis>,
+        <http://lexvo.org/id/term/lat/sancto>,
+        <http://lexvo.org/id/term/lat/sanctorum>,
+        <http://lexvo.org/id/term/lat/sanctum>,
+        <http://lexvo.org/id/term/lat/sapientiae>,
+        <http://lexvo.org/id/term/lat/sapientiam>,
+        <http://lexvo.org/id/term/lat/scriptura>,
+        <http://lexvo.org/id/term/lat/scripturae>,
+        <http://lexvo.org/id/term/lat/scripturam>,
+        <http://lexvo.org/id/term/lat/scripturas>,
+        <http://lexvo.org/id/term/lat/scripturis>,
+        <http://lexvo.org/id/term/lat/senatu>,
+        <http://lexvo.org/id/term/lat/senatui>,
+        <http://lexvo.org/id/term/lat/senatum>,
+        <http://lexvo.org/id/term/lat/sensibus>,
+        <http://lexvo.org/id/term/lat/sensu>,
+        <http://lexvo.org/id/term/lat/sensui>,
+        <http://lexvo.org/id/term/lat/sensum>,
+        <http://lexvo.org/id/term/lat/sensus>,
+        <http://lexvo.org/id/term/lat/sensuum>,
+        <http://lexvo.org/id/term/lat/simplicem>,
+        <http://lexvo.org/id/term/lat/simplices>,
+        <http://lexvo.org/id/term/lat/simplici>,
+        <http://lexvo.org/id/term/lat/simplicia>,
+        <http://lexvo.org/id/term/lat/simplicibus>,
+        <http://lexvo.org/id/term/lat/simplicis>,
+        <http://lexvo.org/id/term/lat/simpliciter>,
+        <http://lexvo.org/id/term/lat/simplicium>,
+        <http://lexvo.org/id/term/lat/templa>,
+        <http://lexvo.org/id/term/lat/templi>,
+        <http://lexvo.org/id/term/lat/templis>,
+        <http://lexvo.org/id/term/lat/templo>,
+        <http://lexvo.org/id/term/lat/templum>,
+        <http://lexvo.org/id/term/lat/tituli>,
+        <http://lexvo.org/id/term/lat/titulis>,
+        <http://lexvo.org/id/term/lat/titulo>,
+        <http://lexvo.org/id/term/lat/titulos>,
+        <http://lexvo.org/id/term/lat/titulum>,
+        <http://lexvo.org/id/term/lat/uoluntas>,
+        <http://lexvo.org/id/term/lat/uoluntati>,
+        <http://lexvo.org/id/term/lat/virtute>,
+        <http://lexvo.org/id/term/lat/voluntate>,
+        <http://lexvo.org/id/term/lat/voluntatem>,
+        <http://lexvo.org/id/term/lat/voluntates>,
+        <http://lexvo.org/id/term/lat/voluntati>,
+        <http://lexvo.org/id/term/lat/voluntatibus>,
+        <http://lexvo.org/id/term/lat/voluntatis>,
+        <http://lexvo.org/id/term/lat/voluntatum>,
+        <http://lila-erc.eu/data/id/hypolemma/4503>,
+        <http://lila-erc.eu/data/id/lemma/100033>,
+        <http://lila-erc.eu/data/id/lemma/100037>,
+        <http://lila-erc.eu/data/id/lemma/100177>,
+        <http://lila-erc.eu/data/id/lemma/100327>,
+        <http://lila-erc.eu/data/id/lemma/103256>,
+        <http://lila-erc.eu/data/id/lemma/105647>,
+        <http://lila-erc.eu/data/id/lemma/105757>,
+        <http://lila-erc.eu/data/id/lemma/105762>,
+        <http://lila-erc.eu/data/id/lemma/106515>,
+        <http://lila-erc.eu/data/id/lemma/109137>,
+        <http://lila-erc.eu/data/id/lemma/109252>,
+        <http://lila-erc.eu/data/id/lemma/109285>,
+        <http://lila-erc.eu/data/id/lemma/110432>,
+        <http://lila-erc.eu/data/id/lemma/113502>,
+        <http://lila-erc.eu/data/id/lemma/113596>,
+        <http://lila-erc.eu/data/id/lemma/113752>,
+        <http://lila-erc.eu/data/id/lemma/115098>,
+        <http://lila-erc.eu/data/id/lemma/118263>,
+        <http://lila-erc.eu/data/id/lemma/118418>,
+        <http://lila-erc.eu/data/id/lemma/118652>,
+        <http://lila-erc.eu/data/id/lemma/121683>,
+        <http://lila-erc.eu/data/id/lemma/123079>,
+        <http://lila-erc.eu/data/id/lemma/123273>,
+        <http://lila-erc.eu/data/id/lemma/123276>,
+        <http://lila-erc.eu/data/id/lemma/123349>,
+        <http://lila-erc.eu/data/id/lemma/124309>,
+        <http://lila-erc.eu/data/id/lemma/124355>,
+        <http://lila-erc.eu/data/id/lemma/124840>,
+        <http://lila-erc.eu/data/id/lemma/127417>,
+        <http://lila-erc.eu/data/id/lemma/127783>,
+        <http://lila-erc.eu/data/id/lemma/128926>,
+        <http://lila-erc.eu/data/id/lemma/78250>,
+        <http://lila-erc.eu/data/id/lemma/87191>,
+        <http://lila-erc.eu/data/id/lemma/88939>,
+        <http://lila-erc.eu/data/id/lemma/90386>,
+        <http://lila-erc.eu/data/id/lemma/94400>,
+        <http://lila-erc.eu/data/id/lemma/94751>,
+        <http://lila-erc.eu/data/id/lemma/96060>,
+        <http://lila-erc.eu/data/id/lemma/96181>,
+        <http://lila-erc.eu/data/id/lemma/96881> ;
+    schema:email "e.ghizzota@studenti.uniba.it" .
+
+<http://lexvo.org/id/term/lat/acerbae> a ontolex:Word ;
+    rdfs:label "acerbae" ;
+    dct:identifier "le_166"^^xsd:string,
+        "3458"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/87191> .
+
+<http://lexvo.org/id/term/lat/acerbam> a ontolex:Word ;
+    rdfs:label "acerbam" ;
+    dct:identifier "le_154"^^xsd:string,
+        "3367"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/87191> .
+
+<http://lexvo.org/id/term/lat/acerbas> a ontolex:Word ;
+    rdfs:label "acerbas" ;
+    dct:identifier "le_162"^^xsd:string,
+        "3421"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/87191> .
+
+<http://lexvo.org/id/term/lat/acerbe> a ontolex:Word ;
+    rdfs:label "acerbe" ;
+    dct:identifier "le_160"^^xsd:string,
+        "3403"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/87191> .
+
+<http://lexvo.org/id/term/lat/acerbior> a ontolex:Word ;
+    rdfs:label "acerbior" ;
+    dct:identifier "le_153"^^xsd:string,
+        "3364"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/87191> .
+
+<http://lexvo.org/id/term/lat/acerbiorem> a ontolex:Word ;
+    rdfs:label "acerbiorem" ;
+    dct:identifier "le_158"^^xsd:string,
+        "3385"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/87191> .
+
+<http://lexvo.org/id/term/lat/acerbissima> a ontolex:Word ;
+    rdfs:label "acerbissima" ;
+    dct:identifier "le_159"^^xsd:string,
+        "3388"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/87191> .
+
+<http://lexvo.org/id/term/lat/acerbissimae> a ontolex:Word ;
+    rdfs:label "acerbissimae" ;
+    dct:identifier "le_165"^^xsd:string,
+        "3455"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/87191> .
+
+<http://lexvo.org/id/term/lat/acerbissime> a ontolex:Word ;
+    rdfs:label "acerbissime" ;
+    dct:identifier "le_163"^^xsd:string,
+        "3427"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/87191> .
+
+<http://lexvo.org/id/term/lat/acerbissimo> a ontolex:Word ;
+    rdfs:label "acerbissimo" ;
+    dct:identifier "le_161"^^xsd:string,
+        "3408"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/87191> .
+
+<http://lexvo.org/id/term/lat/acerbissimum> a ontolex:Word ;
+    rdfs:label "acerbissimum" ;
+    dct:identifier "le_156"^^xsd:string,
+        "3373"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/87191> .
+
+<http://lexvo.org/id/term/lat/acerbius> a ontolex:Word ;
+    rdfs:label "acerbius" ;
+    dct:identifier "le_155"^^xsd:string,
+        "3370"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/87191> .
+
+<http://lexvo.org/id/term/lat/acerbos> a ontolex:Word ;
+    rdfs:label "acerbos" ;
+    dct:identifier "le_164"^^xsd:string,
+        "3437"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/87191> .
+
+<http://lexvo.org/id/term/lat/acerbum> a ontolex:Word ;
+    rdfs:label "acerbum" ;
+    dct:identifier "le_157"^^xsd:string,
+        "3382"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/87191> .
+
+<http://lexvo.org/id/term/lat/adsumam> a ontolex:Word ;
+    rdfs:label "adsumam" ;
+    dct:identifier "le_279"^^xsd:string,
+        "5129"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/90386> .
+
+<http://lexvo.org/id/term/lat/adsumamus> a ontolex:Word ;
+    rdfs:label "adsumamus" ;
+    dct:identifier "le_273"^^xsd:string,
+        "5099"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/90386> .
+
+<http://lexvo.org/id/term/lat/adsumat> a ontolex:Word ;
+    rdfs:label "adsumat" ;
+    dct:identifier "le_274"^^xsd:string,
+        "5104"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/90386> .
+
+<http://lexvo.org/id/term/lat/adsumebatur> a ontolex:Word ;
+    rdfs:label "adsumebatur" ;
+    dct:identifier "le_278"^^xsd:string,
+        "5124"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/90386> .
+
+<http://lexvo.org/id/term/lat/adsumenda> a ontolex:Word ;
+    rdfs:label "adsumenda" ;
+    dct:identifier "le_283"^^xsd:string,
+        "5141"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/90386> .
+
+<http://lexvo.org/id/term/lat/adsumendae> a ontolex:Word ;
+    rdfs:label "adsumendae" ;
+    dct:identifier "le_281"^^xsd:string,
+        "5135"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/90386> .
+
+<http://lexvo.org/id/term/lat/adsumendum> a ontolex:Word ;
+    rdfs:label "adsumendum" ;
+    dct:identifier "le_268"^^xsd:string,
+        "5082"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/90386> .
+
+<http://lexvo.org/id/term/lat/adsumere> a ontolex:Word ;
+    rdfs:label "adsumere" ;
+    dct:identifier "le_272"^^xsd:string,
+        "5096"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/90386> .
+
+<http://lexvo.org/id/term/lat/adsumerent> a ontolex:Word ;
+    rdfs:label "adsumerent" ;
+    dct:identifier "le_280"^^xsd:string,
+        "5132"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/90386> .
+
+<http://lexvo.org/id/term/lat/adsumerentur> a ontolex:Word ;
+    rdfs:label "adsumerentur" ;
+    dct:identifier "le_284"^^xsd:string,
+        "5144"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/90386> .
+
+<http://lexvo.org/id/term/lat/adsumeret> a ontolex:Word ;
+    rdfs:label "adsumeret" ;
+    dct:identifier "le_285"^^xsd:string,
+        "5149"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/90386> .
+
+<http://lexvo.org/id/term/lat/adsumimus> a ontolex:Word ;
+    rdfs:label "adsumimus" ;
+    dct:identifier "le_263"^^xsd:string,
+        "5065"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/90386> .
+
+<http://lexvo.org/id/term/lat/adsumitur> a ontolex:Word ;
+    rdfs:label "adsumitur" ;
+    dct:identifier "le_270"^^xsd:string,
+        "5088"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/90386> .
+
+<http://lexvo.org/id/term/lat/adsumpserat> a ontolex:Word ;
+    rdfs:label "adsumpserat" ;
+    dct:identifier "le_266"^^xsd:string,
+        "5074"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/90386> .
+
+<http://lexvo.org/id/term/lat/adsumpserint> a ontolex:Word ;
+    rdfs:label "adsumpserint" ;
+    dct:identifier "le_264"^^xsd:string,
+        "5068"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/90386> .
+
+<http://lexvo.org/id/term/lat/adsumpserit> a ontolex:Word ;
+    rdfs:label "adsumpserit" ;
+    dct:identifier "le_269"^^xsd:string,
+        "5085"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/90386> .
+
+<http://lexvo.org/id/term/lat/adsumpserunt> a ontolex:Word ;
+    rdfs:label "adsumpserunt" ;
+    dct:identifier "le_282"^^xsd:string,
+        "5138"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/90386> .
+
+<http://lexvo.org/id/term/lat/adsumpsisse> a ontolex:Word ;
+    rdfs:label "adsumpsisse" ;
+    dct:identifier "le_286"^^xsd:string,
+        "5160"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/90386> .
+
+<http://lexvo.org/id/term/lat/adsumpta> a ontolex:Word ;
+    rdfs:label "adsumpta" ;
+    dct:identifier "le_265"^^xsd:string,
+        "5071"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/90386> .
+
+<http://lexvo.org/id/term/lat/adsumptae> a ontolex:Word ;
+    rdfs:label "adsumptae" ;
+    dct:identifier "le_275"^^xsd:string,
+        "5109"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/90386> .
+
+<http://lexvo.org/id/term/lat/adsumptam> a ontolex:Word ;
+    rdfs:label "adsumptam" ;
+    dct:identifier "le_276"^^xsd:string,
+        "5112"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/90386> .
+
+<http://lexvo.org/id/term/lat/adsumpti> a ontolex:Word ;
+    rdfs:label "adsumpti" ;
+    dct:identifier "le_267"^^xsd:string,
+        "5079"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/90386> .
+
+<http://lexvo.org/id/term/lat/adsumptos> a ontolex:Word ;
+    rdfs:label "adsumptos" ;
+    dct:identifier "le_277"^^xsd:string,
+        "5117"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/90386> .
+
+<http://lexvo.org/id/term/lat/adsumuntur> a ontolex:Word ;
+    rdfs:label "adsumuntur" ;
+    dct:identifier "le_271"^^xsd:string,
+        "5093"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/90386> .
+
+<http://lexvo.org/id/term/lat/ancillae> a ontolex:Word ;
+    rdfs:label "ancillae" ;
+    dct:identifier "le_238"^^xsd:string,
+        "4516"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/88939> .
+
+<http://lexvo.org/id/term/lat/ancillam> a ontolex:Word ;
+    rdfs:label "ancillam" ;
+    dct:identifier "le_235"^^xsd:string,
+        "4497"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/88939> .
+
+<http://lexvo.org/id/term/lat/ancillarum> a ontolex:Word ;
+    rdfs:label "ancillarum" ;
+    dct:identifier "le_237"^^xsd:string,
+        "4507"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/88939> .
+
+<http://lexvo.org/id/term/lat/ancillas> a ontolex:Word ;
+    rdfs:label "ancillas" ;
+    dct:identifier "le_239"^^xsd:string,
+        "4521"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/88939> .
+
+<http://lexvo.org/id/term/lat/ancillis> a ontolex:Word ;
+    rdfs:label "ancillis" ;
+    dct:identifier "le_236"^^xsd:string,
+        "4502"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/88939> .
+
+<http://lexvo.org/id/term/lat/beata> a ontolex:Word ;
+    rdfs:label "beata" ;
+    dct:identifier "le_241"^^xsd:string,
+        "4601"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/hypolemma/4503> .
+
+<http://lexvo.org/id/term/lat/beatae> a ontolex:Word ;
+    rdfs:label "beatae" ;
+    dct:identifier "le_242"^^xsd:string,
+        "4609"^^xsd:unsignedInt,
+        "4641"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/hypolemma/4503> .
+
+<http://lexvo.org/id/term/lat/beatam> a ontolex:Word ;
+    rdfs:label "beatam" ;
+    dct:identifier "le_243"^^xsd:string,
+        "4618"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/hypolemma/4503> .
+
+<http://lexvo.org/id/term/lat/beate> a ontolex:Word ;
+    rdfs:label "beate" ;
+    dct:identifier "le_245"^^xsd:string,
+        "4648"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/hypolemma/4503> .
+
+<http://lexvo.org/id/term/lat/beati> a ontolex:Word ;
+    rdfs:label "beati" ;
+    dct:identifier "le_240"^^xsd:string,
+        "4598"^^xsd:unsignedInt,
+        "4606"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/hypolemma/4503> .
+
+<http://lexvo.org/id/term/lat/beatorum> a ontolex:Word ;
+    rdfs:label "beatorum" ;
+    dct:identifier "le_244"^^xsd:string,
+        "4626"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/hypolemma/4503> .
+
+<http://lexvo.org/id/term/lat/beatos> a ontolex:Word ;
+    rdfs:label "beatos" ;
+    dct:identifier "le_246"^^xsd:string,
+        "4657"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/hypolemma/4503> .
+
+<http://lexvo.org/id/term/lat/beatum> a ontolex:Word ;
+    rdfs:label "beatum" ;
+    dct:identifier "le_247"^^xsd:string,
+        "4660"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/hypolemma/4503> .
+
+<http://lexvo.org/id/term/lat/ciuitatem> a ontolex:Word ;
+    rdfs:label "ciuitatem" ;
+    dct:identifier "le_106"^^xsd:string,
+        "2662"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/94400> .
+
+<http://lexvo.org/id/term/lat/ciuitatibus> a ontolex:Word ;
+    rdfs:label "ciuitatibus" ;
+    dct:identifier "le_101"^^xsd:string,
+        "2628"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/94400> .
+
+<http://lexvo.org/id/term/lat/ciuitatis> a ontolex:Word ;
+    rdfs:label "ciuitatis" ;
+    dct:identifier "le_103"^^xsd:string,
+        "2640"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/94400> .
+
+<http://lexvo.org/id/term/lat/civitate> a ontolex:Word ;
+    rdfs:label "civitate" ;
+    dct:identifier "le_99"^^xsd:string,
+        "2615"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/94400> .
+
+<http://lexvo.org/id/term/lat/civitatem> a ontolex:Word ;
+    rdfs:label "civitatem" ;
+    dct:identifier "le_98"^^xsd:string,
+        "2610"^^xsd:unsignedInt,
+        "2653"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/94400> .
+
+<http://lexvo.org/id/term/lat/civitates> a ontolex:Word ;
+    rdfs:label "civitates" ;
+    dct:identifier "le_100"^^xsd:string,
+        "2622"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/94400> .
+
+<http://lexvo.org/id/term/lat/civitati> a ontolex:Word ;
+    rdfs:label "civitati" ;
+    dct:identifier "le_105"^^xsd:string,
+        "2659"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/94400> .
+
+<http://lexvo.org/id/term/lat/civitatibus> a ontolex:Word ;
+    rdfs:label "civitatibus" ;
+    dct:identifier "le_104"^^xsd:string,
+        "2656"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/94400> .
+
+<http://lexvo.org/id/term/lat/civitatis> a ontolex:Word ;
+    rdfs:label "civitatis" ;
+    dct:identifier "le_97"^^xsd:string,
+        "2605"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/94400> .
+
+<http://lexvo.org/id/term/lat/civitatium> a ontolex:Word ;
+    rdfs:label "civitatium" ;
+    dct:identifier "le_102"^^xsd:string,
+        "2633"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/94400> .
+
+<http://lexvo.org/id/term/lat/cohors> a ontolex:Word ;
+    rdfs:label "cohors" ;
+    dct:identifier "le_66"^^xsd:string,
+        "1922"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/94751> .
+
+<http://lexvo.org/id/term/lat/cohorte> a ontolex:Word ;
+    rdfs:label "cohorte" ;
+    dct:identifier "le_64"^^xsd:string,
+        "1880"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/94751> .
+
+<http://lexvo.org/id/term/lat/cohortem> a ontolex:Word ;
+    rdfs:label "cohortem" ;
+    dct:identifier "le_65"^^xsd:string,
+        "1895"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/94751> .
+
+<http://lexvo.org/id/term/lat/cohortes> a ontolex:Word ;
+    rdfs:label "cohortes" ;
+    dct:identifier "le_62"^^xsd:string,
+        "1848"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/94751> .
+
+<http://lexvo.org/id/term/lat/cohorti> a ontolex:Word ;
+    rdfs:label "cohorti" ;
+    dct:identifier "le_63"^^xsd:string,
+        "1871"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/94751> .
+
+<http://lexvo.org/id/term/lat/cohortibus> a ontolex:Word ;
+    rdfs:label "cohortibus" ;
+    dct:identifier "le_61"^^xsd:string,
+        "1845"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/94751> .
+
+<http://lexvo.org/id/term/lat/cohortis> a ontolex:Word ;
+    rdfs:label "cohortis" ;
+    dct:identifier "le_60"^^xsd:string,
+        "1838"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/94751> .
+
+<http://lexvo.org/id/term/lat/cohortium> a ontolex:Word ;
+    rdfs:label "cohortium" ;
+    dct:identifier "le_67"^^xsd:string,
+        "1952"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/94751> .
+
+<http://lexvo.org/id/term/lat/consili> a ontolex:Word ;
+    rdfs:label "consili" ;
+    dct:identifier "le_260"^^xsd:string,
+        "4964"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96060> .
+
+<http://lexvo.org/id/term/lat/consilia> a ontolex:Word ;
+    rdfs:label "consilia" ;
+    dct:identifier "le_262"^^xsd:string,
+        "5003"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96060> .
+
+<http://lexvo.org/id/term/lat/consilii> a ontolex:Word ;
+    rdfs:label "consilii" ;
+    dct:identifier "le_259"^^xsd:string,
+        "4960"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96060> .
+
+<http://lexvo.org/id/term/lat/consiliis> a ontolex:Word ;
+    rdfs:label "consiliis" ;
+    dct:identifier "le_261"^^xsd:string,
+        "4967"^^xsd:unsignedInt,
+        "4970"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96060> .
+
+<http://lexvo.org/id/term/lat/consilio> a ontolex:Word ;
+    rdfs:label "consilio" ;
+    dct:identifier "le_258"^^xsd:string,
+        "4951"^^xsd:unsignedInt,
+        "4996"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96060> .
+
+<http://lexvo.org/id/term/lat/consule> a ontolex:Word ;
+    rdfs:label "consule" ;
+    dct:identifier "le_13"^^xsd:string,
+        "859"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96181> .
+
+<http://lexvo.org/id/term/lat/consulem> a ontolex:Word ;
+    rdfs:label "consulem" ;
+    dct:identifier "le_15"^^xsd:string,
+        "876"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96181> .
+
+<http://lexvo.org/id/term/lat/consules> a ontolex:Word ;
+    rdfs:label "consules" ;
+    dct:identifier "le_12"^^xsd:string,
+        "854"^^xsd:unsignedInt,
+        "862"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96181> .
+
+<http://lexvo.org/id/term/lat/consuli> a ontolex:Word ;
+    rdfs:label "consuli" ;
+    dct:identifier "le_10"^^xsd:string,
+        "847"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96181> .
+
+<http://lexvo.org/id/term/lat/consulibus> a ontolex:Word ;
+    rdfs:label "consulibus" ;
+    dct:identifier "le_9"^^xsd:string,
+        "844"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96181> .
+
+<http://lexvo.org/id/term/lat/consulis> a ontolex:Word ;
+    rdfs:label "consulis" ;
+    dct:identifier "le_14"^^xsd:string,
+        "873"^^xsd:unsignedInt,
+        "897"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96181> .
+
+<http://lexvo.org/id/term/lat/consulum> a ontolex:Word ;
+    rdfs:label "consulum" ;
+    dct:identifier "le_11"^^xsd:string,
+        "850"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96181> .
+
+<http://lexvo.org/id/term/lat/credam> a ontolex:Word ;
+    rdfs:label "credam" ;
+    dct:identifier "le_31"^^xsd:string,
+        "1103"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96881> .
+
+<http://lexvo.org/id/term/lat/credat> a ontolex:Word ;
+    rdfs:label "credat" ;
+    dct:identifier "le_23"^^xsd:string,
+        "1046"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96881> .
+
+<http://lexvo.org/id/term/lat/credatis> a ontolex:Word ;
+    rdfs:label "credatis" ;
+    dct:identifier "le_28"^^xsd:string,
+        "1085"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96881> .
+
+<http://lexvo.org/id/term/lat/credatur> a ontolex:Word ;
+    rdfs:label "credatur" ;
+    dct:identifier "le_17"^^xsd:string,
+        "1017"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96881> .
+
+<http://lexvo.org/id/term/lat/crede> a ontolex:Word ;
+    rdfs:label "crede" ;
+    dct:identifier "le_41"^^xsd:string,
+        "1171"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96881> .
+
+<http://lexvo.org/id/term/lat/credebam> a ontolex:Word ;
+    rdfs:label "credebam" ;
+    dct:identifier "le_37"^^xsd:string,
+        "1145"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96881> .
+
+<http://lexvo.org/id/term/lat/credebant> a ontolex:Word ;
+    rdfs:label "credebant" ;
+    dct:identifier "le_21"^^xsd:string,
+        "1032"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96881> .
+
+<http://lexvo.org/id/term/lat/credens> a ontolex:Word ;
+    rdfs:label "credens" ;
+    dct:identifier "le_35"^^xsd:string,
+        "1137"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96881> .
+
+<http://lexvo.org/id/term/lat/credenti> a ontolex:Word ;
+    rdfs:label "credenti" ;
+    dct:identifier "le_26"^^xsd:string,
+        "1071"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96881> .
+
+<http://lexvo.org/id/term/lat/credere> a ontolex:Word ;
+    rdfs:label "credere" ;
+    dct:identifier "le_32"^^xsd:string,
+        "1120"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96881> .
+
+<http://lexvo.org/id/term/lat/crederet> a ontolex:Word ;
+    rdfs:label "crederet" ;
+    dct:identifier "le_36"^^xsd:string,
+        "1142"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96881> .
+
+<http://lexvo.org/id/term/lat/credi> a ontolex:Word ;
+    rdfs:label "credi" ;
+    dct:identifier "le_16"^^xsd:string,
+        "1012"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96881> .
+
+<http://lexvo.org/id/term/lat/credideram> a ontolex:Word ;
+    rdfs:label "credideram" ;
+    dct:identifier "le_30"^^xsd:string,
+        "1095"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96881> .
+
+<http://lexvo.org/id/term/lat/crediderint> a ontolex:Word ;
+    rdfs:label "crediderint" ;
+    dct:identifier "le_38"^^xsd:string,
+        "1148"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96881> .
+
+<http://lexvo.org/id/term/lat/crediderit> a ontolex:Word ;
+    rdfs:label "crediderit" ;
+    dct:identifier "le_39"^^xsd:string,
+        "1157"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96881> .
+
+<http://lexvo.org/id/term/lat/crediderunt> a ontolex:Word ;
+    rdfs:label "crediderunt" ;
+    dct:identifier "le_19"^^xsd:string,
+        "1024"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96881> .
+
+<http://lexvo.org/id/term/lat/credidi> a ontolex:Word ;
+    rdfs:label "credidi" ;
+    dct:identifier "le_33"^^xsd:string,
+        "1126"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96881> .
+
+<http://lexvo.org/id/term/lat/credidisti> a ontolex:Word ;
+    rdfs:label "credidisti" ;
+    dct:identifier "le_40"^^xsd:string,
+        "1162"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96881> .
+
+<http://lexvo.org/id/term/lat/credimus> a ontolex:Word ;
+    rdfs:label "credimus" ;
+    dct:identifier "le_20"^^xsd:string,
+        "1027"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96881> .
+
+<http://lexvo.org/id/term/lat/credis> a ontolex:Word ;
+    rdfs:label "credis" ;
+    dct:identifier "le_34"^^xsd:string,
+        "1130"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96881> .
+
+<http://lexvo.org/id/term/lat/credit> a ontolex:Word ;
+    rdfs:label "credit" ;
+    dct:identifier "le_22"^^xsd:string,
+        "1039"^^xsd:unsignedInt,
+        "1114"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96881> .
+
+<http://lexvo.org/id/term/lat/credita> a ontolex:Word ;
+    rdfs:label "credita" ;
+    dct:identifier "le_27"^^xsd:string,
+        "1079"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96881> .
+
+<http://lexvo.org/id/term/lat/creditas> a ontolex:Word ;
+    rdfs:label "creditas" ;
+    dct:identifier "le_25"^^xsd:string,
+        "1063"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96881> .
+
+<http://lexvo.org/id/term/lat/creditur> a ontolex:Word ;
+    rdfs:label "creditur" ;
+    dct:identifier "le_18"^^xsd:string,
+        "1021"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96881> .
+
+<http://lexvo.org/id/term/lat/credo> a ontolex:Word ;
+    rdfs:label "credo" ;
+    dct:identifier "le_29"^^xsd:string,
+        "1089"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96881> .
+
+<http://lexvo.org/id/term/lat/credunt> a ontolex:Word ;
+    rdfs:label "credunt" ;
+    dct:identifier "le_24"^^xsd:string,
+        "1060"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/96881> .
+
+<http://lexvo.org/id/term/lat/doli> a ontolex:Word ;
+    rdfs:label "doli" ;
+    dct:identifier "le_111"^^xsd:string,
+        "2789"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/100033> .
+
+<http://lexvo.org/id/term/lat/dolis> a ontolex:Word ;
+    rdfs:label "dolis" ;
+    dct:identifier "le_107"^^xsd:string,
+        "2738"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/100033> .
+
+<http://lexvo.org/id/term/lat/dolo> a ontolex:Word ;
+    rdfs:label "dolo" ;
+    dct:identifier "le_110"^^xsd:string,
+        "2768"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/100033> .
+
+<http://lexvo.org/id/term/lat/dolos> a ontolex:Word ;
+    rdfs:label "dolos" ;
+    dct:identifier "le_109"^^xsd:string,
+        "2751"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/100033> .
+
+<http://lexvo.org/id/term/lat/dolum> a ontolex:Word ;
+    rdfs:label "dolum" ;
+    dct:identifier "le_108"^^xsd:string,
+        "2743"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/100033> .
+
+<http://lexvo.org/id/term/lat/dubia> a ontolex:Word ;
+    rdfs:label "dubia" ;
+    dct:identifier "le_204"^^xsd:string,
+        "4067"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/100177> .
+
+<http://lexvo.org/id/term/lat/dubiae> a ontolex:Word ;
+    rdfs:label "dubiae" ;
+    dct:identifier "le_203"^^xsd:string,
+        "4058"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/100177> .
+
+<http://lexvo.org/id/term/lat/dubiam> a ontolex:Word ;
+    rdfs:label "dubiam" ;
+    dct:identifier "le_205"^^xsd:string,
+        "4078"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/100177> .
+
+<http://lexvo.org/id/term/lat/dubias> a ontolex:Word ;
+    rdfs:label "dubias" ;
+    dct:identifier "le_208"^^xsd:string,
+        "4129"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/100177> .
+
+<http://lexvo.org/id/term/lat/dubiis> a ontolex:Word ;
+    rdfs:label "dubiis" ;
+    dct:identifier "le_202"^^xsd:string,
+        "4054"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/100177> .
+
+<http://lexvo.org/id/term/lat/dubio> a ontolex:Word ;
+    rdfs:label "dubio" ;
+    dct:identifier "le_206"^^xsd:string,
+        "4082"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/100177> .
+
+<http://lexvo.org/id/term/lat/dubios> a ontolex:Word ;
+    rdfs:label "dubios" ;
+    dct:identifier "le_207"^^xsd:string,
+        "4118"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/100177> .
+
+<http://lexvo.org/id/term/lat/dubium> a ontolex:Word ;
+    rdfs:label "dubium" ;
+    dct:identifier "le_201"^^xsd:string,
+        "4048"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/100177> .
+
+<http://lexvo.org/id/term/lat/duce> a ontolex:Word ;
+    rdfs:label "duce" ;
+    dct:identifier "le_212"^^xsd:string,
+        "4159"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/100327> .
+
+<http://lexvo.org/id/term/lat/ducem> a ontolex:Word ;
+    rdfs:label "ducem" ;
+    dct:identifier "le_210"^^xsd:string,
+        "4149"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/100327> .
+
+<http://lexvo.org/id/term/lat/duces> a ontolex:Word ;
+    rdfs:label "duces" ;
+    dct:identifier "le_211"^^xsd:string,
+        "4152"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/100327> .
+
+<http://lexvo.org/id/term/lat/ducibus> a ontolex:Word ;
+    rdfs:label "ducibus" ;
+    dct:identifier "le_209"^^xsd:string,
+        "4146"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/100327> .
+
+<http://lexvo.org/id/term/lat/ducum> a ontolex:Word ;
+    rdfs:label "ducum" ;
+    dct:identifier "le_213"^^xsd:string,
+        "4171"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/100327> .
+
+<http://lexvo.org/id/term/lat/fidele> a ontolex:Word ;
+    rdfs:label "fidele" ;
+    dct:identifier "le_223"^^xsd:string,
+        "4331"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/103256> .
+
+<http://lexvo.org/id/term/lat/fidelem> a ontolex:Word ;
+    rdfs:label "fidelem" ;
+    dct:identifier "le_216"^^xsd:string,
+        "4270"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/103256> .
+
+<http://lexvo.org/id/term/lat/fideles> a ontolex:Word ;
+    rdfs:label "fideles" ;
+    dct:identifier "le_215"^^xsd:string,
+        "4265"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/103256> .
+
+<http://lexvo.org/id/term/lat/fideli> a ontolex:Word ;
+    rdfs:label "fideli" ;
+    dct:identifier "le_218"^^xsd:string,
+        "4288"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/103256> .
+
+<http://lexvo.org/id/term/lat/fidelibus> a ontolex:Word ;
+    rdfs:label "fidelibus" ;
+    dct:identifier "le_214"^^xsd:string,
+        "4262"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/103256> .
+
+<http://lexvo.org/id/term/lat/fideliorem> a ontolex:Word ;
+    rdfs:label "fideliorem" ;
+    dct:identifier "le_226"^^xsd:string,
+        "4344"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/103256> .
+
+<http://lexvo.org/id/term/lat/fideliores> a ontolex:Word ;
+    rdfs:label "fideliores" ;
+    dct:identifier "le_229"^^xsd:string,
+        "4372"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/103256> .
+
+<http://lexvo.org/id/term/lat/fideliori> a ontolex:Word ;
+    rdfs:label "fideliori" ;
+    dct:identifier "le_224"^^xsd:string,
+        "4334"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/103256> .
+
+<http://lexvo.org/id/term/lat/fidelissimae> a ontolex:Word ;
+    rdfs:label "fidelissimae" ;
+    dct:identifier "le_220"^^xsd:string,
+        "4316"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/103256> .
+
+<http://lexvo.org/id/term/lat/fidelissimam> a ontolex:Word ;
+    rdfs:label "fidelissimam" ;
+    dct:identifier "le_222"^^xsd:string,
+        "4328"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/103256> .
+
+<http://lexvo.org/id/term/lat/fidelissimi> a ontolex:Word ;
+    rdfs:label "fidelissimi" ;
+    dct:identifier "le_221"^^xsd:string,
+        "4323"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/103256> .
+
+<http://lexvo.org/id/term/lat/fidelissimis> a ontolex:Word ;
+    rdfs:label "fidelissimis" ;
+    dct:identifier "le_227"^^xsd:string,
+        "4355"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/103256> .
+
+<http://lexvo.org/id/term/lat/fidelissimorum> a ontolex:Word ;
+    rdfs:label "fidelissimorum" ;
+    dct:identifier "le_230"^^xsd:string,
+        "4377"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/103256> .
+
+<http://lexvo.org/id/term/lat/fidelissimos> a ontolex:Word ;
+    rdfs:label "fidelissimos" ;
+    dct:identifier "le_228"^^xsd:string,
+        "4369"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/103256> .
+
+<http://lexvo.org/id/term/lat/fideliter> a ontolex:Word ;
+    rdfs:label "fideliter" ;
+    dct:identifier "le_219"^^xsd:string,
+        "4297"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/103256> .
+
+<http://lexvo.org/id/term/lat/fidelium> a ontolex:Word ;
+    rdfs:label "fidelium" ;
+    dct:identifier "le_217"^^xsd:string,
+        "4281"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/103256> .
+
+<http://lexvo.org/id/term/lat/fidelius> a ontolex:Word ;
+    rdfs:label "fidelius" ;
+    dct:identifier "le_225"^^xsd:string,
+        "4337"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/103256> .
+
+<http://lexvo.org/id/term/lat/honore> a ontolex:Word ;
+    rdfs:label "honore" ;
+    dct:identifier "le_133"^^xsd:string,
+        "2991"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/105647> .
+
+<http://lexvo.org/id/term/lat/honorem> a ontolex:Word ;
+    rdfs:label "honorem" ;
+    dct:identifier "le_132"^^xsd:string,
+        "2988"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/105647> .
+
+<http://lexvo.org/id/term/lat/honores> a ontolex:Word ;
+    rdfs:label "honores" ;
+    dct:identifier "le_131"^^xsd:string,
+        "2985"^^xsd:unsignedInt,
+        "3032"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/105647> .
+
+<http://lexvo.org/id/term/lat/honori> a ontolex:Word ;
+    rdfs:label "honori" ;
+    dct:identifier "le_134"^^xsd:string,
+        "2998"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/105647> .
+
+<http://lexvo.org/id/term/lat/honoribus> a ontolex:Word ;
+    rdfs:label "honoribus" ;
+    dct:identifier "le_136"^^xsd:string,
+        "3053"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/105647> .
+
+<http://lexvo.org/id/term/lat/honoris> a ontolex:Word ;
+    rdfs:label "honoris" ;
+    dct:identifier "le_130"^^xsd:string,
+        "2981"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/105647> .
+
+<http://lexvo.org/id/term/lat/honos> a ontolex:Word ;
+    rdfs:label "honos" ;
+    dct:identifier "le_135"^^xsd:string,
+        "3016"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/105647> .
+
+<http://lexvo.org/id/term/lat/hostem> a ontolex:Word ;
+    rdfs:label "hostem" ;
+    dct:identifier "le_1"^^xsd:string,
+        "506"^^xsd:unsignedInt,
+        "536"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/105757> .
+
+<http://lexvo.org/id/term/lat/hostes> a ontolex:Word ;
+    rdfs:label "hostes" ;
+    dct:identifier "le_3"^^xsd:string,
+        "516"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/105757> .
+
+<http://lexvo.org/id/term/lat/hostibus> a ontolex:Word ;
+    rdfs:label "hostibus" ;
+    dct:identifier "le_2"^^xsd:string,
+        "513"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/105757> .
+
+<http://lexvo.org/id/term/lat/humanitate> a ontolex:Word ;
+    rdfs:label "humanitate" ;
+    dct:identifier "le_49"^^xsd:string,
+        "1492"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/105762> .
+
+<http://lexvo.org/id/term/lat/humanitatem> a ontolex:Word ;
+    rdfs:label "humanitatem" ;
+    dct:identifier "le_48"^^xsd:string,
+        "1487"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/105762> .
+
+<http://lexvo.org/id/term/lat/humanitati> a ontolex:Word ;
+    rdfs:label "humanitati" ;
+    dct:identifier "le_50"^^xsd:string,
+        "1526"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/105762> .
+
+<http://lexvo.org/id/term/lat/humanitatis> a ontolex:Word ;
+    rdfs:label "humanitatis" ;
+    dct:identifier "le_47"^^xsd:string,
+        "1477"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/105762> .
+
+<http://lexvo.org/id/term/lat/imperator> a ontolex:Word ;
+    rdfs:label "imperator" ;
+    dct:identifier "le_138"^^xsd:string,
+        "3106"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/106515> .
+
+<http://lexvo.org/id/term/lat/imperatore> a ontolex:Word ;
+    rdfs:label "imperatore" ;
+    dct:identifier "le_141"^^xsd:string,
+        "3152"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/106515> .
+
+<http://lexvo.org/id/term/lat/imperatorem> a ontolex:Word ;
+    rdfs:label "imperatorem" ;
+    dct:identifier "le_139"^^xsd:string,
+        "3127"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/106515> .
+
+<http://lexvo.org/id/term/lat/imperatores> a ontolex:Word ;
+    rdfs:label "imperatores" ;
+    dct:identifier "le_137"^^xsd:string,
+        "3103"^^xsd:unsignedInt,
+        "3179"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/106515> .
+
+<http://lexvo.org/id/term/lat/imperatori> a ontolex:Word ;
+    rdfs:label "imperatori" ;
+    dct:identifier "le_143"^^xsd:string,
+        "3215"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/106515> .
+
+<http://lexvo.org/id/term/lat/imperatoribus> a ontolex:Word ;
+    rdfs:label "imperatoribus" ;
+    dct:identifier "le_142"^^xsd:string,
+        "3192"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/106515> .
+
+<http://lexvo.org/id/term/lat/imperatoris> a ontolex:Word ;
+    rdfs:label "imperatoris" ;
+    dct:identifier "le_140"^^xsd:string,
+        "3140"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/106515> .
+
+<http://lexvo.org/id/term/lat/itera> a ontolex:Word ;
+    rdfs:label "itera" ;
+    dct:identifier "le_117"^^xsd:string,
+        "2866"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/109137> .
+
+<http://lexvo.org/id/term/lat/iteramus> a ontolex:Word ;
+    rdfs:label "iteramus" ;
+    dct:identifier "le_119"^^xsd:string,
+        "2877"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/109137> .
+
+<http://lexvo.org/id/term/lat/iterandam> a ontolex:Word ;
+    rdfs:label "iterandam" ;
+    dct:identifier "le_123"^^xsd:string,
+        "2917"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/109137> .
+
+<http://lexvo.org/id/term/lat/iterando> a ontolex:Word ;
+    rdfs:label "iterando" ;
+    dct:identifier "le_115"^^xsd:string,
+        "2858"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/109137> .
+
+<http://lexvo.org/id/term/lat/iterandum> a ontolex:Word ;
+    rdfs:label "iterandum" ;
+    dct:identifier "le_124"^^xsd:string,
+        "2924"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/109137> .
+
+<http://lexvo.org/id/term/lat/iterans> a ontolex:Word ;
+    rdfs:label "iterans" ;
+    dct:identifier "le_120"^^xsd:string,
+        "2880"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/109137> .
+
+<http://lexvo.org/id/term/lat/iterant> a ontolex:Word ;
+    rdfs:label "iterant" ;
+    dct:identifier "le_116"^^xsd:string,
+        "2863"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/109137> .
+
+<http://lexvo.org/id/term/lat/iterantur> a ontolex:Word ;
+    rdfs:label "iterantur" ;
+    dct:identifier "le_129"^^xsd:string,
+        "2950"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/109137> .
+
+<http://lexvo.org/id/term/lat/iterare> a ontolex:Word ;
+    rdfs:label "iterare" ;
+    dct:identifier "le_112"^^xsd:string,
+        "2847"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/109137> .
+
+<http://lexvo.org/id/term/lat/iterat> a ontolex:Word ;
+    rdfs:label "iterat" ;
+    dct:identifier "le_113"^^xsd:string,
+        "2850"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/109137> .
+
+<http://lexvo.org/id/term/lat/iterata> a ontolex:Word ;
+    rdfs:label "iterata" ;
+    dct:identifier "le_114"^^xsd:string,
+        "2855"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/109137> .
+
+<http://lexvo.org/id/term/lat/iteratis> a ontolex:Word ;
+    rdfs:label "iteratis" ;
+    dct:identifier "le_122"^^xsd:string,
+        "2890"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/109137> .
+
+<http://lexvo.org/id/term/lat/iteratum> a ontolex:Word ;
+    rdfs:label "iteratum" ;
+    dct:identifier "le_126"^^xsd:string,
+        "2930"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/109137> .
+
+<http://lexvo.org/id/term/lat/iteratur> a ontolex:Word ;
+    rdfs:label "iteratur" ;
+    dct:identifier "le_118"^^xsd:string,
+        "2870"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/109137> .
+
+<http://lexvo.org/id/term/lat/iterem> a ontolex:Word ;
+    rdfs:label "iterem" ;
+    dct:identifier "le_125"^^xsd:string,
+        "2927"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/109137> .
+
+<http://lexvo.org/id/term/lat/iteremus> a ontolex:Word ;
+    rdfs:label "iteremus" ;
+    dct:identifier "le_128"^^xsd:string,
+        "2940"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/109137> .
+
+<http://lexvo.org/id/term/lat/iterentur> a ontolex:Word ;
+    rdfs:label "iterentur" ;
+    dct:identifier "le_121"^^xsd:string,
+        "2887"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/109137> .
+
+<http://lexvo.org/id/term/lat/iteret> a ontolex:Word ;
+    rdfs:label "iteret" ;
+    dct:identifier "le_127"^^xsd:string,
+        "2935"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/109137> .
+
+<http://lexvo.org/id/term/lat/iura> a ontolex:Word ;
+    rdfs:label "iura" ;
+    dct:identifier "le_59"^^xsd:string,
+        "1801"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/109285> .
+
+<http://lexvo.org/id/term/lat/iure> a ontolex:Word ;
+    rdfs:label "iure" ;
+    dct:identifier "le_57"^^xsd:string,
+        "1745"^^xsd:unsignedInt,
+        "1777"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/109285> .
+
+<http://lexvo.org/id/term/lat/iuris> a ontolex:Word ;
+    rdfs:label "iuris" ;
+    dct:identifier "le_56"^^xsd:string,
+        "1742"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/109285> .
+
+<http://lexvo.org/id/term/lat/jure> a ontolex:Word ;
+    rdfs:label "jure" ;
+    dct:identifier "le_58"^^xsd:string,
+        "1752"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/109285> .
+
+<http://lexvo.org/id/term/lat/liceat> a ontolex:Word ;
+    rdfs:label "liceat" ;
+    dct:identifier "le_53"^^xsd:string,
+        "1640"^^xsd:unsignedInt,
+        "1678"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/110432> .
+
+<http://lexvo.org/id/term/lat/licebat> a ontolex:Word ;
+    rdfs:label "licebat" ;
+    dct:identifier "le_55"^^xsd:string,
+        "1725"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/110432> .
+
+<http://lexvo.org/id/term/lat/licere> a ontolex:Word ;
+    rdfs:label "licere" ;
+    dct:identifier "le_54"^^xsd:string,
+        "1712"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/110432> .
+
+<http://lexvo.org/id/term/lat/liceret> a ontolex:Word ;
+    rdfs:label "liceret" ;
+    dct:identifier "le_52"^^xsd:string,
+        "1616"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/110432> .
+
+<http://lexvo.org/id/term/lat/licet> a ontolex:Word ;
+    rdfs:label "licet" ;
+    dct:identifier "le_51"^^xsd:string,
+        "1613"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/110432> .
+
+<http://lexvo.org/id/term/lat/necessaria> a ontolex:Word ;
+    rdfs:label "necessaria" ;
+    dct:identifier "le_194"^^xsd:string,
+        "3950"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/113502> .
+
+<http://lexvo.org/id/term/lat/necessariam> a ontolex:Word ;
+    rdfs:label "necessariam" ;
+    dct:identifier "le_198"^^xsd:string,
+        "3990"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/113502> .
+
+<http://lexvo.org/id/term/lat/necessarii> a ontolex:Word ;
+    rdfs:label "necessarii" ;
+    dct:identifier "le_197"^^xsd:string,
+        "3982"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/113502> .
+
+<http://lexvo.org/id/term/lat/necessariis> a ontolex:Word ;
+    rdfs:label "necessariis" ;
+    dct:identifier "le_199"^^xsd:string,
+        "4005"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/113502> .
+
+<http://lexvo.org/id/term/lat/necessario> a ontolex:Word ;
+    rdfs:label "necessario" ;
+    dct:identifier "le_195"^^xsd:string,
+        "3954"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/113502> .
+
+<http://lexvo.org/id/term/lat/necessariorum> a ontolex:Word ;
+    rdfs:label "necessariorum" ;
+    dct:identifier "le_200"^^xsd:string,
+        "4018"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/113502> .
+
+<http://lexvo.org/id/term/lat/necessarios> a ontolex:Word ;
+    rdfs:label "necessarios" ;
+    dct:identifier "le_193"^^xsd:string,
+        "3947"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/113502> .
+
+<http://lexvo.org/id/term/lat/necessarium> a ontolex:Word ;
+    rdfs:label "necessarium" ;
+    dct:identifier "le_196"^^xsd:string,
+        "3966"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/113502> .
+
+<http://lexvo.org/id/term/lat/nepote> a ontolex:Word ;
+    rdfs:label "nepote" ;
+    dct:identifier "le_90"^^xsd:string,
+        "2469"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/113596> .
+
+<http://lexvo.org/id/term/lat/nepotem> a ontolex:Word ;
+    rdfs:label "nepotem" ;
+    dct:identifier "le_93"^^xsd:string,
+        "2489"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/113596> .
+
+<http://lexvo.org/id/term/lat/nepotes> a ontolex:Word ;
+    rdfs:label "nepotes" ;
+    dct:identifier "le_91"^^xsd:string,
+        "2472"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/113596> .
+
+<http://lexvo.org/id/term/lat/nepoti> a ontolex:Word ;
+    rdfs:label "nepoti" ;
+    dct:identifier "le_94"^^xsd:string,
+        "2503"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/113596> .
+
+<http://lexvo.org/id/term/lat/nepotibus> a ontolex:Word ;
+    rdfs:label "nepotibus" ;
+    dct:identifier "le_92"^^xsd:string,
+        "2477"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/113596> .
+
+<http://lexvo.org/id/term/lat/nepotis> a ontolex:Word ;
+    rdfs:label "nepotis" ;
+    dct:identifier "le_95"^^xsd:string,
+        "2506"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/113596> .
+
+<http://lexvo.org/id/term/lat/nepotum> a ontolex:Word ;
+    rdfs:label "nepotum" ;
+    dct:identifier "le_96"^^xsd:string,
+        "2513"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/113596> .
+
+<http://lexvo.org/id/term/lat/nobilitate> a ontolex:Word ;
+    rdfs:label "nobilitate" ;
+    dct:identifier "le_231"^^xsd:string,
+        "4396"^^xsd:unsignedInt,
+        "4403"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/113752> .
+
+<http://lexvo.org/id/term/lat/nobilitatem> a ontolex:Word ;
+    rdfs:label "nobilitatem" ;
+    dct:identifier "le_233"^^xsd:string,
+        "4426"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/113752> .
+
+<http://lexvo.org/id/term/lat/nobilitati> a ontolex:Word ;
+    rdfs:label "nobilitati" ;
+    dct:identifier "le_234"^^xsd:string,
+        "4429"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/113752> .
+
+<http://lexvo.org/id/term/lat/nobilitatis> a ontolex:Word ;
+    rdfs:label "nobilitatis" ;
+    dct:identifier "le_232"^^xsd:string,
+        "4399"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/113752> .
+
+<http://lexvo.org/id/term/lat/poenae> a ontolex:Word ;
+    rdfs:label "poenae" ;
+    dct:identifier "le_256"^^xsd:string,
+        "4873"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/118263> .
+
+<http://lexvo.org/id/term/lat/poenam> a ontolex:Word ;
+    rdfs:label "poenam" ;
+    dct:identifier "le_257"^^xsd:string,
+        "4901"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/118263> .
+
+<http://lexvo.org/id/term/lat/poenarum> a ontolex:Word ;
+    rdfs:label "poenarum" ;
+    dct:identifier "le_255"^^xsd:string,
+        "4869"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/118263> .
+
+<http://lexvo.org/id/term/lat/poenas> a ontolex:Word ;
+    rdfs:label "poenas" ;
+    dct:identifier "le_253"^^xsd:string,
+        "4853"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/118263> .
+
+<http://lexvo.org/id/term/lat/poenis> a ontolex:Word ;
+    rdfs:label "poenis" ;
+    dct:identifier "le_254"^^xsd:string,
+        "4858"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/118263> .
+
+<http://lexvo.org/id/term/lat/pontificem> a ontolex:Word ;
+    rdfs:label "pontificem" ;
+    dct:identifier "le_70"^^xsd:string,
+        "2027"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/118418> .
+
+<http://lexvo.org/id/term/lat/pontifices> a ontolex:Word ;
+    rdfs:label "pontifices" ;
+    dct:identifier "le_68"^^xsd:string,
+        "1974"^^xsd:unsignedInt,
+        "1985"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/118418> .
+
+<http://lexvo.org/id/term/lat/pontificis> a ontolex:Word ;
+    rdfs:label "pontificis" ;
+    dct:identifier "le_69"^^xsd:string,
+        "1993"^^xsd:unsignedInt,
+        "2032"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/118418> .
+
+<http://lexvo.org/id/term/lat/potestate> a ontolex:Word ;
+    rdfs:label "potestate" ;
+    dct:identifier "le_77"^^xsd:string,
+        "2240"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/118652> .
+
+<http://lexvo.org/id/term/lat/potestatem> a ontolex:Word ;
+    rdfs:label "potestatem" ;
+    dct:identifier "le_76"^^xsd:string,
+        "2234"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/118652> .
+
+<http://lexvo.org/id/term/lat/potestates> a ontolex:Word ;
+    rdfs:label "potestates" ;
+    dct:identifier "le_78"^^xsd:string,
+        "2243"^^xsd:unsignedInt,
+        "2282"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/118652> .
+
+<http://lexvo.org/id/term/lat/potestati> a ontolex:Word ;
+    rdfs:label "potestati" ;
+    dct:identifier "le_81"^^xsd:string,
+        "2318"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/118652> .
+
+<http://lexvo.org/id/term/lat/potestatibus> a ontolex:Word ;
+    rdfs:label "potestatibus" ;
+    dct:identifier "le_79"^^xsd:string,
+        "2251"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/118652> .
+
+<http://lexvo.org/id/term/lat/potestatis> a ontolex:Word ;
+    rdfs:label "potestatis" ;
+    dct:identifier "le_80"^^xsd:string,
+        "2287"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/118652> .
+
+<http://lexvo.org/id/term/lat/regna> a ontolex:Word ;
+    rdfs:label "regna" ;
+    dct:identifier "le_44"^^xsd:string,
+        "1334"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/121683> .
+
+<http://lexvo.org/id/term/lat/regni> a ontolex:Word ;
+    rdfs:label "regni" ;
+    dct:identifier "le_46"^^xsd:string,
+        "1364"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/121683> .
+
+<http://lexvo.org/id/term/lat/regno> a ontolex:Word ;
+    rdfs:label "regno" ;
+    dct:identifier "le_45"^^xsd:string,
+        "1343"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/121683> .
+
+<http://lexvo.org/id/term/lat/sacramenta> a ontolex:Word ;
+    rdfs:label "sacramenta" ;
+    dct:identifier "le_250"^^xsd:string,
+        "4733"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/123079> .
+
+<http://lexvo.org/id/term/lat/sacramenti> a ontolex:Word ;
+    rdfs:label "sacramenti" ;
+    dct:identifier "le_252"^^xsd:string,
+        "4779"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/123079> .
+
+<http://lexvo.org/id/term/lat/sacramentis> a ontolex:Word ;
+    rdfs:label "sacramentis" ;
+    dct:identifier "le_251"^^xsd:string,
+        "4742"^^xsd:unsignedInt,
+        "4758"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/123079> .
+
+<http://lexvo.org/id/term/lat/sacramento> a ontolex:Word ;
+    rdfs:label "sacramento" ;
+    dct:identifier "le_248"^^xsd:string,
+        "4724"^^xsd:unsignedInt,
+        "4738"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/123079> .
+
+<http://lexvo.org/id/term/lat/sacramentorum> a ontolex:Word ;
+    rdfs:label "sacramentorum" ;
+    dct:identifier "le_249"^^xsd:string,
+        "4728"^^xsd:unsignedInt,
+        "4745"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/123079> .
+
+<http://lexvo.org/id/term/lat/salute> a ontolex:Word ;
+    rdfs:label "salute" ;
+    dct:identifier "le_290"^^xsd:string,
+        "5197"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/123273> .
+
+<http://lexvo.org/id/term/lat/salutem> a ontolex:Word ;
+    rdfs:label "salutem" ;
+    dct:identifier "le_288"^^xsd:string,
+        "5191"^^xsd:unsignedInt,
+        "5230"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/123273> .
+
+<http://lexvo.org/id/term/lat/saluti> a ontolex:Word ;
+    rdfs:label "saluti" ;
+    dct:identifier "le_291"^^xsd:string,
+        "5235"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/123273> .
+
+<http://lexvo.org/id/term/lat/salutis> a ontolex:Word ;
+    rdfs:label "salutis" ;
+    dct:identifier "le_289"^^xsd:string,
+        "5194"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/123273> .
+
+<http://lexvo.org/id/term/lat/sancta> a ontolex:Word ;
+    rdfs:label "sancta" ;
+    dct:identifier "le_180"^^xsd:string,
+        "3633"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/78250> .
+
+<http://lexvo.org/id/term/lat/sanctae> a ontolex:Word ;
+    rdfs:label "sanctae" ;
+    dct:identifier "le_181"^^xsd:string,
+        "3655"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/78250> .
+
+<http://lexvo.org/id/term/lat/sanctam> a ontolex:Word ;
+    rdfs:label "sanctam" ;
+    dct:identifier "le_174"^^xsd:string,
+        "3608"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/78250> .
+
+<http://lexvo.org/id/term/lat/sanctarum> a ontolex:Word ;
+    rdfs:label "sanctarum" ;
+    dct:identifier "le_175"^^xsd:string,
+        "3611"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/78250> .
+
+<http://lexvo.org/id/term/lat/sancte> a ontolex:Word ;
+    rdfs:label "sancte" ;
+    dct:identifier "le_182"^^xsd:string,
+        "3660"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/78250> .
+
+<http://lexvo.org/id/term/lat/sancti> a ontolex:Word ;
+    rdfs:label "sancti" ;
+    dct:identifier "le_173"^^xsd:string,
+        "3605"^^xsd:unsignedInt,
+        "3620"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/78250> .
+
+<http://lexvo.org/id/term/lat/sanctis> a ontolex:Word ;
+    rdfs:label "sanctis" ;
+    dct:identifier "le_179"^^xsd:string,
+        "3626"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/78250> .
+
+<http://lexvo.org/id/term/lat/sanctissima> a ontolex:Word ;
+    rdfs:label "sanctissima" ;
+    dct:identifier "le_184"^^xsd:string,
+        "3678"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/78250> .
+
+<http://lexvo.org/id/term/lat/sanctissimis> a ontolex:Word ;
+    rdfs:label "sanctissimis" ;
+    dct:identifier "le_183"^^xsd:string,
+        "3673"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/78250> .
+
+<http://lexvo.org/id/term/lat/sancto> a ontolex:Word ;
+    rdfs:label "sancto" ;
+    dct:identifier "le_176"^^xsd:string,
+        "3614"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/78250> .
+
+<http://lexvo.org/id/term/lat/sanctorum> a ontolex:Word ;
+    rdfs:label "sanctorum" ;
+    dct:identifier "le_177"^^xsd:string,
+        "3617"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/78250> .
+
+<http://lexvo.org/id/term/lat/sanctum> a ontolex:Word ;
+    rdfs:label "sanctum" ;
+    dct:identifier "le_178"^^xsd:string,
+        "3623"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/78250> .
+
+<http://lexvo.org/id/term/lat/sapientiae> a ontolex:Word ;
+    rdfs:label "sapientiae" ;
+    dct:identifier "le_42"^^xsd:string,
+        "1186"^^xsd:unsignedInt,
+        "1297"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/123349> .
+
+<http://lexvo.org/id/term/lat/sapientiam> a ontolex:Word ;
+    rdfs:label "sapientiam" ;
+    dct:identifier "le_43"^^xsd:string,
+        "1200"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/123349> .
+
+<http://lexvo.org/id/term/lat/scriptura> a ontolex:Word ;
+    rdfs:label "scriptura" ;
+    dct:identifier "le_6"^^xsd:string,
+        "700"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/127417> .
+
+<http://lexvo.org/id/term/lat/scripturae> a ontolex:Word ;
+    rdfs:label "scripturae" ;
+    dct:identifier "le_5"^^xsd:string,
+        "697"^^xsd:unsignedInt,
+        "713"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/127417> .
+
+<http://lexvo.org/id/term/lat/scripturam> a ontolex:Word ;
+    rdfs:label "scripturam" ;
+    dct:identifier "le_4"^^xsd:string,
+        "688"^^xsd:unsignedInt,
+        "769"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/127417> .
+
+<http://lexvo.org/id/term/lat/scripturas> a ontolex:Word ;
+    rdfs:label "scripturas" ;
+    dct:identifier "le_8"^^xsd:string,
+        "745"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/127417> .
+
+<http://lexvo.org/id/term/lat/scripturis> a ontolex:Word ;
+    rdfs:label "scripturis" ;
+    dct:identifier "le_7"^^xsd:string,
+        "736"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/127417> .
+
+<http://lexvo.org/id/term/lat/senatu> a ontolex:Word ;
+    rdfs:label "senatu" ;
+    dct:identifier "le_191"^^xsd:string,
+        "3828"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/124309> .
+
+<http://lexvo.org/id/term/lat/senatui> a ontolex:Word ;
+    rdfs:label "senatui" ;
+    dct:identifier "le_192"^^xsd:string,
+        "3851"^^xsd:unsignedInt,
+        "3900"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/124309> .
+
+<http://lexvo.org/id/term/lat/senatum> a ontolex:Word ;
+    rdfs:label "senatum" ;
+    dct:identifier "le_190"^^xsd:string,
+        "3819"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/124309> .
+
+<http://lexvo.org/id/term/lat/sensibus> a ontolex:Word ;
+    rdfs:label "sensibus" ;
+    dct:identifier "le_170"^^xsd:string,
+        "3501"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/124355> .
+
+<http://lexvo.org/id/term/lat/sensu> a ontolex:Word ;
+    rdfs:label "sensu" ;
+    dct:identifier "le_168"^^xsd:string,
+        "3495"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/124355> .
+
+<http://lexvo.org/id/term/lat/sensui> a ontolex:Word ;
+    rdfs:label "sensui" ;
+    dct:identifier "le_171"^^xsd:string,
+        "3506"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/124355> .
+
+<http://lexvo.org/id/term/lat/sensum> a ontolex:Word ;
+    rdfs:label "sensum" ;
+    dct:identifier "le_167"^^xsd:string,
+        "3492"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/124355> .
+
+<http://lexvo.org/id/term/lat/sensus> a ontolex:Word ;
+    rdfs:label "sensus" ;
+    dct:identifier "le_172"^^xsd:string,
+        "3519"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/124355> .
+
+<http://lexvo.org/id/term/lat/sensuum> a ontolex:Word ;
+    rdfs:label "sensuum" ;
+    dct:identifier "le_169"^^xsd:string,
+        "3498"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/124355> .
+
+<http://lexvo.org/id/term/lat/simplicem> a ontolex:Word ;
+    rdfs:label "simplicem" ;
+    dct:identifier "le_86"^^xsd:string,
+        "2382"^^xsd:unsignedInt,
+        "2420"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/124840> .
+
+<http://lexvo.org/id/term/lat/simplices> a ontolex:Word ;
+    rdfs:label "simplices" ;
+    dct:identifier "le_89"^^xsd:string,
+        "2423"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/124840> .
+
+<http://lexvo.org/id/term/lat/simplici> a ontolex:Word ;
+    rdfs:label "simplici" ;
+    dct:identifier "le_87"^^xsd:string,
+        "2395"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/124840> .
+
+<http://lexvo.org/id/term/lat/simplicia> a ontolex:Word ;
+    rdfs:label "simplicia" ;
+    dct:identifier "le_88"^^xsd:string,
+        "2417"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/124840> .
+
+<http://lexvo.org/id/term/lat/simplicibus> a ontolex:Word ;
+    rdfs:label "simplicibus" ;
+    dct:identifier "le_84"^^xsd:string,
+        "2366"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/124840> .
+
+<http://lexvo.org/id/term/lat/simplicis> a ontolex:Word ;
+    rdfs:label "simplicis" ;
+    dct:identifier "le_85"^^xsd:string,
+        "2372"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/124840> .
+
+<http://lexvo.org/id/term/lat/simpliciter> a ontolex:Word ;
+    rdfs:label "simpliciter" ;
+    dct:identifier "le_82"^^xsd:string,
+        "2357"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/124840> .
+
+<http://lexvo.org/id/term/lat/simplicium> a ontolex:Word ;
+    rdfs:label "simplicium" ;
+    dct:identifier "le_83"^^xsd:string,
+        "2360"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/124840> .
+
+<http://lexvo.org/id/term/lat/templa> a ontolex:Word ;
+    rdfs:label "templa" ;
+    dct:identifier "le_72"^^xsd:string,
+        "2092"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/127783> .
+
+<http://lexvo.org/id/term/lat/templi> a ontolex:Word ;
+    rdfs:label "templi" ;
+    dct:identifier "le_73"^^xsd:string,
+        "2101"^^xsd:unsignedInt,
+        "2153"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/127783> .
+
+<http://lexvo.org/id/term/lat/templis> a ontolex:Word ;
+    rdfs:label "templis" ;
+    dct:identifier "le_71"^^xsd:string,
+        "2089"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/127783> .
+
+<http://lexvo.org/id/term/lat/templo> a ontolex:Word ;
+    rdfs:label "templo" ;
+    dct:identifier "le_74"^^xsd:string,
+        "2113"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/127783> .
+
+<http://lexvo.org/id/term/lat/templum> a ontolex:Word ;
+    rdfs:label "templum" ;
+    dct:identifier "le_75"^^xsd:string,
+        "2134"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/127783> .
+
+<http://lexvo.org/id/term/lat/tituli> a ontolex:Word ;
+    rdfs:label "tituli" ;
+    dct:identifier "le_188"^^xsd:string,
+        "3732"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/128926> .
+
+<http://lexvo.org/id/term/lat/titulis> a ontolex:Word ;
+    rdfs:label "titulis" ;
+    dct:identifier "le_189"^^xsd:string,
+        "3735"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/128926> .
+
+<http://lexvo.org/id/term/lat/titulo> a ontolex:Word ;
+    rdfs:label "titulo" ;
+    dct:identifier "le_187"^^xsd:string,
+        "3728"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/128926> .
+
+<http://lexvo.org/id/term/lat/titulos> a ontolex:Word ;
+    rdfs:label "titulos" ;
+    dct:identifier "le_186"^^xsd:string,
+        "3724"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/128926> .
+
+<http://lexvo.org/id/term/lat/titulum> a ontolex:Word ;
+    rdfs:label "titulum" ;
+    dct:identifier "le_185"^^xsd:string,
+        "3719"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <http://lila-erc.eu/data/id/lemma/128926> .
+
+<http://lexvo.org/id/term/lat/uoluntas> a ontolex:Word ;
+    rdfs:label "uoluntas" ;
+    dct:identifier "le_146"^^xsd:string,
+        "3239"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <None> .
+
+<http://lexvo.org/id/term/lat/uoluntati> a ontolex:Word ;
+    rdfs:label "uoluntati" ;
+    dct:identifier "le_144"^^xsd:string,
+        "3233"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <None> .
+
+<http://lexvo.org/id/term/lat/virtute> a ontolex:Word ;
+    rdfs:label "virtute" ;
+    dct:identifier "le_287"^^xsd:string,
+        "5181"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <None> .
+
+<http://lexvo.org/id/term/lat/voluntate> a ontolex:Word ;
+    rdfs:label "voluntate" ;
+    dct:identifier "le_148"^^xsd:string,
+        "3256"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <None> .
+
+<http://lexvo.org/id/term/lat/voluntatem> a ontolex:Word ;
+    rdfs:label "voluntatem" ;
+    dct:identifier "le_147"^^xsd:string,
+        "3253"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <None> .
+
+<http://lexvo.org/id/term/lat/voluntates> a ontolex:Word ;
+    rdfs:label "voluntates" ;
+    dct:identifier "le_150"^^xsd:string,
+        "3303"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <None> .
+
+<http://lexvo.org/id/term/lat/voluntati> a ontolex:Word ;
+    rdfs:label "voluntati" ;
+    dct:identifier "le_149"^^xsd:string,
+        "3270"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <None> .
+
+<http://lexvo.org/id/term/lat/voluntatibus> a ontolex:Word ;
+    rdfs:label "voluntatibus" ;
+    dct:identifier "le_151"^^xsd:string,
+        "3333"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <None> .
+
+<http://lexvo.org/id/term/lat/voluntatis> a ontolex:Word ;
+    rdfs:label "voluntatis" ;
+    dct:identifier "le_145"^^xsd:string,
+        "3236"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <None> .
+
+<http://lexvo.org/id/term/lat/voluntatum> a ontolex:Word ;
+    rdfs:label "voluntatum" ;
+    dct:identifier "le_152"^^xsd:string,
+        "3350"^^xsd:unsignedInt ;
+    dct:language "Latin" ;
+    ontolex:canonicalForm <None> .
+
+<http://lila-erc.eu/data/id/lemma/100037> a ontolex:Form ;
+    rdfs:label "dolus" ;
+    dct:identifier "lemma_19"^^xsd:string,
+        "2725"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:writtenRep "dolus"@la .
+
+<http://lila-erc.eu/data/id/lemma/109252> a ontolex:Form ;
+    rdfs:label "ius" ;
+    dct:identifier "lemma_10"^^xsd:string,
+        "1726"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:writtenRep "ius"@la .
+
+<http://lila-erc.eu/data/id/lemma/115098> a ontolex:Form ;
+    rdfs:label "oportet" ;
+    dct:identifier "lemma_32"^^xsd:string,
+        "4378"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:verb ;
+    ontolex:writtenRep "oportet"@la .
+
+<http://lila-erc.eu/data/id/lemma/123276> a ontolex:Form ;
+    rdfs:label "salus" ;
+    dct:identifier "lemma_41"^^xsd:string,
+        "5182"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:writtenRep "salus"@la .
+
+"English" a dct:LinguisticSystem ;
+    rdfs:label "English"@en ;
+    dct:identifier <http://id.loc.gov/vocabulary/iso639-1/en>,
+        <http://id.loc.gov/vocabulary/iso639-2/eng> .
+
+<http://lila-erc.eu/data/id/lemma/123349> a ontolex:Form ;
+    rdfs:label "sapientia" ;
+    dct:identifier "lemma_5"^^xsd:string,
+        "1175"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:writtenRep "sapientia"@la .
+
+<http://lila-erc.eu/data/id/lemma/105757> a ontolex:Form ;
+    rdfs:label "hostis" ;
+    dct:identifier "lemma_1"^^xsd:string,
+        "495"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:writtenRep "hostis"@la .
+
+<http://lila-erc.eu/data/id/lemma/118418> a ontolex:Form ;
+    rdfs:label "pontifex" ;
+    dct:identifier "lemma_12"^^xsd:string,
+        "1965"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:writtenRep "pontifex"@la .
+
+<http://lila-erc.eu/data/id/lemma/121683> a ontolex:Form ;
+    rdfs:label "regnum" ;
+    dct:identifier "lemma_6"^^xsd:string,
+        "1320"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:writtenRep "regnum"@la .
+
+<http://lila-erc.eu/data/id/lemma/124309> a ontolex:Form ;
+    rdfs:label "senatus" ;
+    dct:identifier "lemma_27"^^xsd:string,
+        "3812"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:writtenRep "senatus"@la .
+
+<http://lila-erc.eu/data/id/lemma/105762> a ontolex:Form ;
+    rdfs:label "humanitas" ;
+    dct:identifier "lemma_7"^^xsd:string,
+        "1460"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:writtenRep "humanitas"@la .
+
+<http://lila-erc.eu/data/id/lemma/109285> a ontolex:Form ;
+    rdfs:label "ius" ;
+    dct:identifier "lemma_9"^^xsd:string,
+        "1726"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:writtenRep "ius"@la .
+
+<http://lila-erc.eu/data/id/lemma/113752> a ontolex:Form ;
+    rdfs:label "nobilitas" ;
+    dct:identifier "lemma_33"^^xsd:string,
+        "4383"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:writtenRep "nobilitas"@la .
+
+<http://lila-erc.eu/data/id/lemma/123273> a ontolex:Form ;
+    rdfs:label "salus" ;
+    dct:identifier "lemma_40"^^xsd:string,
+        "5182"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:writtenRep "salus"@la .
+
+<http://lila-erc.eu/data/id/lemma/100033> a ontolex:Form ;
+    rdfs:label "dolus" ;
+    dct:identifier "lemma_18"^^xsd:string,
+        "2725"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:writtenRep "dolus"@la .
+
+<http://lila-erc.eu/data/id/lemma/100327> a ontolex:Form ;
+    rdfs:label "dux" ;
+    dct:identifier "lemma_30"^^xsd:string,
+        "4137"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:writtenRep "dux"@la .
+
+<http://lila-erc.eu/data/id/lemma/110432> a ontolex:Form ;
+    rdfs:label "licet" ;
+    dct:identifier "lemma_8"^^xsd:string,
+        "1600"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:verb ;
+    ontolex:writtenRep "licet"@la .
+
+<http://lila-erc.eu/data/id/lemma/118263> a ontolex:Form ;
+    rdfs:label "poena" ;
+    dct:identifier "lemma_37"^^xsd:string,
+        "4842"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:writtenRep "poena"@la .
+
+<http://lila-erc.eu/data/id/lemma/123079> a ontolex:Form ;
+    rdfs:label "sacramentum" ;
+    dct:identifier "lemma_36"^^xsd:string,
+        "4709"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:writtenRep "sacramentum"@la .
+
+<http://lila-erc.eu/data/id/lemma/127417> a ontolex:Form ;
+    rdfs:label "scriptura" ;
+    dct:identifier "lemma_2"^^xsd:string,
+        "673"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:writtenRep "scriptura"@la .
+
+<http://lila-erc.eu/data/id/lemma/127783> a ontolex:Form ;
+    rdfs:label "templum" ;
+    dct:identifier "lemma_13"^^xsd:string,
+        "2079"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:writtenRep "templum"@la .
+
+<http://lila-erc.eu/data/id/lemma/128926> a ontolex:Form ;
+    rdfs:label "titulus" ;
+    dct:identifier "lemma_26"^^xsd:string,
+        "3706"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:writtenRep "titulus"@la .
+
+<http://lila-erc.eu/data/id/lemma/88939> a ontolex:Form ;
+    rdfs:label "ancilla" ;
+    dct:identifier "lemma_34"^^xsd:string,
+        "4490"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:writtenRep "ancilla"@la .
+
+<http://lila-erc.eu/data/id/lemma/96060> a ontolex:Form ;
+    rdfs:label "consilium" ;
+    dct:identifier "lemma_38"^^xsd:string,
+        "4942"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:writtenRep "consilium"@la .
+
+<http://lila-erc.eu/data/id/lemma/118652> a ontolex:Form ;
+    rdfs:label "potestas" ;
+    dct:identifier "lemma_14"^^xsd:string,
+        "2218"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:writtenRep "potestas"@la .
+
+<http://lila-erc.eu/data/id/lemma/124355> a ontolex:Form ;
+    rdfs:label "sensus" ;
+    dct:identifier "lemma_24"^^xsd:string,
+        "3475"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:writtenRep "sensus"@la .
+
+<http://lila-erc.eu/data/id/lemma/105647> a ontolex:Form ;
+    rdfs:label "honor" ;
+    dct:identifier "lemma_21"^^xsd:string,
+        "2968"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:writtenRep "honor"@la .
+
+<http://lila-erc.eu/data/id/lemma/106515> a ontolex:Form ;
+    rdfs:label "imperator" ;
+    dct:identifier "lemma_22"^^xsd:string,
+        "3090"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:writtenRep "imperator"@la .
+
+<http://lila-erc.eu/data/id/lemma/113596> a ontolex:Form ;
+    rdfs:label "nepos" ;
+    dct:identifier "lemma_16"^^xsd:string,
+        "2458"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:writtenRep "nepos"@la .
+
+<http://lila-erc.eu/data/id/lemma/96181> a ontolex:Form ;
+    rdfs:label "consul" ;
+    dct:identifier "lemma_3"^^xsd:string,
+        "833"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:writtenRep "consul"@la .
+
+<http://lila-erc.eu/data/id/hypolemma/4503> a ontolex:Form ;
+    rdfs:label "beatus" ;
+    dct:identifier "lemma_35"^^xsd:string,
+        "4585"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:adjective ;
+    ontolex:writtenRep "beatus"@la .
+
+<http://lila-erc.eu/data/id/lemma/100177> a ontolex:Form ;
+    rdfs:label "dubius" ;
+    dct:identifier "lemma_29"^^xsd:string,
+        "4039"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:adjective ;
+    ontolex:writtenRep "dubius"@la .
+
+<http://lila-erc.eu/data/id/lemma/113502> a ontolex:Form ;
+    rdfs:label "necessarius" ;
+    dct:identifier "lemma_28"^^xsd:string,
+        "3940"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:adjective ;
+    ontolex:writtenRep "necessarius"@la .
+
+<http://lila-erc.eu/data/id/lemma/124840> a ontolex:Form ;
+    rdfs:label "simplex" ;
+    dct:identifier "lemma_15"^^xsd:string,
+        "2346"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:adjective ;
+    ontolex:writtenRep "simplex"@la .
+
+<http://lila-erc.eu/data/id/lemma/94751> a ontolex:Form ;
+    rdfs:label "cohors" ;
+    dct:identifier "lemma_11"^^xsd:string,
+        "1827"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:writtenRep "cohors"@la .
+
+<http://lila-erc.eu/data/id/lemma/94400> a ontolex:Form ;
+    rdfs:label "ciuitas" ;
+    dct:identifier "lemma_17"^^xsd:string,
+        "2594"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:writtenRep "ciuitas"@la .
+
+<http://lila-erc.eu/data/id/lemma/78250> a ontolex:Form ;
+    rdfs:label "sanctus" ;
+    dct:identifier "lemma_25"^^xsd:string,
+        "3594"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:noun ;
+    ontolex:writtenRep "sanctus"@la .
+
+<http://lila-erc.eu/data/id/lemma/87191> a ontolex:Form ;
+    rdfs:label "acerbus" ;
+    dct:identifier "lemma_23"^^xsd:string,
+        "3355"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:adjective ;
+    ontolex:writtenRep "acerbus"@la .
+
+<http://lila-erc.eu/data/id/lemma/103256> a ontolex:Form ;
+    rdfs:label "fidelis" ;
+    dct:identifier "lemma_31"^^xsd:string,
+        "4253"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:adjective ;
+    ontolex:writtenRep "fidelis"@la .
+
+<http://lila-erc.eu/data/id/lemma/109137> a ontolex:Form ;
+    rdfs:label "itero" ;
+    dct:identifier "lemma_20"^^xsd:string,
+        "2839"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:verb ;
+    ontolex:writtenRep "itero"@la .
+
+<http://lila-erc.eu/data/id/lemma/90386> a ontolex:Form ;
+    rdfs:label "adsumo" ;
+    dct:identifier "lemma_39"^^xsd:string,
+        "5058"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:verb ;
+    ontolex:writtenRep "adsumo"@la .
+
+<http://lila-erc.eu/data/id/lemma/96881> a ontolex:Form ;
+    rdfs:label "credo" ;
+    dct:identifier "lemma_4"^^xsd:string,
+        "993"^^xsd:unsignedInt ;
+    lexinfo:partOfSpeech lexinfo:verb ;
+    ontolex:writtenRep "credo"@la .
+
+"Latin" a dct:LinguisticSystem ;
+    rdfs:label "Latin"@en ;
+    dct:identifier <http://id.loc.gov/vocabulary/iso639-1/la>,
+        <http://id.loc.gov/vocabulary/iso639-2/lat> .
+
