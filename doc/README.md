@@ -1,17 +1,70 @@
 # Linked Linguistic Knowledge Graph
 
-![Linguistic Knowledge Graph](img/LKG.PNG "Linguistic Knowledge Graph")  
-Linguistic Knowledge Graph
-
-![Linked Linguistic Knowledge Graph](img/LLKG.svg "Linked Linguistic Knowledge Graph")  
-Linked Linguistic Knowledge Graph
-
 ## Table of contents
 - [Linguistic sub-graph](#linguistic-sub-graph)
 - [Date sub-graph](#date-sub-graph)
 - [Author sub-graph](#author-sub-graph)
 - [Corpus sub-graph](#corpus-sub-graph)
 - [Example sub-graph](#example-sub-graph)
+
+## Premise
+
+The principal objectives of ***Linked Linguistic Knowledge Graph*** are to **reorganize** and **link** the content of [Linguistic Knowledge Graph](https://ceur-ws.org/Vol-3365/short7.pdf) and [Etymological Wordnet](http://www.lrec-conf.org/proceedings/lrec2014/pdf/1083_Paper.pdf); as for the former aim, we adopt the lexicon model for ontolgies [*lemon*](https://www.w3.org/2016/05/ontolex/), while entities have been linked manually.
+
+### Entities
+
+| Schema | Graphical representation | Data | 
+|-----|---------|---------|
+|Word|LexiconEntry|*unspecified*|
+|Lemma|Lemma|Lemma|
+|InflectedWord|WordForm|InflectedWord|
+|Stem|Stem|*unspecified*|
+|Concept|Concept|*unspecified*|
+|LexiconConcept|LexiconConcept|LexiconConcept|
+|Text|Text|Text|
+|Sentence|Sentence|*unspecified*|
+|Document|Document|Document|
+|Corpus|Corpus|Corpus|
+|TemporalSpecification|Date|*unspecified*|
+|TimePoint|Date|TimePoint|
+|TemporalInterval|Date|TemporalInterval| 
+|Person|Person|Person|
+|Language|Language|*unspecified*|
+|Category|*unspecified*|*unspecified*|
+|*unspecified*|*unspecified*|Occupation|
+
+### Relations
+
+| Schema | Graphical representation | Data | 
+|-----|---------|---------|
+|Sentence IS_A Text|Sentence IS_A Text|*missing*|
+|Lemma $\cup$ InflectedWord IS_A Word |Lemma $\cup$ WordForm IS_A LexiconEntry|*unspecified*|
+|Text BELONG_TO Document|*unaltered*|*unaltered*|
+|Document BELONG_TO Corpus|*unaltered*|DOCUMENT HAS_CORPUS Corpus|
+|Corpus BELONG_TO Category|*missing*|*missing*|
+|Word HAS_OCCURENCE Text|LexiconEntry HAS_OCCURENCE Text|InflectedWord HAS_OCCURENCE Text|
+|Word {LEX_RELATION} Word|LexiconEntry {LEX_RELATION} LexiconEntry|*missing*|
+|Word HAS_LEMMA Lemma|WordForm HAS_LEMMA Lemma|InflectedWord HAS_LEMMA Lemma|
+|Word HAS_CONCEPT LexiconConcept|LexiconEntry HAS_CONCEPT LexiconConcept|Lemma $\cup$ InflectedWord HAS_CONCPET LexiconConcept|
+|LexiconConcept HAS_EXAMPLE Text|*unaltered*|*unaltered*|
+|LexiconConcept HAS_DEFINITION Text|*unaltered*|*unaltered*|
+|LexiconConcept REFER_TO Concept|LexiconConcept REFER_TO Concept|*missing*|
+|LexiconConcept {SEM_RELATION} LexiconConcept|LexiconConcept {SEM_RELATION} LexiconConcept|LexiconConcept HAS_SUBCLASS LexiconConcept|
+|Text $\cup$ Document $\cup$ Corpus PUBLISHED_IN TemporalSpecification|Text $\cup$ Document $\cup$ Corpus PUBLISHED_IN Date|Text $\cup$ Document $\cup$ Corpus PUBLISHED_IN TemporalSpecification|
+|Text $\cup$ Document $\cup$ Corpus HAS_AUTHOR Person|*unaltered*|*unaltered*|
+|Person BORN TemporalSpecification|Person BORN Date|*missing*|
+|Person DIED TemporalSpecification|Person DIED Date|*missing*|
+|TimeInterval startTime TimePoint|*unspecified*|TimeInterval startTime TimePoint|
+|TimeInterval endTime TimePoint|*unspecified*|TimeInterval endTime TimePoint|
+|Text $\cup$ Document $\cup$ Corpus $\cup$ Word HAS_LANGUAGE Language|Text $\cup$ Document $\cup$ Corpus $\cup$ LexiconEntry HAS_LANGUAGE Language|*missing*|
+|*unspecified*|WordForm HAS_STEM Stem|*missing*|
+|*unspecified*|*unspecified*|LexiconConcept SAME_AS LexiconConcept|
+
+![Linguistic Knowledge Graph](img/LKG.PNG "Linguistic Knowledge Graph")  
+Linguistic Knowledge Graph
+
+![Linked Linguistic Knowledge Graph](img/LLKG.svg "Linked Linguistic Knowledge Graph")  
+Linked Linguistic Knowledge Graph
 
 ### General purpose prefixes
 **rdf** : <http://www.w3.org/1999/02/22-rdf-syntax-ns#>   
@@ -75,9 +128,11 @@ Linked Linguistic Knowledge Graph
 |LexiconEntry :HAS_CONCEPT LexiconConcept|ontolex:LexicalEntry [ontolex:sense](https://www.w3.org/2016/05/ontolex/#sense-object-property) ontolex:LexicalSense|
 |LexiconConcept :REFER_TO Concept|ontolex:LexicalSense [ontolex:isLexicalizedSenseOf](https://www.w3.org/2016/05/ontolex/#lexicalized-sense-object-property) ontolex:LexicalConcept |
 |LexiconConcept :HAS_DEFINITION Text <sup>1</sup>|ontolex:LexicalSense [dct:description](http://purl.org/dc/terms/description) rdfs:Literal|
+|LexicalConcept :SAME_AS LexicalConcept |ontolex:LexicalSense owl:sameAs <sup>2</sup> ontolex:LexicalSense|
 
 
 > <sup>1</sup> we split the originally merged usage of entity `Text` for representing both a fragment from a text and the actual definition of the word sense.
+> <sup>2</sup> in case of same senses from different resources.
 
 | Etymological Wordnet | L-LKG |
 |-----|---------|
@@ -95,9 +150,9 @@ Linked Linguistic Knowledge Graph
 | L-LKG |
 |---------|
 |ontolex:LexicalEntry [ontolex:evokes](https://www.w3.org/2016/05/ontolex/#evokes-object-property) ontolex:LexicalConcept |
-|ontolex:LexicalSense owl:sameAs <sup>2</sup> ontolex:LexicalSense|
 
-> <sup>2</sup> in case of same senses from different resources.
+
+
 
 ---
 ---
