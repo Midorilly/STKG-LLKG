@@ -18,19 +18,19 @@ The principal objectives of ***Linked Linguistic Knowledge Graph*** are to **reo
 |Word|LexiconEntry|*unspecified*|
 |Lemma|Lemma|Lemma|
 |InflectedWord|WordForm|InflectedWord|
-|Stem|Stem|*unspecified*|
-|Concept|Concept|*unspecified*|
+|Stem|Stem|*missing*|
+|Concept|Concept|*missing*|
 |LexiconConcept|LexiconConcept|LexiconConcept|
 |Text|Text|Text|
-|Sentence|Sentence|*unspecified*|
+|Sentence|Sentence|*missing*|
 |Document|Document|Document|
 |Corpus|Corpus|Corpus|
 |TemporalSpecification|Date|*unspecified*|
 |TimePoint|Date|TimePoint|
 |TemporalInterval|Date|TemporalInterval| 
 |Person|Person|Person|
-|Language|Language|*unspecified*|
-|Category|*unspecified*|*unspecified*|
+|Language|Language|*missing*|
+|Category|*unspecified*|*missing*|
 |*unspecified*|*unspecified*|Occupation|
 
 ### Relations
