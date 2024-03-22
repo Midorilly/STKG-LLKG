@@ -132,6 +132,7 @@ Linked Linguistic Knowledge Graph
 
 
 > <sup>1</sup> we split the originally merged usage of entity `Text` for representing both a fragment from a text and the actual definition of the word sense.
+
 > <sup>2</sup> in case of same senses from different resources.
 
 | Etymological Wordnet | L-LKG |
