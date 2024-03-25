@@ -15,7 +15,7 @@ The principal objectives of ***Linked Linguistic Knowledge Graph*** are to **reo
 
 | Schema | Graphical representation | Data | 
 |-----|---------|---------|
-|Word|LexiconEntry|*unspecified*|
+|Word|LexiconEntry|*not specified*|
 |Lemma|Lemma|Lemma|
 |InflectedWord|WordForm|InflectedWord|
 |Stem|Stem|*missing*|
@@ -25,20 +25,20 @@ The principal objectives of ***Linked Linguistic Knowledge Graph*** are to **reo
 |Sentence|Sentence|*missing*|
 |Document|Document|Document|
 |Corpus|Corpus|Corpus|
-|TemporalSpecification|Date|*unspecified*|
+|TemporalSpecification|Date|*not specified*|
 |TimePoint|Date|TimePoint|
 |TemporalInterval|Date|TemporalInterval| 
 |Person|Person|Person|
 |Language|Language|*missing*|
-|Category|*unspecified*|*missing*|
-|*unspecified*|*unspecified*|Occupation|
+|Category|*missing*|*missing*|
+|*missing*|*missing*|Occupation|
 
 ### Relations
 
 | Schema | Graphical representation | Data | 
 |-----|---------|---------|
-|Sentence IS_A Text|Sentence IS_A Text|*missing*|
-|Lemma $\cup$ InflectedWord IS_A Word |Lemma $\cup$ WordForm IS_A LexiconEntry|*unspecified*|
+|Sentence IS_A Text|Sentence IS_A Text|*not specified*|
+|Lemma $\cup$ InflectedWord IS_A Word |Lemma $\cup$ WordForm IS_A LexiconEntry|*not specified*|
 |Text BELONG_TO Document|*unaltered*|*unaltered*|
 |Document BELONG_TO Corpus|*unaltered*|DOCUMENT HAS_CORPUS Corpus|
 |Corpus BELONG_TO Category|*missing*|*missing*|
@@ -54,11 +54,11 @@ The principal objectives of ***Linked Linguistic Knowledge Graph*** are to **reo
 |Text $\cup$ Document $\cup$ Corpus HAS_AUTHOR Person|*unaltered*|*unaltered*|
 |Person BORN TemporalSpecification|Person BORN Date|*missing*|
 |Person DIED TemporalSpecification|Person DIED Date|*missing*|
-|TimeInterval startTime TimePoint|*unspecified*|TimeInterval startTime TimePoint|
-|TimeInterval endTime TimePoint|*unspecified*|TimeInterval endTime TimePoint|
+|TimeInterval startTime TimePoint|*not specified*|TimeInterval startTime TimePoint|
+|TimeInterval endTime TimePoint|*not specified*|TimeInterval endTime TimePoint|
 |Text $\cup$ Document $\cup$ Corpus $\cup$ Word HAS_LANGUAGE Language|Text $\cup$ Document $\cup$ Corpus $\cup$ LexiconEntry HAS_LANGUAGE Language|*missing*|
-|*unspecified*|WordForm HAS_STEM Stem|*missing*|
-|*unspecified*|*unspecified*|LexiconConcept SAME_AS LexiconConcept|
+|*not specified*|WordForm HAS_STEM Stem|*missing*|
+|*not specified*|*unspecified*|LexiconConcept SAME_AS LexiconConcept|
 
 ![Linguistic Knowledge Graph](img/LKG.PNG "Linguistic Knowledge Graph")  
 Linguistic Knowledge Graph
