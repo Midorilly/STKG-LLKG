@@ -79,7 +79,6 @@ Linked Linguistic Knowledge Graph
 **ontolex** : <http://www.w3.org/ns/lemon/ontolex#>   
 **lexinfo** : <http://www.lexinfo.net/ontology/2.0/lexinfo#>    
 **vartrans** : <http://www.w3.org/ns/lemon/vartrans#>  
-**loc** : <http://id.loc.gov/vocabulary/>
 
 ### Entities
 | LKG | L-LKG |
