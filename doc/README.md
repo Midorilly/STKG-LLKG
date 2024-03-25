@@ -107,11 +107,13 @@ Linked Linguistic Knowledge Graph
 |(Lemma) value: string| ontolex:LexicalEntry ontolex:canonicalForm ontolex:Form [ontolex:writtenRep](https://www.w3.org/2016/05/ontolex/#written-representation-datatype-property) rdf:langString|
 |(LexiconConcept) resource: string|ontolex:LexicalSense [dct:source](    http://purl.org/dc/terms/source) rdfs:Resource|
 |(Language) enName: string|dct:LinguisticSystem rdfs:label rdfs:Literal|
-|(Language) iso639-1: string|dct:LinguisticSystem [dct:identifier](    http://purl.org/dc/terms/identifier) [loc:iso639-1](http://id.loc.gov/vocabulary/iso639-1) |
-|(Language) iso639-2: string|dct:LinguisticSystem [dct:identifier](    http://purl.org/dc/terms/identifier) [loc:iso639-2](http://id.loc.gov/vocabulary/iso639-2) |
+|(Language) iso639-1: string|dct:LinguisticSystem :iso6391<sup>1</sup> rdfs:Literal |
+|(Language) iso639-2: string|dct:LinguisticSystem :iso6392<sup>1</sup> rdfs:Literal |
 |(LexiconEntry) value: string|ontolex:LexicalEntry rdfs:label rdfs:Literal |
 |(LexiconConcept) alias: string|ontolex:LexicalSense dct:title rdfs:Literal|
 |(LexiconConcept) gloss: string|ontolex:LexicalSense dct:description rdfs:Literal|
+
+> <sup>1</sup> rdfs:subPropertyOf dct:identifier
 
 
 ### Relations
@@ -127,13 +129,13 @@ Linked Linguistic Knowledge Graph
 |LexiconConcept :{SEM_RELATION} LexiconConcept| ontolex:LexicalSense [vartrans:senseRel](https://www.w3.org/2016/05/ontolex/#senserel-object-property) ontolex:LexicalSense |
 |LexiconEntry :HAS_CONCEPT LexiconConcept|ontolex:LexicalEntry [ontolex:sense](https://www.w3.org/2016/05/ontolex/#sense-object-property) ontolex:LexicalSense|
 |LexiconConcept :REFER_TO Concept|ontolex:LexicalSense [ontolex:isLexicalizedSenseOf](https://www.w3.org/2016/05/ontolex/#lexicalized-sense-object-property) ontolex:LexicalConcept |
-|LexiconConcept :HAS_DEFINITION Text <sup>1</sup>|ontolex:LexicalSense [dct:description](http://purl.org/dc/terms/description) rdfs:Literal|
-|LexicalConcept :SAME_AS LexicalConcept |ontolex:LexicalSense owl:sameAs <sup>2</sup> ontolex:LexicalSense|
+|LexiconConcept :HAS_DEFINITION Text <sup>3</sup>|ontolex:LexicalSense [dct:description](http://purl.org/dc/terms/description) rdfs:Literal|
+|LexicalConcept :SAME_AS LexicalConcept |ontolex:LexicalSense owl:sameAs <sup>3</sup> ontolex:LexicalSense|
 
 
 > <sup>1</sup> we split the originally merged usage of entity `Text` for representing both a fragment from a text and the actual definition of the word sense.
 
-> <sup>2</sup> in case of same senses from different resources.
+> <sup>3</sup> in case of same senses from different resources.
 
 | Etymological Wordnet | L-LKG |
 |-----|---------|
@@ -151,6 +153,7 @@ Linked Linguistic Knowledge Graph
 | L-LKG |
 |---------|
 |ontolex:LexicalEntry [ontolex:evokes](https://www.w3.org/2016/05/ontolex/#evokes-object-property) ontolex:LexicalConcept |
+|dct:LinguisticSystem :iso6393<sup>1</sup> rdfs:Literal|
 
 
 
@@ -201,11 +204,11 @@ Linked Linguistic Knowledge Graph
 
 | LKG | L-LKG |
 |-----|---------|
-|Person <sup>3</sup> |[schema:Person](https://schema.org/Person), [schema:Organization](https://schema.org/Organization) | 
-|*missing* |[schema:Occupation](https://schema.org/Occupation) <sup>4</sup> | 
+|Person <sup>4</sup> |[schema:Person](https://schema.org/Person), [schema:Organization](https://schema.org/Organization) | 
+|*missing* |[schema:Occupation](https://schema.org/Occupation) <sup>5</sup> | 
 
-> <sup>3</sup> we split the originally merged usage of entity `Person` for representing both the author of texts and documents, and the author of curated corpora, which usually are the result of an organization project; indeed, `schema:Organization` includes among its specializations [`schema:Project`](https://schema.org/Project) and [`schema:ResearchOrganization`](https://schema.org/ResearchOrganization).  
-> <sup>4</sup> Entity Occupation is not mentioned in LKG schema but actually occurrs in the dataset.
+> <sup>4</sup> we split the originally merged usage of entity `Person` for representing both the author of texts and documents, and the author of curated corpora, which usually are the result of an organization project; indeed, `schema:Organization` includes among its specializations [`schema:Project`](https://schema.org/Project) and [`schema:ResearchOrganization`](https://schema.org/ResearchOrganization).  
+> <sup>5</sup> Entity Occupation is not mentioned in LKG schema but actually occurrs in the dataset.
 
 ### Properties
 
@@ -290,9 +293,9 @@ Linked Linguistic Knowledge Graph
 
 | LKG | L-LKG |
 |-----|---------|
-|*missing*|[wn:Example](https://globalwordnet.github.io/schemas/wn#Example) <sup>5</sup>|
+|*missing*|[wn:Example](https://globalwordnet.github.io/schemas/wn#Example) <sup>6</sup>|
 
-> <sup>5</sup> LKG schema does not specify Example as an entity, but expresses this concept with the relation [`:HAS_EXAMPLE`](occurrence-properties) between `LexiconConcept` and `Text`, with attributes `begin`, `end` and `grade`; similarly, LKG expresses the concept of a word occurring in a text with the relation [`:HAS_OCCURRENCE`](occurrence-properties) between `LexiconEntry` and `Text`. In our schema, we merge these relations in entity `wn:Example`
+> <sup>6</sup> LKG schema does not specify Example as an entity, but expresses this concept with the relation [`:HAS_EXAMPLE`](occurrence-properties) between `LexiconConcept` and `Text`, with attributes `begin`, `end` and `grade`; similarly, LKG expresses the concept of a word occurring in a text with the relation [`:HAS_OCCURRENCE`](occurrence-properties) between `LexiconEntry` and `Text`. In our schema, we merge these relations in entity `wn:Example`
 
 ### <a id="occurrence-properties"></a> Properties
 

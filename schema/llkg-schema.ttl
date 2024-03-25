@@ -41,14 +41,18 @@ dct:identifier a rdf:Property ;
 dct:LinguisticSystem a rdfs:Class ;
     rdfs:label "Language"@en .
 
-:iso6391 rdfs:subPropertyOf dct:identifier ;######## review
+:iso6391 rdfs:subPropertyOf dct:identifier ;
     rdfs:label "ISO639-1"@en ;
     rdfs:domain dct:LinguisticSystem ;
-    rdfs:range loc:iso639-1 .
-:iso6392 rdfs:subPropertyOf dct:identifier ; ######### review
+    rdfs:range rdfs:Literal .
+:iso6392 rdfs:subPropertyOf dct:identifier ; 
     rdfs:label "ISO639-2"@en ;
     rdfs:domain dct:LinguisticSystem ;
-    rdfs:range loc:iso639-2 .
+    rdfs:range rdfs:Literal .
+:iso6393 rdfs:subPropertyOf dct:identifier ;
+    rdfs:label "ISO639-3"@en ;
+    rdfs:domain dct:LinguisticSystem ;
+    rdfs:range rdfs:Literal .
 dct:language a rdf:Property ;
     rdfs:label "language"@en ;
     rdfs:range dct:LinguisticSystem .
