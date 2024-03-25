@@ -32,6 +32,9 @@ dct:description a rdf:Property ;
 dct:identifier a rdf:Property ;
     rdfs:label "identifier"@en .
 
+:lkgID rdfs:subPropertyOf dct:identifier ;
+    rdfs:label "LKG identifier"@en .
+
 ####################################################
 ############### Linguistic sub-graph ###############
 ####################################################
@@ -106,9 +109,14 @@ owl:sameAs a rdf:Property ;
     rdfs:label "sameAs"@en ;
     rdfs:domain ontolex:LexicalSense ;
     rdfs:range ontolex:LexicalSense .
+:wn30ID rdfs:subPropertyOf dct:identifier;
+    rdfs:label "wn30"@en ;
+    rdfs:domain ontolex:LexicalSensel ;
+    rdfs:range rdfs:Literal .
 
-ontolex:LexicalSense dct:title rdfs:Literal .
 ontolex:LexicalSense dct:description rdfs:Literal .
+# ontolex:LexicalSense dct:title rdfs:Literal .
+
 
 # LexicalConcept
 
