@@ -16,6 +16,7 @@ Project Organization
     ├── doc                 <- Project documentation.  
     ├── schema              <- LLKG schema.
     ├── src                 <- Code for generating LLKG resource.
+    |   └── utils           <- Code for reorganising EtymWordNet data.
     ├── .gitignore
     ├── README.md
     └── requirements.txt
