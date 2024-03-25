@@ -3,3 +3,5 @@ ipykernel
 pandas
 jsonlines
 SPARQLWrapper
+nltk
+py4j
