@@ -47,6 +47,29 @@ def addSameAs(subj, obj, g: Graph):
     '''
     g.add((URIRef(str(subj)), OWL.sameAs, URIRef(str(obj))))
 
+def addLexicalizedSense(subj, obj, g: Graph): #    UNAVAILABLE DATA
+    '''
+    ontolex:LexicalSense ontolex:isLexicalizedSenseOf ontolex:LexicalConcept
+    ontolex:LexicalConcept ontolex:lexicalizedSense ontolex:LexicalSense
+
+    subj: ontolex:LexicalSense
+    obj: ontolex:LexicalConcept
+    '''
+    g.add((URIRef(str(subj)), ONTOLEX.isLexicalizedSenseOf, URIRef(str(obj)))) 
+    g.add((URIRef(str(obj)), ONTOLEX.lexicalizedSense, URIRef(str(subj)))) 
+
+def addEvokes(subj, obj, g: Graph): #    UNAVAILABLE DATA
+    '''
+    ontolex:LexicalEntry ontolex:evokes ontolex:LexicalConcept
+    ontolex:LexicalConcept ontolex:isEvokedBy ontolex:LexicalEntry
+
+    subj: ontolex:LexicalEntry
+    obj: ontolex:LexicalConcept
+    '''
+    g.add((URIRef(str(subj)), ONTOLEX.evokes, URIRef(str(obj)))) 
+    g.add((URIRef(str(obj)), ONTOLEX.isEvokedBy, URIRef(str(subj)))) 
+
+
 def addDCTIsPartOf(subj, obj, g: Graph):
     '''
     ontolex:LexicalEntry dct:isPartOf wn:Example
@@ -100,6 +123,25 @@ def addDatePublished(subj, obj, g: Graph):
     obj: schema:Date
     '''
     g.add((URIRef(str(subj)), SCHEMA.datePublished, URIRef(str(obj))))
+
+def addBirthDate(subj, obj, g: Graph): #    UNAVAILABLE DATA
+
+    '''
+    schema:Person schema:birthDate schema:Date
+
+    subj: schema:Person
+    obj: schema:Date
+    '''
+    g.add((URIRef(str(subj)), SCHEMA.birthDate, URIRef(str(obj)))) 
+
+def addDeathDate(subj, obj, g: Graph): #    UNAVAILABLE DATA
+    '''
+    schema:Person schema:deathDate schema:Date
+
+    subj: schema:Person
+    obj: schema:Date
+    '''
+    g.add((URIRef(str(subj)), SCHEMA.deathDate, URIRef(str(obj))))
 
 def addSCHEMAIsPartOf(subj, obj, g: Graph):
     '''
