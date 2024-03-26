@@ -173,6 +173,11 @@ ontolex:evokes a rdf:Property ;
     rdfs:comment "The variation link ties a word form and its variant in orthography and spelling; subject has a variant form object when they differ in a single or double letter, s in place of z, an hyphen instead of a space, as often happens in American and British English." ;
     rdfs:domain ontolex:LexicalEntry ;
     rdfs:range ontolex:LexicalEntry .
+
+:etymwnID rdfs:subPropertyOf dct:identifier;
+    rdfs:label "wn30"@en ;
+    rdfs:domain ontolex:LexicalSensel ;
+    rdfs:range rdfs:Literal .
     
 ##############################################
 ############### Date sub-graph ###############
