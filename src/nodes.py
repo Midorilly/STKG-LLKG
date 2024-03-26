@@ -78,11 +78,10 @@ def addPersonNode(firstname, lastname, id, df, g: Graph):
     if wikiEntity.size > 0:
         author = URIRef(WIKIENTITY+wikiEntity[0])
         g.add((author, RDF.type, SCHEMA.Person))
-        g.add((Literal(firstname), RDF.type, SCHEMA.Text))
-        g.add((author, SCHEMA.givenName, Literal(firstname)))
+        if len(firstname)>0:
+            g.add((author, SCHEMA.givenName, Literal(firstname, datatype=SCHEMA.Text)))
         if len(lastname)>0:
-            g.add((Literal(lastname), RDF.type, SCHEMA.Text))
-            g.add((author, SCHEMA.familyName, Literal(lastname)))
+            g.add((author, SCHEMA.familyName, Literal(lastname, datatype=SCHEMA.Text)))
         g.add((author, DUMMY.lkgID, Literal(id, datatype=XSD.unsignedInt)))
 
 def addOccupationNode(occupation, id, dict, g: Graph):
@@ -92,14 +91,21 @@ def addOccupationNode(occupation, id, dict, g: Graph):
     g.add((occupationURI, DUMMY.lkgID, Literal(id, datatype=XSD.unsignedInt)))
 
 def addQuotationNode(quotation, language, id, g: Graph):
-    text = Literal('text_{}'.format(id))
+    text = URIRef('text_{}'.format(id))
     g.add((text, RDF.type, SCHEMA.Quotation))
-    g.add((text, SCHEMA.text, Literal(quotation, datatype=XSD.string)))
+    g.add((text, SCHEMA.text, Literal(quotation, datatype=SCHEMA.Text)))
     g.add((text, DCTERMS.language, URIRef(str(g.value(subject=None, predicate=RDFS.label, object=Literal(language, lang='en'), any=False))))) 
     g.add((text, DUMMY.lkgID, Literal(id, datatype=XSD.unsignedInt)))
+    example = URIRef('example_{}'.format(id))
+    g.add((example, RDF.type, WORDNET.Example))
+    g.add((example, DCTERMS.isPartOf, text))
+    g.add((example, DUMMY.lkgID, Literal(id, datatype=XSD.unsignedInt)))
 
 def addCreativeWorkNode(title, id, g: Graph):
-    work = Literal(title)
+    work = URIRef(quote(title))
+    #results = queries.query(queries.documentQuery.format(title))
+    #if len(results) > 0:
+    #    work = results[0]['document']
     g.add((work, RDF.type, SCHEMA.CreativeWork))
     g.add((work, RDFS.label, work))
     g.add((work, DUMMY.lkgID, Literal(id, datatype=XSD.unsignedInt)))
@@ -157,3 +163,4 @@ def addEtymLexicalEntryNode(word, language, iso, id, llkg, g: Graph):
         g.add((word, DCTERMS.language, g.value(subject=None, predicate=DUMMY.iso6393, object=Literal(line[2], datatype=XSD.string))))
     else:
         g.add((word, DCTERMS.identifier, Literal(line[0], datatype=XSD.string)))'''
+
