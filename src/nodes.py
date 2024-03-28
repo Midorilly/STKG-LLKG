@@ -69,6 +69,11 @@ def addLexicalSenseNode(resource, sense, gloss, id, g: Graph):
 
     g.add((senseURI, DUMMY.lkgID, Literal(id, datatype=XSD.unsignedInt)))
 
+def addLexicalConceptNode(concept, g: Graph): #    UNAVAILABLE DATA, TBD
+    conceptURI = URIRef(concept)
+    g.add((conceptURI, RDF.type, ONTOLEX.LexicalConcept))
+    g.add((conceptURI, RDFS.label, Literal(concept, datatype=XSD.string)))
+
 def addPersonNode(firstname, lastname, id, df, g: Graph):
     if not lastname:
         wikiEntity = df.loc[(df['name'] == firstname), 'id'].values             
