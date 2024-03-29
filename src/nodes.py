@@ -28,19 +28,19 @@ def addFormNode(writtenRep, pos, id, g: Graph):
         g.add((lemma, LEXINFO.partOfSpeech, URIRef(lexinfoPosMapping[pos])))
         g.add((lemma, DCTERMS.language, URIRef(str(g.value(subject=None, predicate=RDFS.label, object=Literal('Latin', lang='en'), any=False)))))
 
-def addLexicalEntryNode(entry, id, language, llkg, g: Graph):
-    value = entry.lower()
-    word = URIRef(LEXVO+'lat/{}'.format(value))
+def addLexicalEntryNode(entry, id, language, iso, llkg, g: Graph):
+    wordString = str(entry).lower()
+    word = URIRef(LEXVO+language+'/'+quote(wordString))
     if not (word, None, None) in g:
         updateEntry(word, llkg, g)
-        if bool(re.search(r'\s', value)):
+        if bool(re.search(r'\s', wordString)):
             g.add((word, RDF.type, ONTOLEX.MultiwordExpression))
-        elif value.startswith('-') or value.endswith('-'):
+        elif wordString.startswith('-') or wordString.endswith('-'):
             g.add((word, RDF.type, ONTOLEX.Affix))
         else:
             g.add((word, RDF.type, ONTOLEX.Word))
-        g.add((word, RDFS.label, Literal(value)))
-        g.add((word, DCTERMS.language, URIRef(str(g.value(subject=None, predicate=RDFS.label, object=Literal(language, lang='en'), any=False)))))
+        g.add((word, RDFS.label, Literal(wordString)))
+        g.add((word, DCTERMS.language, URIRef(str(g.value(subject=None, predicate=DUMMY.iso639+iso, object=Literal(language, datatype=XSD.string))))))
         g.add((word, DUMMY.lkgID, Literal(id, datatype=XSD.unsignedInt)))
     else:
         g.add((word, DUMMY.lkgID, Literal(id, datatype=XSD.unsignedInt)))
@@ -148,7 +148,7 @@ def addEtymLexicalEntryNode(word, language, iso, id, llkg, g: Graph):
             g.add((word, RDF.type, ONTOLEX.Word))
         g.add((word, RDFS.label, Literal(wordString, datatype=XSD.string)))
         g.add((word, DUMMY.etymwnID, Literal(id, datatype=XSD.string)))
-        g.add((word, DCTERMS.language, g.value(subject=None, predicate=DUMMY.iso639+iso, object=Literal(language, datatype=XSD.string))))
+        g.add((word, DCTERMS.language, URIRef(str(g.value(subject=None, predicate=DUMMY.iso639+iso, object=Literal(language, datatype=XSD.string))))))
     else:
         g.add((word, DCTERMS.identifier, Literal(id, datatype=XSD.string)))
 
