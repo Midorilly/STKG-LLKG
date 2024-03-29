@@ -1,3 +1,5 @@
+from SPARQLWrapper import SPARQLWrapper, JSON
+
 lemmaQuery = (""" SELECT ?lemma 
     WHERE {
         SERVICE <https://lila-erc.eu/sparql/lila_knowledge_base/sparql> {
@@ -22,3 +24,21 @@ documentQuery = '''SELECT ?document
            wdt:P1476 ?title.
       SERVICE wikibase:label {{ bd:serviceParam wikibase:language "en". }}   
     }} ''' 
+
+def transform2dicts(results):
+    new_results = []
+    for result in results:
+        new_result = {}
+        for key in result:
+            new_result[key] = result[key]['value']
+        new_results.append(new_result)
+    return new_results
+
+def query(queryString):
+    endpoint = "https://query.wikidata.org/sparql"
+    sparql = SPARQLWrapper(endpoint)
+    sparql.setQuery(queryString)
+    sparql.setReturnFormat(JSON)
+
+    results = sparql.queryAndConvert()['results']['bindings']
+    results = transform2dicts(results)

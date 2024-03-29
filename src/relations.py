@@ -14,7 +14,8 @@ def addCanonicalForm(subj, obj, g: Graph):
     obj: ontolex:Form
     '''
     if subj != obj :
-        if g.value(subject=subj, predicate=RDF.type, object=None) == ONTOLEX.LexicalEntry and g.value(subject=obj, predicate=RDF.type, object=None) == ONTOLEX.Form:
+        domain = [ONTOLEX.MultiwordExpression, ONTOLEX.Word, ONTOLEX.Affix]
+        if g.value(subject=subj, predicate=RDF.type, object=None) in domain and g.value(subject=obj, predicate=RDF.type, object=None) == ONTOLEX.Form:
             g.add((URIRef(str(subj)), ONTOLEX.canonicalForm, URIRef(str(obj))))  
 
 def addSense(subj, obj, g: Graph):
@@ -25,11 +26,25 @@ def addSense(subj, obj, g: Graph):
     subj: ontolex:LexicalEntry
     obj: ontolex:LexicalSense
     '''
-    if g.value(subject=subj, predicate=RDF.type, object=None) == ONTOLEX.LexicalEntry and g.value(subject=obj, predicate=RDF.type, object=None) == ONTOLEX.LexicalSense:
+    domain = [ONTOLEX.MultiwordExpression, ONTOLEX.Word, ONTOLEX.Affix]
+    if g.value(subject=subj, predicate=RDF.type, object=None) in domain and g.value(subject=obj, predicate=RDF.type, object=None) == ONTOLEX.LexicalSense:
         for o in g.objects(subject = subj, predicate=RDF.type):
             if o != ONTOLEX.Form: # according to Ontolex schema, Form entities are not directly linked to LexicalSense entities
                 g.add((URIRef(str(subj)), ONTOLEX.sense, URIRef(str(obj))))
                 g.add((URIRef(str(obj)), ONTOLEX.isSenseOf, URIRef(str(subj))))
+
+                lemmaURI = g.value(subject = subj, predicate = ONTOLEX.canonicalForm, object=None)
+                addSeeAlso(obj, lemmaURI, g)
+
+def addSeeAlso(obj, lemmaURI, g: Graph):
+    '''
+    uwn:sense rdfs:seeALso URI
+    '''
+    for o in g.objects(subject = obj, predicate=OWL.sameAs):
+        wnID = g.value(subject = o, predicate=DUMMY.wn30ID, object=None)
+        lilaURI = g.query(queries.senseQuery.format(wnID), initNs = {'ontolex' : ONTOLEX, 'lime': LIME}, initBindings={'lemmaURI': URIRef(lemmaURI)})
+        for res in lilaURI:
+            g.add((o, RDFS.seeAlso, URIRef(res.senseURI)))
 
 def addSenseRel(subj, obj, g: Graph):
     '''
@@ -49,7 +64,8 @@ def addLexicalRel(subj, obj, g: Graph): #    UNAVAILABLE DATA
     subj: ontolex:LexicalEntry
     obj: ontolex:LexicalEntry
     '''
-    if g.value(subject=subj, predicate=RDF.type, object=None) == ONTOLEX.LexicalEntry and g.value(subject=obj, predicate=RDF.type, object=None) == ONTOLEX.LexicalEntry:
+    domain = [ONTOLEX.MultiwordExpression, ONTOLEX.Word, ONTOLEX.Affix]
+    if g.value(subject=subj, predicate=RDF.type, object=None) in domain and g.value(subject=obj, predicate=RDF.type, object=None) in domain:
         g.add((URIRef(str(subj)), VARTRANS.lexicalRel, URIRef(str(obj)))) # TO NVESTIGATE IF SYMMETRIC
 
 
@@ -63,6 +79,7 @@ def addSameAs(subj, obj, g: Graph):
     if g.value(subject=subj, predicate=RDF.type, object=None) == ONTOLEX.LexicalSense and g.value(subject=obj, predicate=RDF.type, object=None) == ONTOLEX.LexicalSense:
         if g.value(subject=subj, predicate=DCTERMS.source, object=None) != g.value(subject=obj, predicate=DCTERMS.source, object=None):
             g.add((URIRef(str(subj)), OWL.sameAs, URIRef(str(obj))))
+            g.add((URIRef(str(obj)), OWL.sameAs, URIRef(str(subj))))
 
 def addLexicalizedSense(subj, obj, g: Graph): #    UNAVAILABLE DATA
     '''
@@ -265,3 +282,4 @@ def addOrthographyVariant(subj, obj, g: Graph):
     '''
     if g.value(subject=subj, predicate=RDF.type, object=None) == ONTOLEX.LexicalEntry and g.value(subject=obj, predicate=RDF.type, object=None) == ONTOLEX.LexicalEntry:
         g.add((URIRef(str(subj)), DUMMY.orthographyVariant, URIRef(str(obj))))
+
