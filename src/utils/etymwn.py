@@ -1,21 +1,20 @@
 import logging
 import pandas as pd
 import csv
+import os
+
+# Use these functions to separate words and relations in the etymwn.tsv file
 
 logger = logging.getLogger(__name__)
 
-def load_dataset(path):
+def loadDataset(path):
     dataset = pd.read_csv(path, sep='\t', header=None, names=['w1', 'rel', 'w2'])
     entries = pd.concat([dataset['w1'], dataset['w2']], ignore_index=True, axis=0)
-    entries = entries.drop_duplicates()
+    entries = entries.drop_duplicates() 
 
     return dataset, entries
 
-    #load_words(entries)
-    #wordsDict = load_dictionary('../data/etymwn/words.csv')
-    #load_relations(dataset, wordsDict)
-
-def load_words(entries, wordsPath):
+def writeWords(entries, wordsPath):
     logger.info('Loading words...')
 
     words = ['id', 'word', 'language']
@@ -42,7 +41,7 @@ def loadDictionary(wordsPath):
 
     return wordsDict
 
-def load_relations(dataset, wordsDict, relationsPath):
+def writeRelations(dataset, wordsDict, relationsPath):
 
     relations = ['subj', 'relation', 'obj']
     with open(relationsPath, mode='w', newline='', encoding='utf-8') as file:
@@ -60,3 +59,13 @@ def load_relations(dataset, wordsDict, relationsPath):
         file.close()
     
     logger.info('Relations loaded!')
+
+def main():
+    etymFolder = '../data/etymwn' 
+    entries, dataset = loadDataset(os.path.join(etymFolder, 'etymwn.tsv'))    
+    writeWords(entries, os.path.join(etymFolder, 'words.csv'))
+    wordsDict = loadDictionary(os.path.join(etymFolder, 'words.csv'))
+    writeRelations(dataset, wordsDict, os.path.join(etymFolder, 'relations.csv'))
+
+if __name__ == '__main__':
+    main()
