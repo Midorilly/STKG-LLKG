@@ -14,7 +14,7 @@ lexinfoPosMapping = {'N' : LEXINFO.noun , 'ADJ' : LEXINFO.adjective, 'V' : LEXIN
 def updateEntry(entry, llkg, g: Graph):
     g.add((llkg, LIME.entry, entry))
 
-def addResourceNode(resource: str, label: str ,g: Graph):
+def addResourceNode(resource: str, label: str, g: Graph):
     resource = URIRef(resource)
     g.add((resource, RDF.type, RDFS.Resource))
     g.add((resource, RDFS.label, Literal(label, lang='en')))
@@ -29,29 +29,28 @@ def addFormNode(writtenRep, pos, id, g: Graph):
             lemma = r.lemma   
             g.add((lemma, RDF.type, ONTOLEX.Form))
             g.add((lemma, RDFS.label, Literal(writtenRep)))
-            g.add((lemma, DUMMY.lkgID, Literal(id, datatype=XSD.unsignedInt)))
+            g.add((lemma, DUMMY.llkgID, Literal(id, datatype=XSD.unsignedInt)))
             g.add((lemma, ONTOLEX.writtenRep, Literal(writtenRep, lang='la'))) 
             g.add((lemma, LEXINFO.partOfSpeech, URIRef(lexinfoPosMapping[pos])))
-            #g.add((lemma, DCTERMS.language, URIRef(str(g.value(subject=None, predicate=RDFS.label, object=Literal('Latin', lang='en'), any=False)))))
 
 def addLexicalEntryNode(entry, id, language, iso, llkg, g: Graph):
     wordString = str(entry).lower()
-    word = URIRef(LEXVO+language+'/'+quote(wordString))
-    if not (word, None, None) in g:
-        updateEntry(word, llkg, g)
+    wordURI = URIRef(LEXVO+'{}/{}'.format(language, quote(wordString)))
+    if not (wordURI, None, None) in g:
+        updateEntry(wordURI, llkg, g)
         if bool(re.search(r'\s', wordString)):
-            g.add((word, RDF.type, ONTOLEX.MultiwordExpression))
+            g.add((wordURI, RDF.type, ONTOLEX.MultiwordExpression))
         elif wordString.startswith('-') or wordString.endswith('-'):
-            g.add((word, RDF.type, ONTOLEX.Affix))
+            g.add((wordURI, RDF.type, ONTOLEX.Affix))
         else:
-            g.add((word, RDF.type, ONTOLEX.Word))
-        g.add((word, RDFS.label, Literal(wordString)))
-        '''lang = g.value(subject=None, predicate=DUMMY.iso639+iso, object=Literal(language, datatype=XSD.string))
+            g.add((wordURI, RDF.type, ONTOLEX.Word))
+        g.add((wordURI, RDFS.label, Literal(wordString)))
+        lang = g.value(subject=None, predicate=DUMMY.iso639+iso, object=Literal(language, datatype=XSD.string))
         if lang != None:
-            g.add((word, DCTERMS.language, URIRef(str(lang))))'''
-        g.add((word, DUMMY.lkgID, Literal(id, datatype=XSD.unsignedInt)))
+            g.add((wordURI, DCTERMS.language, URIRef(str(lang))))
+        g.add((wordURI, DUMMY.llkgID, Literal(id, datatype=XSD.unsignedInt)))
     else:
-        g.add((word, DUMMY.lkgID, Literal(id, datatype=XSD.unsignedInt)))
+        g.add((wordURI, DUMMY.llkgID, Literal(id, datatype=XSD.unsignedInt)))
 
 def addLexicalSenseNode(resource, sense, gloss, id, g: Graph):
     senseURI = None
@@ -76,7 +75,7 @@ def addLexicalSenseNode(resource, sense, gloss, id, g: Graph):
         g.add((senseURI, DCTERMS.description, Literal(gloss, lang='en')))
         g.add((senseURI, DUMMY.wn30ID, Literal(wn30id, datatype=XSD.string)))
 
-    g.add((senseURI, DUMMY.lkgID, Literal(id, datatype=XSD.unsignedInt)))
+    g.add((senseURI, DUMMY.llkgID, Literal(id, datatype=XSD.unsignedInt)))
 
 def addLexicalConceptNode(concept, g: Graph): #    UNAVAILABLE DATA, TBD
     conceptURI = URIRef(concept)
@@ -96,24 +95,24 @@ def addPersonNode(firstname, lastname, id, df, g: Graph):
             g.add((author, SCHEMA.givenName, Literal(firstname, datatype=SCHEMA.Text)))
         if len(lastname)>0:
             g.add((author, SCHEMA.familyName, Literal(lastname, datatype=SCHEMA.Text)))
-        g.add((author, DUMMY.lkgID, Literal(id, datatype=XSD.unsignedInt)))
+        g.add((author, DUMMY.llkgID, Literal(id, datatype=XSD.unsignedInt)))
 
 def addOccupationNode(occupation, id, dict, g: Graph):
     occupationURI = URIRef(WIKIENTITY+dict[occupation])
     g.add((occupationURI, RDF.type, SCHEMA.Occupation))
     g.add((occupationURI, RDFS.label, Literal(occupation, datatype=XSD.string)))
-    g.add((occupationURI, DUMMY.lkgID, Literal(id, datatype=XSD.unsignedInt)))
+    g.add((occupationURI, DUMMY.llkgID, Literal(id, datatype=XSD.unsignedInt)))
 
 def addQuotationNode(quotation, language, id, g: Graph):
     text = URIRef(DUMMY+'text_{}'.format(id))
     g.add((text, RDF.type, SCHEMA.Quotation))
     g.add((text, SCHEMA.text, Literal(quotation, datatype=SCHEMA.Text)))
     g.add((text, DCTERMS.language, URIRef(str(g.value(subject=None, predicate=RDFS.label, object=Literal(language, lang='en'), any=False))))) 
-    g.add((text, DUMMY.lkgID, Literal(id, datatype=XSD.unsignedInt)))
+    g.add((text, DUMMY.llkgID, Literal(id, datatype=XSD.unsignedInt)))
     example = URIRef(DUMMY+'example_{}'.format(id))
     g.add((example, RDF.type, WORDNET.Example))
     g.add((example, DCTERMS.isPartOf, text))
-    g.add((example, DUMMY.lkgID, Literal(id, datatype=XSD.unsignedInt)))
+    g.add((example, DUMMY.llkgID, Literal(id, datatype=XSD.unsignedInt)))
 
 def addCreativeWorkNode(title, id, g: Graph):
     work = URIRef(DUMMY+quote(title))
@@ -122,13 +121,12 @@ def addCreativeWorkNode(title, id, g: Graph):
     #    work = results[0]['document']
     g.add((work, RDF.type, SCHEMA.CreativeWork))
     g.add((work, RDFS.label, work))
-    g.add((work, DUMMY.lkgID, Literal(id, datatype=XSD.unsignedInt)))
+    g.add((work, DUMMY.llkgID, Literal(id, datatype=XSD.unsignedInt)))
 
 def addCollectionNode(title, id, g: Graph):
     corpus = Literal(title, datatype=XSD.string)
     g.add((corpus, RDF.type, SCHEMA.Collection))
-    g.add((corpus, DUMMY.lkgID, Literal(id, datatype=XSD.unsignedInt)))
-    #g.add((corpus, RDFS.seeAlso, ))
+    g.add((corpus, DUMMY.llkgID, Literal(id, datatype=XSD.unsignedInt)))
 
 def addLanguageNode(language, l: Graph, g: Graph):
     languageURI = URIRef(str(language))
@@ -144,37 +142,5 @@ def addLanguageNode(language, l: Graph, g: Graph):
     if iso6393 != None:
         g.add((languageURI, DUMMY.iso6393, Literal(iso6393, datatype=XSD.string)))
 
-'''def addEtymLexicalEntryNode(word, language, iso, id, llkg, g: Graph):
-    wordString = str(word)
-    word = URIRef(LEXVO+language+'/'+quote(wordString))
-    if not (word, None, None) in g:
-        updateEntry(word, llkg, g)     
-        if bool(re.search(r'\s', wordString)):
-            g.add((word, RDF.type, ONTOLEX.MultiwordExpression))
-        elif wordString.startswith('-') or wordString.endswith('-'):
-            g.add((word, RDF.type, ONTOLEX.Affix))
-        else:
-            g.add((word, RDF.type, ONTOLEX.Word))
-        g.add((word, RDFS.label, Literal(wordString, datatype=XSD.string)))
-        g.add((word, DUMMY.etymwnID, Literal(id, datatype=XSD.string)))
-        g.add((word, DCTERMS.language, URIRef(str(g.value(subject=None, predicate=DUMMY.iso639+iso, object=Literal(language, datatype=XSD.string))))))
-    else:
-        g.add((word, DCTERMS.identifier, Literal(id, datatype=XSD.string)))
 
-def addEtymLexicalEntryNode(line, g: Graph):
-    wordString = str(line[1])
-    word = URIRef(LEXVO+line[2]+'/'+quote(wordString))
-    if not (word, None, None) in g:
-        updateEntry(word, line, g)     
-        if bool(re.search(r'\s', wordString)):
-            g.add((word, RDF.type, ONTOLEX.MultiwordExpression))
-        elif wordString.startswith('-') or wordString.endswith('-'):
-            g.add((word, RDF.type, ONTOLEX.Affix))
-        else:
-            g.add((word, RDF.type, ONTOLEX.Word))
-        g.add((word, RDFS.label, Literal(wordString, datatype=XSD.string)))
-        g.add((word, DUMMY.etymwnID, Literal(line[0], datatype=XSD.string)))
-        g.add((word, DCTERMS.language, g.value(subject=None, predicate=DUMMY.iso6393, object=Literal(line[2], datatype=XSD.string))))
-    else:
-        g.add((word, DCTERMS.identifier, Literal(line[0], datatype=XSD.string)))'''
 

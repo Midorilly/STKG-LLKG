@@ -1,10 +1,9 @@
-from rdflib import Namespace, Graph, Literal, URIRef, BNode
+from rdflib import Graph, Literal, URIRef
 from rdflib.namespace import RDF, RDFS, OWL, XSD, DCTERMS
 from urllib.parse import quote
 from nltk.corpus import wordnet as wn
 import queries
 from queries import q
-import re
 from namespaces import *
 import urllib.error
 
@@ -50,8 +49,8 @@ def addSeeAlso(obj, lemmaURI, g: Graph):
         except urllib.error.URLError or TimeoutError as e:
             print('{} occurred'.format(e))
         else:
-            for res in lilaURI:
-                g.add((o, RDFS.seeAlso, URIRef(res.senseURI)))
+            for r in lilaURI:
+                g.add((o, RDFS.seeAlso, URIRef(r.senseURI)))
 
 def addSenseRel(subj, obj, g: Graph):
     '''

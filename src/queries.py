@@ -5,6 +5,7 @@ from rdflib.namespace import RDF, RDFS, OWL, XSD, DCTERMS
 import rdflib.query
 import urllib.error
 import time
+import logging
 
 q = Graph()
 q.bind("rdf", RDF)
@@ -31,6 +32,26 @@ q.bind("wikibase", WIKIBASE)
 q.bind("bd", BIGDATA)
 
 q.bind("dummy", DUMMY)
+
+logging.basicConfig(format='%(asctime)s %(message)s', level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+MAXRETRY = 5
+def queryRetry(query: str, initNs, initBindings) -> rdflib.query.Result:
+    backoff = 0
+    for i in range(MAXRETRY):
+        try:
+            #print('Query tentative {}...'.format(i))
+            result = q.query(query, initNs = initNs, initBindings = initBindings)
+            result.bindings
+            return result
+        except urllib.error.URLError or TimeoutError as e:
+            if i == MAXRETRY-1:
+                raise e
+            backoffS = 2 ** backoff
+            backoff += 1
+            logger.info('Network error {} during query, waiting for {}s and retrying'.format(e, backoffS))
+            time.sleep(backoffS)
 
 lemmaQuery = (""" SELECT ?lemma 
     WHERE {
@@ -74,19 +95,3 @@ def query(queryString):
 
     results = sparql.queryAndConvert()['results']['bindings']
     results = transform2dicts(results)
-
-MAXRETRY = 3
-def queryRetry(query: str, initNs, initBindings) -> rdflib.query.Result:
-    backoff = 0
-    for i in range(MAXRETRY):
-        try:
-            #print('Query tentative {}...'.format(i))
-            result = q.query(query, initNs = initNs, initBindings = initBindings)
-            result.bindings
-            return result
-        except urllib.error.URLError or TimeoutError as e:
-            if i == MAXRETRY-1:
-                raise e
-            backoffS = 1.2 ** backoff
-            print('Network error {} during query, waiting for {}s and retrying'.format(e, backoffS))
-            time.sleep(5)
