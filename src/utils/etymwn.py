@@ -24,7 +24,8 @@ def writeWords(entries, wordsPath):
 
         for index, value in entries.items():
             w = str(value).split(': ')
-            writer.writerow(['w_{}'.format(index), w[1], w[0]])
+            #if w[0] in lang:
+            writer.writerow(['{}'.format(index+6000), w[1], w[0]])
         file.close()
 
     logger.info('Words loaded')
