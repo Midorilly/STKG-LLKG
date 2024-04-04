@@ -32,8 +32,8 @@ dct:description a rdf:Property ;
 dct:identifier a rdf:Property ;
     rdfs:label "identifier"@en .
 
-:lkgID rdfs:subPropertyOf dct:identifier ;
-    rdfs:label "LKG identifier"@en .
+:llkgID rdfs:subPropertyOf dct:identifier ;
+    rdfs:label "LLKG identifier"@en .
 
 ####################################################
 ############### Linguistic sub-graph ###############
