@@ -1,4 +1,36 @@
 from SPARQLWrapper import SPARQLWrapper, JSON
+from rdflib import Graph
+from namespaces import *
+from rdflib.namespace import RDF, RDFS, OWL, XSD, DCTERMS
+import rdflib.query
+import urllib.error
+import time
+
+q = Graph()
+q.bind("rdf", RDF)
+q.bind("rdfs", RDFS)
+q.bind("xsd", XSD)
+q.bind("dct", DCTERMS)
+q.bind("owl", OWL)
+
+q.bind("schema", SCHEMA)
+q.bind("ontolex", ONTOLEX)
+q.bind("vartrans", VARTRANS)
+q.bind("lexinfo", LEXINFO)
+q.bind("lime", LIME)
+q.bind("wn", WORDNET)
+q.bind("lexvo", LEXVO)
+q.bind("lvont", LVONT)
+q.bind("uwn", UWN)
+q.bind("lila", LILA)
+q.bind("skos", SKOS)
+
+q.bind("wd", WIKIENTITY)
+q.bind("wdt", WIKIPROP)
+q.bind("wikibase", WIKIBASE)
+q.bind("bd", BIGDATA)
+
+q.bind("dummy", DUMMY)
 
 lemmaQuery = (""" SELECT ?lemma 
     WHERE {
@@ -42,3 +74,19 @@ def query(queryString):
 
     results = sparql.queryAndConvert()['results']['bindings']
     results = transform2dicts(results)
+
+MAXRETRY = 3
+def queryRetry(query: str, initNs, initBindings) -> rdflib.query.Result:
+    backoff = 0
+    for i in range(MAXRETRY):
+        try:
+            #print('Query tentative {}...'.format(i))
+            result = q.query(query, initNs = initNs, initBindings = initBindings)
+            result.bindings
+            return result
+        except urllib.error.URLError or TimeoutError as e:
+            if i == MAXRETRY-1:
+                raise e
+            backoffS = 1.2 ** backoff
+            print('Network error {} during query, waiting for {}s and retrying'.format(e, backoffS))
+            time.sleep(5)

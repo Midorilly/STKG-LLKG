@@ -1,8 +1,10 @@
 from rdflib import Namespace, Graph, Literal, URIRef, BNode
 from rdflib.namespace import RDF, RDFS, OWL, XSD, DCTERMS
 from urllib.parse import quote
+import urllib.error
 from nltk.corpus import wordnet as wn
 import queries
+from queries import q
 import re
 from namespaces import *
 
@@ -18,15 +20,19 @@ def addResourceNode(resource: str, label: str ,g: Graph):
     g.add((resource, RDFS.label, Literal(label, lang='en')))
 
 def addFormNode(writtenRep, pos, id, g: Graph):
-    result = g.query(queries.lemmaQuery, initNs = {'ontolex' : ONTOLEX, 'lila': LILA}, initBindings={'entry': Literal(writtenRep), 'pos' : URIRef(lilaPosMapping[pos]) })
-    for r in result:
-        lemma = r.lemma    
-        g.add((lemma, RDF.type, ONTOLEX.Form))
-        g.add((lemma, RDFS.label, Literal(writtenRep)))
-        g.add((lemma, DUMMY.lkgID, Literal(id, datatype=XSD.unsignedInt)))
-        g.add((lemma, ONTOLEX.writtenRep, Literal(writtenRep, lang='la'))) 
-        g.add((lemma, LEXINFO.partOfSpeech, URIRef(lexinfoPosMapping[pos])))
-        g.add((lemma, DCTERMS.language, URIRef(str(g.value(subject=None, predicate=RDFS.label, object=Literal('Latin', lang='en'), any=False)))))
+    try:
+        result = queries.queryRetry(query = queries.lemmaQuery, initNs = {'ontolex' : ONTOLEX, 'lila': LILA}, initBindings={'entry': Literal(writtenRep), 'pos' : URIRef(lilaPosMapping[pos]) })
+    except urllib.error.URLError or TimeoutError as e:
+        print('{} occurred'.format(e))
+    else:
+        for r in result:
+            lemma = r.lemma   
+            g.add((lemma, RDF.type, ONTOLEX.Form))
+            g.add((lemma, RDFS.label, Literal(writtenRep)))
+            g.add((lemma, DUMMY.lkgID, Literal(id, datatype=XSD.unsignedInt)))
+            g.add((lemma, ONTOLEX.writtenRep, Literal(writtenRep, lang='la'))) 
+            g.add((lemma, LEXINFO.partOfSpeech, URIRef(lexinfoPosMapping[pos])))
+            #g.add((lemma, DCTERMS.language, URIRef(str(g.value(subject=None, predicate=RDFS.label, object=Literal('Latin', lang='en'), any=False)))))
 
 def addLexicalEntryNode(entry, id, language, iso, llkg, g: Graph):
     wordString = str(entry).lower()
@@ -40,19 +46,22 @@ def addLexicalEntryNode(entry, id, language, iso, llkg, g: Graph):
         else:
             g.add((word, RDF.type, ONTOLEX.Word))
         g.add((word, RDFS.label, Literal(wordString)))
-        g.add((word, DCTERMS.language, URIRef(str(g.value(subject=None, predicate=DUMMY.iso639+iso, object=Literal(language, datatype=XSD.string))))))
+        '''lang = g.value(subject=None, predicate=DUMMY.iso639+iso, object=Literal(language, datatype=XSD.string))
+        if lang != None:
+            g.add((word, DCTERMS.language, URIRef(str(lang))))'''
         g.add((word, DUMMY.lkgID, Literal(id, datatype=XSD.unsignedInt)))
     else:
         g.add((word, DUMMY.lkgID, Literal(id, datatype=XSD.unsignedInt)))
 
 def addLexicalSenseNode(resource, sense, gloss, id, g: Graph):
     senseURI = None
+    resourceNode = URIRef(str(g.value(subject=None, predicate=RDFS.label, object=Literal(resource, lang='en'))))
 
     if resource == 'Lewis-Short Dictionary':
-        senseURI = URIRef(sense)
+        senseURI = URIRef(DUMMY+sense)
         g.add((senseURI, RDF.type, ONTOLEX.LexicalSense))
         g.add((senseURI, RDFS.label, Literal(sense, datatype=XSD.string)))
-        g.add((senseURI, DCTERMS.source, URIRef(str(g.value(subject=None, predicate=RDFS.label, object=Literal(resource, lang='en'))))))
+        g.add((senseURI, DCTERMS.source, resourceNode))
         g.add((senseURI, DCTERMS.description, Literal(gloss, lang='en')))     
 
     elif resource == 'Universal WordNet':
@@ -63,7 +72,7 @@ def addLexicalSenseNode(resource, sense, gloss, id, g: Graph):
         senseURI = URIRef(UWN+'{}{}'.format(wn30pos, wn30offset))     
         g.add((senseURI, RDF.type, ONTOLEX.LexicalSense))
         g.add((senseURI, RDFS.label, Literal(sense, datatype=XSD.string)))
-        g.add((senseURI, DCTERMS.source, URIRef(str(g.value(subject=None, predicate=RDFS.label, object=Literal(resource, lang='en'))))))
+        g.add((senseURI, DCTERMS.source, resourceNode))
         g.add((senseURI, DCTERMS.description, Literal(gloss, lang='en')))
         g.add((senseURI, DUMMY.wn30ID, Literal(wn30id, datatype=XSD.string)))
 
@@ -96,18 +105,18 @@ def addOccupationNode(occupation, id, dict, g: Graph):
     g.add((occupationURI, DUMMY.lkgID, Literal(id, datatype=XSD.unsignedInt)))
 
 def addQuotationNode(quotation, language, id, g: Graph):
-    text = URIRef('text_{}'.format(id))
+    text = URIRef(DUMMY+'text_{}'.format(id))
     g.add((text, RDF.type, SCHEMA.Quotation))
     g.add((text, SCHEMA.text, Literal(quotation, datatype=SCHEMA.Text)))
     g.add((text, DCTERMS.language, URIRef(str(g.value(subject=None, predicate=RDFS.label, object=Literal(language, lang='en'), any=False))))) 
     g.add((text, DUMMY.lkgID, Literal(id, datatype=XSD.unsignedInt)))
-    example = URIRef('example_{}'.format(id))
+    example = URIRef(DUMMY+'example_{}'.format(id))
     g.add((example, RDF.type, WORDNET.Example))
     g.add((example, DCTERMS.isPartOf, text))
     g.add((example, DUMMY.lkgID, Literal(id, datatype=XSD.unsignedInt)))
 
 def addCreativeWorkNode(title, id, g: Graph):
-    work = URIRef(quote(title))
+    work = URIRef(DUMMY+quote(title))
     #results = queries.query(queries.documentQuery.format(title))
     #if len(results) > 0:
     #    work = results[0]['document']
@@ -135,7 +144,7 @@ def addLanguageNode(language, l: Graph, g: Graph):
     if iso6393 != None:
         g.add((languageURI, DUMMY.iso6393, Literal(iso6393, datatype=XSD.string)))
 
-def addEtymLexicalEntryNode(word, language, iso, id, llkg, g: Graph):
+'''def addEtymLexicalEntryNode(word, language, iso, id, llkg, g: Graph):
     wordString = str(word)
     word = URIRef(LEXVO+language+'/'+quote(wordString))
     if not (word, None, None) in g:
@@ -152,7 +161,7 @@ def addEtymLexicalEntryNode(word, language, iso, id, llkg, g: Graph):
     else:
         g.add((word, DCTERMS.identifier, Literal(id, datatype=XSD.string)))
 
-'''def addEtymLexicalEntryNode(line, g: Graph):
+def addEtymLexicalEntryNode(line, g: Graph):
     wordString = str(line[1])
     word = URIRef(LEXVO+line[2]+'/'+quote(wordString))
     if not (word, None, None) in g:

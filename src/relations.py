@@ -3,8 +3,11 @@ from rdflib.namespace import RDF, RDFS, OWL, XSD, DCTERMS
 from urllib.parse import quote
 from nltk.corpus import wordnet as wn
 import queries
+from queries import q
 import re
 from namespaces import *
+import urllib.error
+
 
 def addCanonicalForm(subj, obj, g: Graph):
     '''
@@ -42,9 +45,13 @@ def addSeeAlso(obj, lemmaURI, g: Graph):
     '''
     for o in g.objects(subject = obj, predicate=OWL.sameAs):
         wnID = g.value(subject = o, predicate=DUMMY.wn30ID, object=None)
-        lilaURI = g.query(queries.senseQuery.format(wnID), initNs = {'ontolex' : ONTOLEX, 'lime': LIME}, initBindings={'lemmaURI': URIRef(lemmaURI)})
-        for res in lilaURI:
-            g.add((o, RDFS.seeAlso, URIRef(res.senseURI)))
+        try:
+            lilaURI = queries.queryRetry(query = queries.senseQuery.format(wnID), initNs = {'ontolex' : ONTOLEX, 'lime': LIME}, initBindings={'lemmaURI': URIRef(lemmaURI)})
+        except urllib.error.URLError or TimeoutError as e:
+            print('{} occurred'.format(e))
+        else:
+            for res in lilaURI:
+                g.add((o, RDFS.seeAlso, URIRef(res.senseURI)))
 
 def addSenseRel(subj, obj, g: Graph):
     '''
