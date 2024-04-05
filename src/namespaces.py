@@ -1,4 +1,5 @@
-from rdflib import Namespace
+from rdflib import Namespace, Graph
+from rdflib.namespace import RDF, RDFS, OWL, XSD, DCTERMS
 
 SCHEMA = Namespace("https://schema.org/")
 ONTOLEX = Namespace("http://www.w3.org/ns/lemon/ontolex#")
@@ -16,3 +17,33 @@ WIKIPROP = Namespace("http://www.wikidata.org/prop/direct/")
 WIKIBASE = Namespace("http://wikiba.se/ontology#")
 BIGDATA = Namespace("http://www.bigdata.com/rdf#")
 DUMMY = Namespace("http://dummy.com/")
+
+llkgSchema = Graph()
+
+llkgSchema.bind("rdf", RDF)
+llkgSchema.bind("rdfs", RDFS)
+llkgSchema.bind("xsd", XSD)
+llkgSchema.bind("dct", DCTERMS)
+llkgSchema.bind("owl", OWL)
+
+llkgSchema.bind("schema", SCHEMA)
+llkgSchema.bind("ontolex", ONTOLEX)
+llkgSchema.bind("vartrans", VARTRANS)
+llkgSchema.bind("lexinfo", LEXINFO)
+llkgSchema.bind("lime", LIME)
+llkgSchema.bind("wn", WORDNET)
+llkgSchema.bind("lexvo", LEXVO)
+llkgSchema.bind("lvont", LVONT)
+llkgSchema.bind("uwn", UWN)
+llkgSchema.bind("lila", LILA)
+llkgSchema.bind("skos", SKOS)
+
+llkgSchema.bind("wd", WIKIENTITY)
+llkgSchema.bind("wdt", WIKIPROP)
+llkgSchema.bind("wikibase", WIKIBASE)
+llkgSchema.bind("bd", BIGDATA)
+
+llkgSchema.bind("dummy", DUMMY)
+schemaFile = '../STKG-LLKG/schema/llkg-schema.ttl'
+
+llkgSchema.parse(schemaFile, format='ttl')

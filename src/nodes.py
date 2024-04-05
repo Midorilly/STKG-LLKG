@@ -4,7 +4,6 @@ from urllib.parse import quote
 import urllib.error
 from nltk.corpus import wordnet as wn
 import queries
-from queries import q
 import re
 from namespaces import *
 
