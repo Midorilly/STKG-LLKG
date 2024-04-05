@@ -233,7 +233,7 @@ schema:Organization dct:title rdfs:Literal .
 ############### Corpus sub-graph ###############
 ################################################
 
-schema:CreativeWorks a rdf:Class ; 
+schema:CreativeWorks a rdfs:Class ; 
     rdfs:label "Document"@en .
 schema:Collection rdfs:subClassOf schema:CreativeWorks ;
     rdfs:label "Corpus"@en, "Collection"@en .
