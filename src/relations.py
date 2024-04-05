@@ -10,15 +10,8 @@ import urllib.error
 
 subClassOfLexicalEntry = [s for s in llkgSchema.subjects(predicate=RDFS.subClassOf, object=ONTOLEX.LexicalEntry)]
 subClassOfCreativeWork = [s for s in llkgSchema.subjects(predicate=RDFS.subClassOf, object=SCHEMA.CreativeWorks)]+[SCHEMA.CreativeWorks]
+
 canonicalForm = {'domain': subClassOfLexicalEntry, 'range': [ONTOLEX.Form]}
-sense = {'domain': subClassOfLexicalEntry, 'range': [ONTOLEX.LexicalSense]}
-senseRel = {'domain': [ONTOLEX.LexicalSense], 'range': [ONTOLEX.LexicalSense]}
-lexicalRel = {'domain':subClassOfLexicalEntry, 'range': subClassOfLexicalEntry}
-sameAs = dict(senseRel)
-isLexicalizedSense = {'domain': [ONTOLEX.LexicalSense], 'range': [ONTOLEX.LexicalConcept]}
-evokes = {'domain': subClassOfLexicalEntry, 'range': [ONTOLEX.LexicalConcept]}
-
-
 
 def addCanonicalForm(subj, obj, g: Graph):
     '''
@@ -30,6 +23,8 @@ def addCanonicalForm(subj, obj, g: Graph):
     if subj != obj :
         if g.value(subject=subj, predicate=RDF.type, object=None) in canonicalForm['domain'] and g.value(subject=obj, predicate=RDF.type, object=None) in canonicalForm['range']:
             g.add((URIRef(str(subj)), ONTOLEX.canonicalForm, URIRef(str(obj))))  
+
+sense = {'domain': subClassOfLexicalEntry, 'range': [ONTOLEX.LexicalSense]}
 
 def addSense(subj, obj, g: Graph):
     '''
@@ -62,6 +57,8 @@ def addSeeAlso(obj, lemmaURI, g: Graph):
             for r in lilaURI:
                 g.add((o, RDFS.seeAlso, URIRef(r.senseURI)))
 
+senseRel = {'domain': [ONTOLEX.LexicalSense], 'range': [ONTOLEX.LexicalSense]}
+
 def addSenseRel(subj, obj, g: Graph):
     '''
     ontolex:LexicalSense vartrans:senseRel ontolex:LexicalSense
@@ -72,6 +69,7 @@ def addSenseRel(subj, obj, g: Graph):
     if g.value(subject=subj, predicate=RDF.type, object=None) in senseRel['domain'] and g.value(subject=obj, predicate=RDF.type, object=None) in senseRel['range']:
         g.add((URIRef(str(subj)), VARTRANS.senseRel, URIRef(str(obj)))) # TO NVESTIGATE IF SYMMETRIC
 
+lexicalRel = {'domain':subClassOfLexicalEntry, 'range': subClassOfLexicalEntry}
 
 def addLexicalRel(subj, obj, g: Graph): #    UNAVAILABLE DATA
     '''
@@ -83,6 +81,7 @@ def addLexicalRel(subj, obj, g: Graph): #    UNAVAILABLE DATA
     if g.value(subject=subj, predicate=RDF.type, object=None) in lexicalRel['domain'] and g.value(subject=obj, predicate=RDF.type, object=None) in lexicalRel['range']:
         g.add((URIRef(str(subj)), VARTRANS.lexicalRel, URIRef(str(obj)))) # TO NVESTIGATE IF SYMMETRIC
 
+sameAs = dict(senseRel)
 
 def addSameAs(subj, obj, g: Graph):
     '''
@@ -96,6 +95,8 @@ def addSameAs(subj, obj, g: Graph):
             g.add((URIRef(str(subj)), OWL.sameAs, URIRef(str(obj))))
             g.add((URIRef(str(obj)), OWL.sameAs, URIRef(str(subj))))
 
+isLexicalizedSense = {'domain': [ONTOLEX.LexicalSense], 'range': [ONTOLEX.LexicalConcept]}
+
 def addLexicalizedSense(subj, obj, g: Graph): #    UNAVAILABLE DATA
     '''
     ontolex:LexicalSense ontolex:isLexicalizedSenseOf ontolex:LexicalConcept
@@ -107,6 +108,8 @@ def addLexicalizedSense(subj, obj, g: Graph): #    UNAVAILABLE DATA
     if g.value(subject=subj, predicate=RDF.type, object=None) in isLexicalizedSense['domain'] and g.value(subject=obj, predicate=RDF.type, object=None) in isLexicalizedSense['range']:
         g.add((URIRef(str(subj)), ONTOLEX.isLexicalizedSenseOf, URIRef(str(obj)))) 
         g.add((URIRef(str(obj)), ONTOLEX.lexicalizedSense, URIRef(str(subj)))) 
+
+evokes = {'domain': subClassOfLexicalEntry, 'range': [ONTOLEX.LexicalConcept]}
 
 def addEvokes(subj, obj, g: Graph): #    UNAVAILABLE DATA
     '''
