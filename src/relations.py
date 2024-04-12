@@ -1,15 +1,19 @@
 from rdflib import Graph, Literal, URIRef
 from rdflib.namespace import RDF, RDFS, OWL, XSD, DCTERMS
-from urllib.parse import quote
 from nltk.corpus import wordnet as wn
 import queries
-from queries import q
 from namespaces import *
-from namespaces import llkgSchema
+#from namespaces import llkgSchema
 import urllib.error
+import logging
+from SPARQLWrapper import SPARQLExceptions
+import importlib
+
+logging.basicConfig(format='%(asctime)s %(message)s', level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 subClassOfLexicalEntry = [s for s in llkgSchema.subjects(predicate=RDFS.subClassOf, object=ONTOLEX.LexicalEntry)]
-subClassOfCreativeWork = [s for s in llkgSchema.subjects(predicate=RDFS.subClassOf, object=SCHEMA.CreativeWorks)]+[SCHEMA.CreativeWorks]
+subClassOfCreativeWork = [s for s in llkgSchema.subjects(predicate=RDFS.subClassOf, object=SCHEMA.CreativeWork)]
 
 canonicalForm = {'domain': subClassOfLexicalEntry, 'range': [ONTOLEX.Form]}
 
@@ -157,16 +161,17 @@ author = {'domain': subClassOfCreativeWork, 'range': [SCHEMA.Person, SCHEMA.Orga
 
 def addAuthor(subj, obj, g: Graph):
     '''
-    schema:CreativeWorks schema:author schema:Person
+    schema:Book schema:author schema:Person
     schema:Quotation schema:author schema:Person
     schema:Collection schema:author schema:Organization
     
-    subj: schema:CreativeWorks OR schema:Quotation OR schema:Collection
+    subj: schema:Book OR schema:Quotation OR schema:Collection
     obj: schema:Person OR schema:Organization
     '''
     if g.value(subject=subj, predicate=RDF.type, object=None) in author['domain'] and g.value(subject=obj, predicate=RDF.type, object=None) in author['range']:
         g.add((URIRef(str(subj)), SCHEMA.author, URIRef(str(obj))))
-
+        
+            
 hasOccupation = {'domain': [SCHEMA.Person], 'range': [SCHEMA.Occupation]}
 
 def addHasOccupation(subj, obj, g: Graph):
@@ -187,18 +192,18 @@ def convertDate(date): # ISO-8601
 
     return dateString      
 
-dateCreativeWorks = {'domain': subClassOfCreativeWork, 'range': [SCHEMA.Date]}
+dateCreativeWork = {'domain': subClassOfCreativeWork, 'range': [SCHEMA.Date]}
 datePerson = {'domain': [SCHEMA.Person], 'range': [SCHEMA.Date]}
 
 def addDateInterval(subj, start, end, relation, g: Graph):
     '''
-    schema:CreativeWorks schema:datePublished schema:Date
+    schema:Book schema:datePublished schema:Date
     schema:Quotation schema:datePublished schema:Date
     schema:Collection schema:datePublished schema:Date
     schema:Person schema:birthDate schema:Date
     schema:Person schema:deathDate schema:Date
 
-    subj: schema:CreativeWorks OR schema:Quotation OR schema:Collection OR schema:Person
+    subj: schema:Book OR schema:Quotation OR schema:Collection OR schema:Person
     start: schema:Date
     end: schema:Date
     relation: PUBLISHED_IN OR BORN OR DIED
@@ -207,29 +212,29 @@ def addDateInterval(subj, start, end, relation, g: Graph):
     endString = convertDate(end)
     date = Literal('{}/{}'.format(startString, endString), datatype=SCHEMA.Date)
 
-    if g.value(subject=subj, predicate=RDF.type, object=None) in dateCreativeWorks['domain']:
+    if g.value(subject=subj, predicate=RDF.type, object=None) in dateCreativeWork['domain']:
         if relation == 'PUBLISHED_IN': g.add((URIRef(str(subj)), SCHEMA.datePublished, date))
     elif g.value(subject=subj, predicate=RDF.type, object=None) in datePerson['domain']:
-        if relation == 'BORN': g.add((URIRef(str(subj)), SCHEMA.birthDate, date))
-        elif relation == 'DIED': g.add((URIRef(str(subj)), SCHEMA.deathDate, date))
+        if relation == 'BORN': g.add((URIRef(str(subj)), SCHEMA.birthDate, date)) #    UNAVAILABLE DATA
+        elif relation == 'DIED': g.add((URIRef(str(subj)), SCHEMA.deathDate, date)) #    UNAVAILABLE DATA
       
 
 def addDatePoint(subj, point, relation, g: Graph):
     '''
-    schema:CreativeWorks schema:datePublished schema:Date
+    schema:Book schema:datePublished schema:Date
     schema:Quotation schema:datePublished schema:Date
     schema:Collection schema:datePublished schema:Date
     schema:Person schema:birthDate schema:Date
     schema:Person schema:deathDate schema:Date
 
-    subj: schema:CreativeWorks OR schema:Quotation OR schema:Collection OR schema:Person
+    subj: schema:Book OR schema:Quotation OR schema:Collection OR schema:Person
     point: schema:Date
     relation: PUBLISHED_IN OR BORN OR DIED
     '''
     pointString = convertDate(point)
     date = Literal(pointString, datatype=SCHEMA.Date)
 
-    if g.value(subject=subj, predicate=RDF.type, object=None) in dateCreativeWorks['domain']:
+    if g.value(subject=subj, predicate=RDF.type, object=None) in dateCreativeWork['domain']:
         if relation == 'PUBLISHED_IN': g.add((URIRef(str(subj)), SCHEMA.datePublished, date))
     elif g.value(subject=subj, predicate=RDF.type, object=None) in datePerson['domain']:
         if relation == 'BORN': g.add((URIRef(str(subj)), SCHEMA.birthDate, date)) #    UNAVAILABLE DATA
@@ -239,14 +244,16 @@ SCHEMAIsPartOf = {'domain': subClassOfCreativeWork, 'range': subClassOfCreativeW
 
 def addSCHEMAIsPartOf(subj, obj, g: Graph):
     '''
-    schema:Quotation schema:isPartOf schema:CreativeWorks
-    schema:CreativeWorks schema:isPartOf schema:Collection
+    schema:Quotation schema:isPartOf schema:Book
+    schema:Book schema:isPartOf schema:Collection
 
-    subj: schema:CreativeWorks OR schema:Quotation
-    obj: schema:CreativeWorks OR schema:Collection
+    subj: schema:Book OR schema:Quotation
+    obj: schema:Book OR schema:Collection
     '''
+
     if g.value(subject=subj, predicate=RDF.type, object=None) in SCHEMAIsPartOf['domain'] and g.value(subject=obj, predicate=RDF.type, object=None) in SCHEMAIsPartOf['range']:
         g.add((URIRef(str(subj)), SCHEMA.isPartOf, URIRef(str(obj))))
+        g.add((URIRef(str(obj)), SCHEMA.hasPart, URIRef(str(subj))))
 
 etymology = {'domain': subClassOfLexicalEntry, 'range': subClassOfLexicalEntry}
 

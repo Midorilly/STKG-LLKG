@@ -6,6 +6,11 @@ from nltk.corpus import wordnet as wn
 import queries
 import re
 from namespaces import *
+import logging
+from SPARQLWrapper import SPARQLExceptions
+
+logging.basicConfig(format='%(asctime)s %(message)s', level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 lilaPosMapping = {'N' : LILA.noun, 'ADJ' : LILA.adjective, 'V' : LILA.verb}
 lexinfoPosMapping = {'N' : LEXINFO.noun , 'ADJ' : LEXINFO.adjective, 'V' : LEXINFO.verb}
@@ -54,25 +59,27 @@ def addLexicalEntryNode(entry, id, language, iso, llkg, g: Graph):
 def addLexicalSenseNode(resource, sense, gloss, id, g: Graph):
     senseURI = None
     resourceNode = URIRef(str(g.value(subject=None, predicate=RDFS.label, object=Literal(resource, lang='en'))))
-
+    
     if resource == 'Lewis-Short Dictionary':
         senseURI = URIRef(DUMMY+sense)
-        g.add((senseURI, RDF.type, ONTOLEX.LexicalSense))
-        g.add((senseURI, RDFS.label, Literal(sense, datatype=XSD.string)))
-        g.add((senseURI, DCTERMS.source, resourceNode))
-        g.add((senseURI, DCTERMS.description, Literal(gloss, lang='en')))     
+        if not (senseURI, None, None) in g:
+            g.add((senseURI, RDF.type, ONTOLEX.LexicalSense))
+            g.add((senseURI, RDFS.label, Literal(sense, datatype=XSD.string)))
+            g.add((senseURI, DCTERMS.source, resourceNode))
+            g.add((senseURI, DCTERMS.description, Literal(gloss, lang='en')))    
 
     elif resource == 'Universal WordNet':
         wn30sense = wn.synset(sense)
         wn30offset = str(wn30sense.offset())
         wn30pos = str(wn30sense.pos())
         wn30id = '{}-{}'.format(wn30offset.zfill(8),wn30pos)
-        senseURI = URIRef(UWN+'{}{}'.format(wn30pos, wn30offset))     
-        g.add((senseURI, RDF.type, ONTOLEX.LexicalSense))
-        g.add((senseURI, RDFS.label, Literal(sense, datatype=XSD.string)))
-        g.add((senseURI, DCTERMS.source, resourceNode))
-        g.add((senseURI, DCTERMS.description, Literal(gloss, lang='en')))
-        g.add((senseURI, DUMMY.wn30ID, Literal(wn30id, datatype=XSD.string)))
+        senseURI = URIRef(UWN+'{}{}'.format(wn30pos, wn30offset))
+        if not (senseURI, None, None) in g:     
+            g.add((senseURI, RDF.type, ONTOLEX.LexicalSense))
+            g.add((senseURI, RDFS.label, Literal(sense, datatype=XSD.string)))
+            g.add((senseURI, DCTERMS.source, resourceNode))
+            g.add((senseURI, DCTERMS.description, Literal(gloss, lang='en')))
+            g.add((senseURI, DUMMY.wn30ID, Literal(wn30id, datatype=XSD.string)))
 
     g.add((senseURI, DUMMY.llkgID, Literal(id, datatype=XSD.unsignedInt)))
 
@@ -82,24 +89,40 @@ def addLexicalConceptNode(concept, g: Graph): #    UNAVAILABLE DATA, TBD
     g.add((conceptURI, RDFS.label, Literal(concept, datatype=XSD.string)))
 
 def addPersonNode(firstname, lastname, id, df, g: Graph):
-    if not lastname:
-        wikiEntity = df.loc[(df['name'] == firstname), 'id'].values             
-    else:
-        wikiEntity = df.loc[((df['name'] == firstname) & (df['lastname'] == lastname)), 'id'].values
+    if lastname != None: fullname = '{} {}'.format(firstname, lastname)
+    else: fullname = firstname + ' '
 
-    if wikiEntity.size > 0:
-        author = URIRef(WIKIENTITY+wikiEntity[0])
-        g.add((author, RDF.type, SCHEMA.Person))
-        if len(firstname)>0:
-            g.add((author, SCHEMA.givenName, Literal(firstname, datatype=SCHEMA.Text)))
-        if len(lastname)>0:
-            g.add((author, SCHEMA.familyName, Literal(lastname, datatype=SCHEMA.Text)))
-        g.add((author, DUMMY.llkgID, Literal(id, datatype=XSD.unsignedInt)))
+    if fullname[-1] == ' ': label = fullname[:-1]
+    else: label = fullname
+
+    if fullname in df['fullname'].values:
+        wikiEntity = df.loc[(df['fullname'] == fullname), 'id'].values[0]
+        authorURI = URIRef(WIKIENTITY+wikiEntity)      
+    else:
+        try: 
+            wikiEntity = queries.query(queries.authorQuery.format(label))
+        except urllib.error.HTTPError or SPARQLExceptions.EndPointInternalError or urllib.error.URLError as e:
+            logger.info('{}'.format(e))
+        finally:  
+            if len(wikiEntity) > 0:
+                authorURI = URIRef(wikiEntity[0]['authorURI'])
+            else:
+                authorURI = URIRef(DUMMY+quote(label))
+
+    g.add((authorURI, RDF.type, SCHEMA.Person))
+    g.add((authorURI, RDFS.label, Literal(label, datatype=XSD.string)))
+    if len(firstname)>0:
+        g.add((authorURI, SCHEMA.givenName, Literal(firstname, datatype=SCHEMA.Text)))
+    if len(lastname)>0:
+        g.add((authorURI, SCHEMA.familyName, Literal(lastname, datatype=SCHEMA.Text)))
+
+    g.add((authorURI, DUMMY.llkgID, Literal(id, datatype=XSD.unsignedInt)))
 
 def addOccupationNode(occupation, id, dict, g: Graph):
     occupationURI = URIRef(WIKIENTITY+dict[occupation])
     g.add((occupationURI, RDF.type, SCHEMA.Occupation))
     g.add((occupationURI, RDFS.label, Literal(occupation, datatype=XSD.string)))
+    g.add((occupationURI, SCHEMA.name, Literal(occupation, datatype=SCHEMA.Text)))
     g.add((occupationURI, DUMMY.llkgID, Literal(id, datatype=XSD.unsignedInt)))
 
 def addQuotationNode(quotation, language, id, g: Graph):
@@ -113,19 +136,35 @@ def addQuotationNode(quotation, language, id, g: Graph):
     g.add((example, DCTERMS.isPartOf, text))
     g.add((example, DUMMY.llkgID, Literal(id, datatype=XSD.unsignedInt)))
 
-def addCreativeWorkNode(title, id, g: Graph):
-    work = URIRef(DUMMY+quote(title))
-    #results = queries.query(queries.documentQuery.format(title))
-    #if len(results) > 0:
-    #    work = results[0]['document']
-    g.add((work, RDF.type, SCHEMA.CreativeWork))
-    g.add((work, RDFS.label, work))
-    g.add((work, DUMMY.llkgID, Literal(id, datatype=XSD.unsignedInt)))
+def addDummyBookNode(title, id, g: Graph):
+    document = URIRef(DUMMY+quote(title))
+    g.add((document, RDF.type, SCHEMA.Book))
+    g.add((document, RDFS.label, Literal(title, datatype=XSD.string)))
+    g.add((document, SCHEMA.name, Literal(title, datatype=SCHEMA.Text)))
+    g.add((document, DUMMY.llkgID, Literal(id, datatype=XSD.unsignedInt)))
+
+def addBookNode(document, author, g: Graph):
+    try:
+        title = g.value(subject=document, predicate=RDFS.label, object=None)
+        authorEntity = author.rsplit('/', 1)[1]
+        documentEntity = queries.query(queries.documentQuery.format(authorEntity, title))
+    except urllib.error.HTTPError or SPARQLExceptions.EndPointInternalError or urllib.error.URLError as e:
+        logger.info('{}'.format(e))
+    finally: 
+        if len(documentEntity) > 0:
+            documentURI = URIRef(documentEntity[0]['documentURI'])
+            language = URIRef(str(g.value(subject=None, predicate=DUMMY.iso6393, object=Literal(documentEntity[0]['languageISO'], datatype=XSD.string))))
+            for s, p, o in g.triples((document, None, None)):
+                g.remove((s, p, o))
+                g.add((documentURI, p, o))
+            g.add((documentURI, DCTERMS.language, language))
 
 def addCollectionNode(title, id, g: Graph):
-    corpus = Literal(title, datatype=XSD.string)
-    g.add((corpus, RDF.type, SCHEMA.Collection))
-    g.add((corpus, DUMMY.llkgID, Literal(id, datatype=XSD.unsignedInt)))
+    corpusURI = URIRef(DUMMY+title)
+    g.add((corpusURI, RDF.type, SCHEMA.Collection))
+    g.add((corpusURI, RDFS.label, Literal(title, datatype=XSD.string)))
+    g.add((corpusURI, SCHEMA.name, Literal(title, datatype=SCHEMA.Text)))
+    g.add((corpusURI, DUMMY.llkgID, Literal(id, datatype=XSD.unsignedInt)))
 
 def addLanguageNode(language, l: Graph, g: Graph):
     languageURI = URIRef(str(language))
