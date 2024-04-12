@@ -233,11 +233,13 @@ schema:Organization dct:title rdfs:Literal .
 ############### Corpus sub-graph ###############
 ################################################
 
-schema:CreativeWorks a rdfs:Class ; 
-    rdfs:label "Document"@en .
-schema:Collection rdfs:subClassOf schema:CreativeWorks ;
+schema:CreativeWork a rdfs:Class ; 
+    rdfs:label "CreativeWork"@en .
+schema:Collection rdfs:subClassOf schema:CreativeWork ;
     rdfs:label "Corpus"@en, "Collection"@en .
-schema:Quotation rdfs:subClassOf schema:CreativeWorks ;
+schema:Book rdfs:subClassOf schema:CreativeWork ;
+    rdfs:label "Document"@en .
+schema:Quotation rdfs:subClassOf schema:CreativeWork ;
     rdfs:label "Text"@en .
 
 schema:isPartOf a rdf:Property ;
@@ -249,8 +251,11 @@ schema:text a rdf:Property ;
     rdfs:label "value"@en ;
     rdfs:domain schema:Quotation ;
     rdfs:range schema:Text .
+schema:author a rdf:Property ;
+    rdfs:label "author"@en ;
+    rdfs:range schema:Person .
 
-schema:CreativeWorks dct:title rdfs:Literal .
+schema:CreativeWork dct:title rdfs:Literal .
 
 #################################################
 ############### Example sub-graph ###############
@@ -277,11 +282,11 @@ powla:end a rdf:Property ;
     rdfs:label "grade"@en ;
     rdfs:domain wn:Example ;
     rdfs:range xsd:float .
-# powla:next a rdf:Property ;
-#    rdfs:label "next"@en ;
-#    rdfs:domain wn:Example .
-# powla:previous a rdf:Property ;
-#    rdfs:label "previous"@en ;
-#    rdfs:domain wn:Example .
+powla:next a rdf:Property ;
+    rdfs:label "next"@en ;
+    rdfs:domain wn:Example .
+powla:previous a rdf:Property ;
+    rdfs:label "previous"@en ;
+    rdfs:domain wn:Example .
 
 wn:Example dct:isPartOf schema:Quotation .

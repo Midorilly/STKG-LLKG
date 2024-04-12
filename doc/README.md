@@ -59,6 +59,7 @@ The principal objectives of ***Linked Linguistic Knowledge Graph*** are to **reo
 |Text $\cup$ Document $\cup$ Corpus $\cup$ Word HAS_LANGUAGE Language|Text $\cup$ Document $\cup$ Corpus $\cup$ LexiconEntry HAS_LANGUAGE Language|*missing*|
 |*not specified*|WordForm HAS_STEM Stem|*missing*|
 |*not specified*|*unspecified*|LexiconConcept SAME_AS LexiconConcept|
+|Document HAS_CORPUS Corpus|Document BELONG_TO Corpus|Document HAS_CORPUS Corpus|
 
 ![Linguistic Knowledge Graph](img/LKG.PNG "Linguistic Knowledge Graph")  
 Linguistic Knowledge Graph
@@ -250,7 +251,7 @@ Linked Linguistic Knowledge Graph
 |-----|---------|
 |Text|[schema:Quotation](https://schema.org/Quotation)| 
 |Sentence|*deprecated*|
-|Document|[schema:CreativeWork](https://schema.org/CreativeWork)|
+|Document|[schema:Book](https://schema.org/Book)|
 |Corpus|[schema:Collection](https://schema.org/Collection)| 
 
 ### Properties
@@ -259,7 +260,7 @@ Linked Linguistic Knowledge Graph
 |-----|---------|
 |**(Entity OR Relation) property: range**| **subject predicate object**  |
 |(Text) value: string| schema:Quotation [schema:text](https://schema.org/text) [schema:Text](https://schema.org/Text) |
-|(Document) title: string |schema:CreativeWorks dct:title rdfs:Literal | 
+|(Document) title: string |schema:Book dct:title rdfs:Literal | 
 |(Corpus) title: string|schema:Collection dct:title rdfs:Literal|
 
 ### Relations
@@ -268,16 +269,16 @@ Linked Linguistic Knowledge Graph
 
 | LKG | L-LKG |
 |-----|---------|
-|Text :BELONG_TO Document | schema:Quotation [schema:isPartOf](https://schema.org/isPartOf) schema:CreativeWork| 
-|Document :BELONG_TO Corpus | schema:CreativeWork schema:isPartOf schema:Collection |
-|Text :HAS_LANGUAGE Language | schema:Quotation dct:language dct:LinguisticSystem |  
-|Document :HAS_LANGUAGE Language | schema:CreativeWork dct:language dct:LinguisticSystem |  
+|Text :BELONG_TO Document | schema:Quotation [schema:isPartOf](https://schema.org/isPartOf) schema:Book| 
+|Document :BELONG_TO Corpus | schema:Book schema:isPartOf schema:Collection |
+|Text :HAS_LANGUAGE Language |schema:Quotation [schema:isPartOf](https://schema.org/isPartOf) schema:Book dct:language dct:LinguisticSystem |  
+|Document :HAS_LANGUAGE Language | schema:Book dct:language dct:LinguisticSystem |  
 |Corpus :HAS_LANGUAGE Language | schema:Collection dct:language dct:LinguisticSystem | 
-|Text :HAS_AUTHOR Person |schema:Quotation [schema:author](https://schema.org/author) schema:Person|
-|Document :HAS_AUTHOR Person |schema:CreativeWork [schema:author](https://schema.org/author) schema:Person|  
+|Text :HAS_AUTHOR Person |schema:Quotation [schema:isPartOf](https://schema.org/isPartOf) schema:Book [schema:author](https://schema.org/author) schema:Person|
+|Document :HAS_AUTHOR Person |schema:Book [schema:author](https://schema.org/author) schema:Person|  
 |Corpus :HAS_AUTHOR Person |schema:Collection [schema:author](https://schema.org/author) schema:Organization [<sup>2</sup>](#person-entities)| 
 |Text :PUBLISHED_IN TemporalSpecification |schema:Quotation [schema:datePublished](https://schema.org/datePublished) schema:Date |  
-|Document :PUBLISHED_IN TemporalSpecification |schema:CreativeWork schema:datePublished schema:Date |  
+|Document :PUBLISHED_IN TemporalSpecification |schema:Book schema:datePublished schema:Date |  
 |Corpus :PUBLISHED_IN TemporalSpecification |schema:Collection schema:datePublished schema:Date |  
 
 
