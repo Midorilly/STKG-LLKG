@@ -5,3 +5,4 @@ jsonlines
 SPARQLWrapper
 nltk
 py4j
+oxrdflib
