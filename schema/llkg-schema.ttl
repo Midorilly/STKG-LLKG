@@ -115,8 +115,6 @@ owl:sameAs a rdf:Property ;
     rdfs:range rdfs:Literal .
 
 ontolex:LexicalSense dct:description rdfs:Literal .
-# ontolex:LexicalSense dct:title rdfs:Literal .
-
 
 # LexicalConcept
 
@@ -218,7 +216,7 @@ schema:hasOccupation a rdf:Property ;
     rdfs:domain schema:Person ;
     rdfs:range schema:Occupation .
 
-schema:Occupation dct:title rdfs:Literal .
+schema:Occupation schema:name schema:Text .
 
 schema:Organization a rdfs:Class ; # research project publishing a resource
     rdfs:label "Organization"@en .
@@ -227,7 +225,7 @@ schema:Project rdfs:subClassOf schema:Organization ;
 schema:ResearchProject rdfs:subClassOf schema:Project ;
     rdfs:label "ResearchProject"@en .
 
-schema:Organization dct:title rdfs:Literal .
+schema:Organization schema:name schema:Text .
 
 ################################################
 ############### Corpus sub-graph ###############
@@ -255,7 +253,7 @@ schema:author a rdf:Property ;
     rdfs:label "author"@en ;
     rdfs:range schema:Person .
 
-schema:CreativeWork dct:title rdfs:Literal .
+schema:CreativeWork schema:name schema:Text .
 
 #################################################
 ############### Example sub-graph ###############

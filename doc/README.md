@@ -110,7 +110,7 @@ Linked Linguistic Knowledge Graph
 |(Language) iso639-1: string|dct:LinguisticSystem :iso6391<sup>1</sup> rdfs:Literal |
 |(Language) iso639-2: string|dct:LinguisticSystem :iso6392<sup>1</sup> rdfs:Literal |
 |(LexiconEntry) value: string|ontolex:LexicalEntry rdfs:label rdfs:Literal |
-|(LexiconConcept) alias: string|ontolex:LexicalSense dct:title rdfs:Literal|
+|(LexiconConcept) alias: string|ontolex:LexicalSense rdfs:label rdfs:Literal|
 |(LexiconConcept) gloss: string|ontolex:LexicalSense dct:description rdfs:Literal|
 
 > <sup>1</sup> rdfs:subPropertyOf dct:identifier
@@ -219,7 +219,7 @@ Linked Linguistic Knowledge Graph
 |**(Entity OR Relation) property: range**| **subject predicate object**  |
 |(Person) name: string |schema:Person [schema:givenName](https://schema.org/givenName) schema:Text |
 |(Person) surname: string |schema:Person [schema:familyName](https://schema.org/familyName) schema:Text |
-|(Occupation) value: string |schema:Occupation dct:title rdfs:Literal |
+|(Occupation) value: string |schema:Occupation schema:name schema:Text |
 
 ### Relations
 
@@ -235,7 +235,7 @@ Linked Linguistic Knowledge Graph
 | L-LKG |
 |---------|
 |schema:Person [schema:hasOccupation](https://schema.org/hasOccupation) [schema:Occupation](https://schema.org/Occupation)|   
-|schema:Organization dct:title rdfs:Literal|
+|schema:Organization schema:name schema:Text|
 
 ---
 ---
@@ -260,8 +260,8 @@ Linked Linguistic Knowledge Graph
 |-----|---------|
 |**(Entity OR Relation) property: range**| **subject predicate object**  |
 |(Text) value: string| schema:Quotation [schema:text](https://schema.org/text) [schema:Text](https://schema.org/Text) |
-|(Document) title: string |schema:Book dct:title rdfs:Literal | 
-|(Corpus) title: string|schema:Collection dct:title rdfs:Literal|
+|(Document) title: string |schema:Book schema:name schema:Text | 
+|(Corpus) title: string|schema:Collection schema:name schema:Text |
 
 ### Relations
 
