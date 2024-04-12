@@ -3,11 +3,9 @@ from rdflib.namespace import RDF, RDFS, OWL, XSD, DCTERMS
 from nltk.corpus import wordnet as wn
 import queries
 from namespaces import *
-#from namespaces import llkgSchema
 import urllib.error
 import logging
 from SPARQLWrapper import SPARQLExceptions
-import importlib
 
 logging.basicConfig(format='%(asctime)s %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -52,7 +50,7 @@ def addSeeAlso(obj, lemmaURI, g: Graph):
     uwn:sense rdfs:seeALso URI
     '''
     for o in g.objects(subject = obj, predicate=OWL.sameAs):
-        wnID = g.value(subject = o, predicate=DUMMY.wn30ID, object=None)
+        wnID = g.value(subject = o, predicate=LLKG.wn30ID, object=None)
         try:
             lilaURI = queries.queryRetry(query = queries.senseQuery.format(wnID), initNs = {'ontolex' : ONTOLEX, 'lime': LIME}, initBindings={'lemmaURI': URIRef(lemmaURI)})
         except urllib.error.URLError or TimeoutError as e:
@@ -155,7 +153,7 @@ def addExample(subj, obj, grade, g: Graph):
     '''
     if g.value(subject=subj, predicate=RDF.type, object=None) in example['domain'] and g.value(subject=obj, predicate=RDF.type, object=None) in example['range']:
         g.add((URIRef(str(subj)), WORDNET.example, URIRef(str(obj))))
-        g.add((URIRef(str(obj)), DUMMY.grade, Literal(grade, datatype=XSD.float)))
+        g.add((URIRef(str(obj)), LLKG.grade, Literal(grade, datatype=XSD.float)))
 
 author = {'domain': subClassOfCreativeWork, 'range': [SCHEMA.Person, SCHEMA.Organization]}
 
@@ -265,7 +263,7 @@ def addEtymology(subj, obj, g: Graph):
     obj: ontolex:LexicalEntry
     '''
     if g.value(subject=subj, predicate=RDF.type, object=None) in etymology['domain'] and g.value(subject=obj, predicate=RDF.type, object=None) in etymology['range']:
-        g.add((URIRef(str(subj)), DUMMY.etymology, URIRef(str(obj))))
+        g.add((URIRef(str(subj)), LLKG.etymology, URIRef(str(obj))))
 
 def addEtymologicalOrigin(subj, obj, g: Graph):
     '''
@@ -275,7 +273,7 @@ def addEtymologicalOrigin(subj, obj, g: Graph):
     obj: ontolex:LexicalEntry
     '''
     if g.value(subject=subj, predicate=RDF.type, object=None) in etymology['domain'] and g.value(subject=obj, predicate=RDF.type, object=None) in etymology['range']:
-        g.add((URIRef(str(subj)), DUMMY.etymologicalOriginOf, URIRef(str(obj))))
+        g.add((URIRef(str(subj)), LLKG.etymologicalOriginOf, URIRef(str(obj))))
 
 def addEtymologicallyRelated(subj, obj, g: Graph):
     '''
@@ -285,7 +283,7 @@ def addEtymologicallyRelated(subj, obj, g: Graph):
     obj: ontolex:LexicalEntry
     '''
     if g.value(subject=subj, predicate=RDF.type, object=None) in etymology['domain'] and g.value(subject=obj, predicate=RDF.type, object=None) in etymology['range']:
-        g.add((URIRef(str(subj)), DUMMY.etymologicallyRelated, URIRef(str(obj))))
+        g.add((URIRef(str(subj)), LLKG.etymologicallyRelated, URIRef(str(obj))))
 
 def addHasDerivedForm(subj, obj, g: Graph):
     '''
@@ -295,7 +293,7 @@ def addHasDerivedForm(subj, obj, g: Graph):
     obj: ontolex:LexicalEntry
     '''
     if g.value(subject=subj, predicate=RDF.type, object=None) in etymology['domain'] and g.value(subject=obj, predicate=RDF.type, object=None) in etymology['range']:
-        g.add((URIRef(str(subj)), DUMMY.hasDerivedForm, URIRef(str(obj))))
+        g.add((URIRef(str(subj)), LLKG.hasDerivedForm, URIRef(str(obj))))
 
 def addIsDerivedFrom(subj, obj, g: Graph):
     '''
@@ -305,7 +303,7 @@ def addIsDerivedFrom(subj, obj, g: Graph):
     obj: ontolex:LexicalEntry
     '''
     if g.value(subject=subj, predicate=RDF.type, object=None) in etymology['domain'] and g.value(subject=obj, predicate=RDF.type, object=None) in etymology['range']:
-        g.add((URIRef(str(obj)), DUMMY.isDerivedFrom, URIRef(str(subj))))
+        g.add((URIRef(str(obj)), LLKG.isDerivedFrom, URIRef(str(subj))))
 
 def addOrthographyVariant(subj, obj, g: Graph):
     '''
@@ -315,5 +313,5 @@ def addOrthographyVariant(subj, obj, g: Graph):
     obj: ontolex:LexicalEntry
     '''
     if g.value(subject=subj, predicate=RDF.type, object=None) in etymology['domain'] and g.value(subject=obj, predicate=RDF.type, object=None) in etymology['range']:
-        g.add((URIRef(str(subj)), DUMMY.orthographyVariant, URIRef(str(obj))))
+        g.add((URIRef(str(subj)), LLKG.orthographyVariant, URIRef(str(obj))))
 

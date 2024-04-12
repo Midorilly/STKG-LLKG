@@ -16,7 +16,8 @@ WIKIENTITY = Namespace("http://www.wikidata.org/entity/")
 WIKIPROP = Namespace("http://www.wikidata.org/prop/direct/")
 WIKIBASE = Namespace("http://wikiba.se/ontology#")
 BIGDATA = Namespace("http://www.bigdata.com/rdf#")
-DUMMY = Namespace("http://dummy.com/")
+LLKG = Namespace("http://llkg.com/")
+CC = Namespace("https://creativecommons.org/ns#")
 
 llkgSchema = Graph()
 
@@ -32,18 +33,7 @@ llkgSchema.bind("vartrans", VARTRANS)
 llkgSchema.bind("lexinfo", LEXINFO)
 llkgSchema.bind("lime", LIME)
 llkgSchema.bind("wn", WORDNET)
-llkgSchema.bind("lexvo", LEXVO)
-llkgSchema.bind("lvont", LVONT)
-llkgSchema.bind("uwn", UWN)
-llkgSchema.bind("lila", LILA)
-llkgSchema.bind("skos", SKOS)
 
-llkgSchema.bind("wd", WIKIENTITY)
-llkgSchema.bind("wdt", WIKIPROP)
-llkgSchema.bind("wikibase", WIKIBASE)
-llkgSchema.bind("bd", BIGDATA)
-
-llkgSchema.bind("dummy", DUMMY)
 schemaFile = '../STKG-LLKG/schema/llkg-schema.ttl'
 
 llkgSchema.parse(schemaFile, format='ttl')

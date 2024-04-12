@@ -1,7 +1,6 @@
 from SPARQLWrapper import SPARQLWrapper, JSON, SPARQLExceptions
 from rdflib import Graph
 from namespaces import *
-from rdflib.namespace import RDF, RDFS, OWL, XSD, DCTERMS
 import rdflib.query
 import urllib.error
 import time
@@ -9,30 +8,16 @@ import logging
 import socket
 
 q = Graph()
-q.bind("rdf", RDF)
-q.bind("rdfs", RDFS)
-q.bind("xsd", XSD)
-q.bind("dct", DCTERMS)
-q.bind("owl", OWL)
 
-q.bind("schema", SCHEMA)
 q.bind("ontolex", ONTOLEX)
-q.bind("vartrans", VARTRANS)
-q.bind("lexinfo", LEXINFO)
-q.bind("lime", LIME)
-q.bind("wn", WORDNET)
-q.bind("lexvo", LEXVO)
-q.bind("lvont", LVONT)
-q.bind("uwn", UWN)
 q.bind("lila", LILA)
-q.bind("skos", SKOS)
 
 q.bind("wd", WIKIENTITY)
 q.bind("wdt", WIKIPROP)
 q.bind("wikibase", WIKIBASE)
 q.bind("bd", BIGDATA)
 
-q.bind("dummy", DUMMY)
+q.bind("llkg", LLKG)
 
 logging.basicConfig(format='%(asctime)s %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)

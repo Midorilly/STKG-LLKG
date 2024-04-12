@@ -33,7 +33,7 @@ def addFormNode(writtenRep, pos, id, g: Graph):
             lemma = r.lemma   
             g.add((lemma, RDF.type, ONTOLEX.Form))
             g.add((lemma, RDFS.label, Literal(writtenRep)))
-            g.add((lemma, DUMMY.llkgID, Literal(id, datatype=XSD.unsignedInt)))
+            g.add((lemma, LLKG.llkgID, Literal(id, datatype=XSD.unsignedInt)))
             g.add((lemma, ONTOLEX.writtenRep, Literal(writtenRep, lang='la'))) 
             g.add((lemma, LEXINFO.partOfSpeech, URIRef(lexinfoPosMapping[pos])))
 
@@ -49,19 +49,19 @@ def addLexicalEntryNode(entry, id, language, iso, llkg, g: Graph):
         else:
             g.add((wordURI, RDF.type, ONTOLEX.Word))
         g.add((wordURI, RDFS.label, Literal(wordString)))
-        lang = g.value(subject=None, predicate=DUMMY.iso639+iso, object=Literal(language, datatype=XSD.string))
+        lang = g.value(subject=None, predicate=LLKG.iso639+iso, object=Literal(language, datatype=XSD.string))
         if lang != None:
             g.add((wordURI, DCTERMS.language, URIRef(str(lang))))
-        g.add((wordURI, DUMMY.llkgID, Literal(id, datatype=XSD.unsignedInt)))
+        g.add((wordURI, LLKG.llkgID, Literal(id, datatype=XSD.unsignedInt)))
     else:
-        g.add((wordURI, DUMMY.llkgID, Literal(id, datatype=XSD.unsignedInt)))
+        g.add((wordURI, LLKG.llkgID, Literal(id, datatype=XSD.unsignedInt)))
 
 def addLexicalSenseNode(resource, sense, gloss, id, g: Graph):
     senseURI = None
     resourceNode = URIRef(str(g.value(subject=None, predicate=RDFS.label, object=Literal(resource, lang='en'))))
     
     if resource == 'Lewis-Short Dictionary':
-        senseURI = URIRef(DUMMY+sense)
+        senseURI = URIRef(LLKG+sense)
         if not (senseURI, None, None) in g:
             g.add((senseURI, RDF.type, ONTOLEX.LexicalSense))
             g.add((senseURI, RDFS.label, Literal(sense, datatype=XSD.string)))
@@ -79,9 +79,9 @@ def addLexicalSenseNode(resource, sense, gloss, id, g: Graph):
             g.add((senseURI, RDFS.label, Literal(sense, datatype=XSD.string)))
             g.add((senseURI, DCTERMS.source, resourceNode))
             g.add((senseURI, DCTERMS.description, Literal(gloss, lang='en')))
-            g.add((senseURI, DUMMY.wn30ID, Literal(wn30id, datatype=XSD.string)))
+            g.add((senseURI, LLKG.wn30ID, Literal(wn30id, datatype=XSD.string)))
 
-    g.add((senseURI, DUMMY.llkgID, Literal(id, datatype=XSD.unsignedInt)))
+    g.add((senseURI, LLKG.llkgID, Literal(id, datatype=XSD.unsignedInt)))
 
 def addLexicalConceptNode(concept, g: Graph): #    UNAVAILABLE DATA, TBD
     conceptURI = URIRef(concept)
@@ -107,7 +107,7 @@ def addPersonNode(firstname, lastname, id, df, g: Graph):
             if len(wikiEntity) > 0:
                 authorURI = URIRef(wikiEntity[0]['authorURI'])
             else:
-                authorURI = URIRef(DUMMY+quote(label))
+                authorURI = URIRef(LLKG+quote(label))
 
     g.add((authorURI, RDF.type, SCHEMA.Person))
     g.add((authorURI, RDFS.label, Literal(label, datatype=XSD.string)))
@@ -116,32 +116,32 @@ def addPersonNode(firstname, lastname, id, df, g: Graph):
     if len(lastname)>0:
         g.add((authorURI, SCHEMA.familyName, Literal(lastname, datatype=SCHEMA.Text)))
 
-    g.add((authorURI, DUMMY.llkgID, Literal(id, datatype=XSD.unsignedInt)))
+    g.add((authorURI, LLKG.llkgID, Literal(id, datatype=XSD.unsignedInt)))
 
 def addOccupationNode(occupation, id, dict, g: Graph):
     occupationURI = URIRef(WIKIENTITY+dict[occupation])
     g.add((occupationURI, RDF.type, SCHEMA.Occupation))
     g.add((occupationURI, RDFS.label, Literal(occupation, datatype=XSD.string)))
     g.add((occupationURI, SCHEMA.name, Literal(occupation, datatype=SCHEMA.Text)))
-    g.add((occupationURI, DUMMY.llkgID, Literal(id, datatype=XSD.unsignedInt)))
+    g.add((occupationURI, LLKG.llkgID, Literal(id, datatype=XSD.unsignedInt)))
 
 def addQuotationNode(quotation, language, id, g: Graph):
-    text = URIRef(DUMMY+'text_{}'.format(id))
+    text = URIRef(LLKG+'text_{}'.format(id))
     g.add((text, RDF.type, SCHEMA.Quotation))
     g.add((text, SCHEMA.text, Literal(quotation, datatype=SCHEMA.Text)))
     g.add((text, DCTERMS.language, URIRef(str(g.value(subject=None, predicate=RDFS.label, object=Literal(language, lang='en'), any=False))))) 
-    g.add((text, DUMMY.llkgID, Literal(id, datatype=XSD.unsignedInt)))
-    example = URIRef(DUMMY+'example_{}'.format(id))
+    g.add((text, LLKG.llkgID, Literal(id, datatype=XSD.unsignedInt)))
+    example = URIRef(LLKG+'example_{}'.format(id))
     g.add((example, RDF.type, WORDNET.Example))
     g.add((example, DCTERMS.isPartOf, text))
-    g.add((example, DUMMY.llkgID, Literal(id, datatype=XSD.unsignedInt)))
+    g.add((example, LLKG.llkgID, Literal(id, datatype=XSD.unsignedInt)))
 
 def addDummyBookNode(title, id, g: Graph):
-    document = URIRef(DUMMY+quote(title))
+    document = URIRef(LLKG+quote(title))
     g.add((document, RDF.type, SCHEMA.Book))
     g.add((document, RDFS.label, Literal(title, datatype=XSD.string)))
     g.add((document, SCHEMA.name, Literal(title, datatype=SCHEMA.Text)))
-    g.add((document, DUMMY.llkgID, Literal(id, datatype=XSD.unsignedInt)))
+    g.add((document, LLKG.llkgID, Literal(id, datatype=XSD.unsignedInt)))
 
 def addBookNode(document, author, g: Graph):
     try:
@@ -153,18 +153,18 @@ def addBookNode(document, author, g: Graph):
     finally: 
         if len(documentEntity) > 0:
             documentURI = URIRef(documentEntity[0]['documentURI'])
-            language = URIRef(str(g.value(subject=None, predicate=DUMMY.iso6393, object=Literal(documentEntity[0]['languageISO'], datatype=XSD.string))))
+            language = URIRef(str(g.value(subject=None, predicate=LLKG.iso6393, object=Literal(documentEntity[0]['languageISO'], datatype=XSD.string))))
             for s, p, o in g.triples((document, None, None)):
                 g.remove((s, p, o))
                 g.add((documentURI, p, o))
             g.add((documentURI, DCTERMS.language, language))
 
 def addCollectionNode(title, id, g: Graph):
-    corpusURI = URIRef(DUMMY+title)
+    corpusURI = URIRef(LLKG+title)
     g.add((corpusURI, RDF.type, SCHEMA.Collection))
     g.add((corpusURI, RDFS.label, Literal(title, datatype=XSD.string)))
     g.add((corpusURI, SCHEMA.name, Literal(title, datatype=SCHEMA.Text)))
-    g.add((corpusURI, DUMMY.llkgID, Literal(id, datatype=XSD.unsignedInt)))
+    g.add((corpusURI, LLKG.llkgID, Literal(id, datatype=XSD.unsignedInt)))
 
 def addLanguageNode(language, l: Graph, g: Graph):
     languageURI = URIRef(str(language))
@@ -172,13 +172,13 @@ def addLanguageNode(language, l: Graph, g: Graph):
     g.add((languageURI, RDFS.label, Literal(l.value(subject=language, predicate=SKOS.prefLabel, object=None), lang='en')))
     iso6391 = l.value(subject=language, predicate=LVONT.iso639P1Code, object=None, any=False)
     if iso6391 != None:
-        g.add((languageURI, DUMMY.iso6391, Literal(iso6391, datatype=XSD.string)))
+        g.add((languageURI, LLKG.iso6391, Literal(iso6391, datatype=XSD.string)))
     iso6392 = l.value(subject=language, predicate=LVONT.iso6392TCode, object=None, any=False)
     if iso6392 != None:
-        g.add((languageURI, DUMMY.iso6392, Literal(iso6392, datatype=XSD.string)))
+        g.add((languageURI, LLKG.iso6392, Literal(iso6392, datatype=XSD.string)))
     iso6393 = l.value(subject=language, predicate=LVONT.iso639P3PCode, object=None, any=False)
     if iso6393 != None:
-        g.add((languageURI, DUMMY.iso6393, Literal(iso6393, datatype=XSD.string)))
+        g.add((languageURI, LLKG.iso6393, Literal(iso6393, datatype=XSD.string)))
 
 
 
