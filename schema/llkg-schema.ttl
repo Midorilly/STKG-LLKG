@@ -4,16 +4,15 @@
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-#@prefix cc: <https://creativecommons.org/ns#> .
-#@prefix void: <http://rdfs.org/ns/void#>.
 @prefix schema: <https://schema.org/> .
+@prefix llkg: <http://llkg.com/> .
 
 @prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
 @prefix vartrans: <http://www.w3.org/ns/lemon/vartrans#> .
 @prefix loc: <http://id.loc.gov/vocabulary/> .
 @prefix lexinfo: <http://www.lexinfo.net/ontology/2.0/lexinfo#> .
 @prefix powla: <http://purl.org/powla/powla.owl#> .
-#@prefix lime: <http://www.w3.org/ns/lemon/lime#> .
+@prefix lime: <http://www.w3.org/ns/lemon/lime#> .
 
 @prefix wn: <https://globalwordnet.github.io/schemas/wn#> .
 #@prefix wordnetlicense: <http://wordnet.princeton.edu/wordnet/license/> .
@@ -32,8 +31,16 @@ dct:description a rdf:Property ;
 dct:identifier a rdf:Property ;
     rdfs:label "identifier"@en .
 
-:llkgID rdfs:subPropertyOf dct:identifier ;
+llkg:llkgID rdfs:subPropertyOf dct:identifier ;
     rdfs:label "LLKG identifier"@en .
+
+lime:Lexicon a rdfs:Class ;
+    rdfs:label "Lexicon"@en .
+
+lime:entry a rdf:Property ;
+    rdfs:label "entry"@en ;
+    rdfs:domain lime:Lexicon ;
+    rdfs:range ontolex:LexicalEntry .
 
 ####################################################
 ############### Linguistic sub-graph ###############
@@ -44,15 +51,15 @@ dct:identifier a rdf:Property ;
 dct:LinguisticSystem a rdfs:Class ;
     rdfs:label "Language"@en .
 
-:iso6391 rdfs:subPropertyOf dct:identifier ;
+llkg:iso6391 rdfs:subPropertyOf dct:identifier ;
     rdfs:label "ISO639-1"@en ;
     rdfs:domain dct:LinguisticSystem ;
     rdfs:range rdfs:Literal .
-:iso6392 rdfs:subPropertyOf dct:identifier ; 
+llkg:iso6392 rdfs:subPropertyOf dct:identifier ; 
     rdfs:label "ISO639-2"@en ;
     rdfs:domain dct:LinguisticSystem ;
     rdfs:range rdfs:Literal .
-:iso6393 rdfs:subPropertyOf dct:identifier ;
+llkg:iso6393 rdfs:subPropertyOf dct:identifier ;
     rdfs:label "ISO639-3"@en ;
     rdfs:domain dct:LinguisticSystem ;
     rdfs:range rdfs:Literal .
@@ -109,7 +116,7 @@ owl:sameAs a rdf:Property ;
     rdfs:label "sameAs"@en ;
     rdfs:domain ontolex:LexicalSense ;
     rdfs:range ontolex:LexicalSense .
-:wn30ID rdfs:subPropertyOf dct:identifier;
+llkg:wn30ID rdfs:subPropertyOf dct:identifier;
     rdfs:label "wn30"@en ;
     rdfs:domain ontolex:LexicalSensel ;
     rdfs:range rdfs:Literal .
@@ -132,47 +139,47 @@ ontolex:evokes a rdf:Property ;
 
 # Etymological Wordnet 
 
-:etymology a rdf:Property ;
+llkg:etymology a rdf:Property ;
     rdfs:label "etymology"@en ;
     rdfs:comment "An etymology link ties a term to its etymology; in particular, object is the etymology of subject" ;
     rdfs:domain ontolex:LexicalEntry ;
     rdfs:range ontolex:LexicalEntry ;
     owl:inverseOf :etymologicalOriginOf .
 
-:etymologicalOriginOf a rdf:Property ;
+llkg:etymologicalOriginOf a rdf:Property ;
     rdfs:label "etymologicalOriginOf"@en ;
     rdfs:comment "An etymological origin link connects a term to one or more source forms which originates the term; precisely, subject etymologically originates object" ;
     rdfs:domain ontolex:LexicalEntry ;
     rdfs:range ontolex:LexicalEntry ;
     owl:inverseOf :etymology .
 
-:etymologicallyRelated a rdf:Property ;
+llkg:etymologicallyRelated a rdf:Property ;
     rdfs:label "etymologicallyRelated"@en ;
     rdfs:comment "An etymological relatedness link can be interpreted as a generalisation that includes etymological origin but also connection between cognate forms; in particular, object is etymologically related to subject";
     rdfs:domain ontolex:LexicalEntry ;
     rdfs:range ontolex:LexicalEntry .
 
-:hasDerivedForm a rdf:Property ;
+llkg:hasDerivedForm a rdf:Property ;
     rdfs:label "hasDerivedForm"@en ;
     rdfs:comment "subject has derived form object" ;
     rdfs:domain ontolex:LexicalEntry ;
     rdfs:range ontolex:LexicalEntry ;
     owl:inverseOf :isDerivedFrom .
 
-:isDerivedFrom a rdf:Property ;
+llkg:isDerivedFrom a rdf:Property ;
     rdfs:label "isDerivedFrom"@en ;
     rdfs:comment "subject is derived from object" ;
     rdfs:domain ontolex:LexicalEntry ;
     rdfs:range ontolex:LexicalEntry ;
     owl:inversOf :hasDerivedForm .
 
-:orthographyVariant a rdf:Property ;
+llkg:orthographyVariant a rdf:Property ;
     rdfs:label "orthographyVariant"@en ;
     rdfs:comment "The variation link ties a word form and its variant in orthography and spelling; subject has a variant form object when they differ in a single or double letter, s in place of z, an hyphen instead of a space, as often happens in American and British English." ;
     rdfs:domain ontolex:LexicalEntry ;
     rdfs:range ontolex:LexicalEntry .
 
-:etymwnID rdfs:subPropertyOf dct:identifier;
+llkg:etymwnID rdfs:subPropertyOf dct:identifier;
     rdfs:label "wn30"@en ;
     rdfs:domain ontolex:LexicalSensel ;
     rdfs:range rdfs:Literal .
@@ -276,7 +283,7 @@ powla:end a rdf:Property ;
     rdfs:label "end"@en ;
     rdfs:domain wn:Example ;
     rdfs:range xsd:unsignedInt .  
-:grade a rdf:Property ;
+llkg:grade a rdf:Property ;
     rdfs:label "grade"@en ;
     rdfs:domain wn:Example ;
     rdfs:range xsd:float .
