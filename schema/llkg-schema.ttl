@@ -135,36 +135,36 @@ ontolex:evokes a rdf:Property ;
     rdfs:domain ontolex:LexicalEntry ;
     rdfs:range ontolex:LexicalConcept .
 
-# Etymological Wordnet 
+# Etymological WordNet 
 
-llkg:etymology a rdf:Property ;
+llkg:etymology rdfs:subPropertyOf vartrans:lexicalRel ;
     rdfs:label "etymology"@en ;
     rdfs:comment "An etymology link ties a term to its etymology; in particular, object is the etymology of subject" ;
     rdfs:domain ontolex:LexicalEntry ;
     rdfs:range ontolex:LexicalEntry ;
     owl:inverseOf :etymologicalOriginOf .
 
-llkg:etymologicalOriginOf a rdf:Property ;
+llkg:etymologicalOriginOf rdfs:subPropertyOf vartrans:lexicalRel ;
     rdfs:label "etymologicalOriginOf"@en ;
     rdfs:comment "An etymological origin link connects a term to one or more source forms which originates the term; precisely, subject etymologically originates object" ;
     rdfs:domain ontolex:LexicalEntry ;
     rdfs:range ontolex:LexicalEntry ;
     owl:inverseOf :etymology .
 
-llkg:etymologicallyRelated a rdf:Property ;
+llkg:etymologicallyRelated rdfs:subPropertyOf vartrans:lexicalRel ;
     rdfs:label "etymologicallyRelated"@en ;
     rdfs:comment "An etymological relatedness link can be interpreted as a generalisation that includes etymological origin but also connection between cognate forms; in particular, object is etymologically related to subject";
     rdfs:domain ontolex:LexicalEntry ;
     rdfs:range ontolex:LexicalEntry .
 
-llkg:hasDerivedForm a rdf:Property ;
+llkg:hasDerivedForm rdfs:subPropertyOf vartrans:lexicalRel ;
     rdfs:label "hasDerivedForm"@en ;
     rdfs:comment "subject has derived form object" ;
     rdfs:domain ontolex:LexicalEntry ;
     rdfs:range ontolex:LexicalEntry ;
     owl:inverseOf :isDerivedFrom .
 
-llkg:isDerivedFrom a rdf:Property ;
+llkg:isDerivedFrom rdfs:subPropertyOf vartrans:lexicalRel ;
     rdfs:label "isDerivedFrom"@en ;
     rdfs:comment "subject is derived from object" ;
     rdfs:domain ontolex:LexicalEntry ;
@@ -176,11 +176,6 @@ llkg:orthographyVariant a rdf:Property ;
     rdfs:comment "The variation link ties a word form and its variant in orthography and spelling; subject has a variant form object when they differ in a single or double letter, s in place of z, an hyphen instead of a space, as often happens in American and British English." ;
     rdfs:domain ontolex:LexicalEntry ;
     rdfs:range ontolex:LexicalEntry .
-
-llkg:etymwnID rdfs:subPropertyOf dct:identifier;
-    rdfs:label "wn30"@en ;
-    rdfs:domain ontolex:LexicalSensel ;
-    rdfs:range rdfs:Literal .
     
 ##############################################
 ############### Date sub-graph ###############

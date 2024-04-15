@@ -139,13 +139,15 @@ Linked Linguistic Knowledge Graph
 
 | Etymological Wordnet | L-LKG |
 |-----|---------|
-|word-1 :etymology word-2 |ontolex:LexicalEntry :etymology ontolex:LexicalEntry | 
-|word-1 :etymological_origin_of word-2|ontolex:LexicalEntry :etymologicalOriginOf ontolex:LexicalEntry |
-|word-1 :etymologically_related word-2|ontolex:LexicalEntry :etymologicallyRelated ontolex:LexicalEntry| 
-|word-1 :has_derived_form word-2 |ontolex:LexicalEntry :hasDerivedForm ontolex:LexicalEntry |
-|word-1 :is_derived_from word-2 |ontolex:LexicalEntry :isDerivedFrom ontolex:LexicalEntry |
-|word-1 :variant:orthography word-2 |ontolex:LexicalEntry :orthographyVariant ontolex:LexicalEntry|
+|word-1 :etymology word-2 |ontolex:LexicalEntry llkg:etymology<sup>4</sup> ontolex:LexicalEntry | 
+|word-1 :etymological_origin_of word-2|ontolex:LexicalEntry llkg:etymologicalOriginOf<sup>4</sup> ontolex:LexicalEntry |
+|word-1 :etymologically_related word-2|ontolex:LexicalEntry llkg:etymologicallyRelated<sup>4</sup> ontolex:LexicalEntry| 
+|word-1 :has_derived_form word-2 |ontolex:LexicalEntry llkg:hasDerivedForm<sup>4</sup> ontolex:LexicalEntry |
+|word-1 :is_derived_from word-2 |ontolex:LexicalEntry llkg:isDerivedFrom<sup>4</sup> ontolex:LexicalEntry |
+|word-1 :variant:orthography word-2 |ontolex:LexicalEntry llkg:orthographyVariant ontolex:LexicalEntry|
 |word-1 :language language-1 |  ontolex:LexicalEntry dct:language dct:LinguisticSystem | 
+
+> <sup>4</sup> rdfs:subPropertyOf vartrans:lexicalRel
 
 
 #### New relations
@@ -206,11 +208,11 @@ Linked Linguistic Knowledge Graph
 
 | LKG | L-LKG |
 |-----|---------|
-|Person <sup>4</sup> |[schema:Person](https://schema.org/Person), [schema:Organization](https://schema.org/Organization) | 
-|*missing* |[schema:Occupation](https://schema.org/Occupation) <sup>5</sup> | 
+|Person <sup>5</sup> |[schema:Person](https://schema.org/Person), [schema:Organization](https://schema.org/Organization) | 
+|*missing* |[schema:Occupation](https://schema.org/Occupation) <sup>6</sup> | 
 
-> <sup>4</sup> we split the originally merged usage of entity `Person` for representing both the author of texts and documents, and the author of curated corpora, which usually are the result of an organization project; indeed, `schema:Organization` includes among its specializations [`schema:Project`](https://schema.org/Project) and [`schema:ResearchOrganization`](https://schema.org/ResearchOrganization).  
-> <sup>5</sup> Entity Occupation is not mentioned in LKG schema but actually occurrs in the dataset.
+> <sup>5</sup> we split the originally merged usage of entity `Person` for representing both the author of texts and documents, and the author of curated corpora, which usually are the result of an organization project; indeed, `schema:Organization` includes among its specializations [`schema:Project`](https://schema.org/Project) and [`schema:ResearchOrganization`](https://schema.org/ResearchOrganization).  
+> <sup>6</sup> Entity Occupation is not mentioned in LKG schema but actually occurrs in the dataset.
 
 ### Properties
 
@@ -295,9 +297,9 @@ Linked Linguistic Knowledge Graph
 
 | LKG | L-LKG |
 |-----|---------|
-|*missing*|[wn:Example](https://globalwordnet.github.io/schemas/wn#Example) <sup>6</sup>|
+|*missing*|[wn:Example](https://globalwordnet.github.io/schemas/wn#Example) <sup>7</sup>|
 
-> <sup>6</sup> LKG schema does not specify Example as an entity, but expresses this concept with the relation [`:HAS_EXAMPLE`](occurrence-properties) between `LexiconConcept` and `Text`, with attributes `begin`, `end` and `grade`; similarly, LKG expresses the concept of a word occurring in a text with the relation [`:HAS_OCCURRENCE`](occurrence-properties) between `LexiconEntry` and `Text`. In our schema, we merge these relations in entity `wn:Example`
+> <sup>7</sup> LKG schema does not specify Example as an entity, but expresses this concept with the relation [`:HAS_EXAMPLE`](occurrence-properties) between `LexiconConcept` and `Text`, with attributes `begin`, `end` and `grade`; similarly, LKG expresses the concept of a word occurring in a text with the relation [`:HAS_OCCURRENCE`](occurrence-properties) between `LexiconEntry` and `Text`. In our schema, we merge these relations in entity `wn:Example`
 
 ### <a id="occurrence-properties"></a> Properties
 
