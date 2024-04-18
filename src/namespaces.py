@@ -11,7 +11,7 @@ LEXVO = Namespace("http://lexvo.org/id/term/")
 LVONT = Namespace("http://lexvo.org/ontology#")
 UWN = Namespace("http://www.lexvo.org/uwn/entity/s/")
 LILA = Namespace("http://lila-erc.eu/ontologies/lila/")
-SKOS = Namespace("http://www.w3.org/2008/05/skos#")
+SKOS = Namespace("http://www.w3.org/2004/02/skos/core#")
 WIKIENTITY = Namespace("http://www.wikidata.org/entity/")
 WIKIPROP = Namespace("http://www.wikidata.org/prop/direct/")
 WIKIBASE = Namespace("http://wikiba.se/ontology#")
@@ -33,6 +33,7 @@ llkgSchema.bind("vartrans", VARTRANS)
 llkgSchema.bind("lexinfo", LEXINFO)
 llkgSchema.bind("lime", LIME)
 llkgSchema.bind("wn", WORDNET)
+llkgSchema.bind("llkg", LLKG)
 
 schemaFile = '../STKG-LLKG/schema/llkg-schema.ttl'
 

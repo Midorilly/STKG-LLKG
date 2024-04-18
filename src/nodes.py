@@ -25,7 +25,7 @@ def addResourceNode(resource: str, label: str, g: Graph):
 
 def addFormNode(writtenRep, pos, id, g: Graph):
     try:
-        result = queries.queryRetry(query = queries.lemmaQuery, initNs = {'ontolex' : ONTOLEX, 'lila': LILA}, initBindings={'entry': Literal(writtenRep), 'pos' : URIRef(lilaPosMapping[pos]) })
+        result = queries.queryRetry(query = queries.lemmaQuery, initNs = {'ontolex' : ONTOLEX, 'lila': LILA}, initBindings={'written': Literal(writtenRep), 'pos' : URIRef(lilaPosMapping[pos]) })
     except urllib.error.URLError or TimeoutError as e:
         print('{} occurred'.format(e))
     else:
@@ -96,8 +96,9 @@ def addPersonNode(firstname, lastname, id, df, g: Graph):
     else: label = fullname
 
     if fullname in df['fullname'].values:
-        wikiEntity = df.loc[(df['fullname'] == fullname), 'id'].values[0]
-        authorURI = URIRef(WIKIENTITY+wikiEntity)      
+        authorEntity = df.loc[(df['fullname'] == fullname), 'id'].values[0]
+        authorURI = URIRef(WIKIENTITY+authorEntity) 
+        wikiEntity = []    
     else:
         try: 
             wikiEntity = queries.query(queries.authorQuery.format(label))

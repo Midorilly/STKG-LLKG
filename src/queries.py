@@ -11,7 +11,7 @@ q = Graph()
 
 q.bind("ontolex", ONTOLEX)
 q.bind("lila", LILA)
-
+q.bind("skos", SKOS)
 q.bind("wd", WIKIENTITY)
 q.bind("wdt", WIKIPROP)
 q.bind("wikibase", WIKIBASE)
@@ -25,14 +25,14 @@ logger = logging.getLogger(__name__)
 lemmaQuery = (""" SELECT ?lemma 
     WHERE {
         SERVICE <https://lila-erc.eu/sparql/lila_knowledge_base/sparql> {
-            ?lemma ontolex:writtenRep ?entry ;
+            ?lemma ontolex:writtenRep ?written ;
             lila:hasPOS ?pos .             
         }
     }""")
 
 senseQuery = '''SELECT ?senseURI
     WHERE {{ SERVICE <https://lila-erc.eu/sparql/lila_knowledge_base/sparql> {{ 
-            <http://lila-erc.eu/data/lexicalResources/LatinWordNet/Lexicon> lime:entry ?lexentry.
+            ?resource lime:entry ?lexentry.
             ?lexentry ontolex:canonicalForm ?lemmaURI ;
             ontolex:sense ?senseURI .
             FILTER(regex(?senseURI,"{}")).	         
@@ -45,10 +45,10 @@ documentQuery = '''SELECT ?documentURI ?languageISO
         ?documentURI wdt:P50 ?authorURI .
         ?authorURI wdt:P6886 ?language.
         ?language wdt:P220 ?languageISO .
-        {{ ?documentURI <http://www.w3.org/2004/02/skos/core#altLabel> ?label ;
+        {{ ?documentURI skos:altLabel ?label ;
             wdt:P407 ?language }}
         UNION
-        {{ ?documentURI <http://www.w3.org/2000/01/rdf-schema#label> ?label ;
+        {{ ?documentURI rdfs:label ?label ;
             wdt:P407 ?language }} 
     FILTER (regex(str(?label), "{}", "i"))
     SERVICE wikibase:label {{ bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }}
@@ -58,9 +58,9 @@ documentQuery = '''SELECT ?documentURI ?languageISO
 authorQuery = '''SELECT ?authorURI 
     WHERE {{
         ?authorURI wdt:P31 wd:Q5 .
-        {{ ?authorURI <http://www.w3.org/2004/02/skos/core#altLabel> ?label .}}
+        {{ ?authorURI skos:altLabel ?label .}}
         UNION
-        {{ ?authorURI <http://www.w3.org/2000/01/rdf-schema#label> ?label . }}
+        {{ ?authorURI rdfs:label ?label . }}
     FILTER (regex(str(?label), "{}", "i"))
     SERVICE wikibase:label {{ bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }}
     }} LIMIT 1
@@ -114,3 +114,5 @@ def query(queryString):
                 time.sleep(backoffS)        
 
     
+
+

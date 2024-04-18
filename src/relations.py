@@ -52,7 +52,7 @@ def addSeeAlso(obj, lemmaURI, g: Graph):
     for o in g.objects(subject = obj, predicate=OWL.sameAs):
         wnID = g.value(subject = o, predicate=LLKG.wn30ID, object=None)
         try:
-            lilaURI = queries.queryRetry(query = queries.senseQuery.format(wnID), initNs = {'ontolex' : ONTOLEX, 'lime': LIME}, initBindings={'lemmaURI': URIRef(lemmaURI)})
+            lilaURI = queries.queryRetry(query = queries.senseQuery.format(wnID), initNs = {'ontolex' : ONTOLEX, 'lime': LIME}, initBindings={'lemmaURI': URIRef(lemmaURI), 'resource': URIRef('http://lila-erc.eu/data/lexicalResources/LatinWordNet/Lexicon')})
         except urllib.error.URLError or TimeoutError as e:
             print('{} occurred'.format(e))
         else:
