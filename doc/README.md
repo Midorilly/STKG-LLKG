@@ -40,7 +40,7 @@ The principal objectives of ***Linked Linguistic Knowledge Graph*** are to **reo
 |Sentence IS_A Text|Sentence IS_A Text|*not specified*|
 |Lemma $\cup$ InflectedWord IS_A Word |Lemma $\cup$ WordForm IS_A LexiconEntry|*not specified*|
 |Text BELONG_TO Document|*unaltered*|*unaltered*|
-|Document BELONG_TO Corpus|*unaltered*|DOCUMENT HAS_CORPUS Corpus|
+|Document BELONG_TO Corpus|*unaltered*|Document HAS_CORPUS Corpus|
 |Corpus BELONG_TO Category|*missing*|*missing*|
 |Word HAS_OCCURENCE Text|LexiconEntry HAS_OCCURENCE Text|InflectedWord HAS_OCCURENCE Text|
 |Word {LEX_RELATION} Word|LexiconEntry {LEX_RELATION} LexiconEntry|*missing*|
@@ -129,11 +129,11 @@ Linked Linguistic Knowledge Graph
 |LexiconConcept :{SEM_RELATION} LexiconConcept| ontolex:LexicalSense [vartrans:senseRel](https://www.w3.org/2016/05/ontolex/#senserel-object-property) ontolex:LexicalSense |
 |LexiconEntry :HAS_CONCEPT LexiconConcept|ontolex:LexicalEntry [ontolex:sense](https://www.w3.org/2016/05/ontolex/#sense-object-property) ontolex:LexicalSense|
 |LexiconConcept :REFER_TO Concept|ontolex:LexicalSense [ontolex:isLexicalizedSenseOf](https://www.w3.org/2016/05/ontolex/#lexicalized-sense-object-property) ontolex:LexicalConcept |
-|LexiconConcept :HAS_DEFINITION Text <sup>3</sup>|ontolex:LexicalSense [dct:description](http://purl.org/dc/terms/description) rdfs:Literal|
+|LexiconConcept :HAS_DEFINITION Text <sup>2</sup>|ontolex:LexicalSense [dct:description](http://purl.org/dc/terms/description) rdfs:Literal|
 |LexicalConcept :SAME_AS LexicalConcept |ontolex:LexicalSense owl:sameAs <sup>3</sup> ontolex:LexicalSense|
 
 
-> <sup>1</sup> we split the originally merged usage of entity `Text` for representing both a fragment from a text and the actual definition of the word sense.
+> <sup>2</sup> we split the originally merged usage of entity `Text` for representing both a fragment from a text and the actual definition of the word sense.
 
 > <sup>3</sup> in case of same senses from different resources.
 
@@ -174,7 +174,7 @@ Linked Linguistic Knowledge Graph
 
 | LKG | L-LKG |
 |-----|---------|
-|TemporalSpecification, TimeInterval, TimePoint|[schema:Date](https://schema.org/Date)| 
+|TemporalSpecification, TimeInterval, TimePoint|rdfs:Literal datatype [schema:Date](https://schema.org/Date)| 
 
 ### Properties
 
@@ -183,9 +183,9 @@ Linked Linguistic Knowledge Graph
 |**(Entity OR Relation) property: range**| **subject predicate object**  |
 |(TemporalSpecification) name: string| *deprecated*|
 |(TemporalSpecification) description: string| *deprecated*|
-|(TimePoint) year: Integer|schema:Date|
-|(TimePoint) month: Integer|schema:Date|
-|(TimePoint) day: Integer|schema:Date|
+|(TimePoint) year: Integer|rdfs:Literal datatype schema:Date|
+|(TimePoint) month: Integer|rdfs:Literal datatype schema:Date|
+|(TimePoint) day: Integer|rdfs:Literal datatype schema:Date|
 
 ### Relations
 
@@ -193,8 +193,8 @@ Linked Linguistic Knowledge Graph
 
 | LKG | L-LKG |
 |-----|---------|
-|TimeInterval :startTime TimePoint|schema:Date|
-|TimeInterval :endTime :TimePoint|schema:Date|
+|TimeInterval :startTime TimePoint|rdfs:Literal datatype schema:Date|
+|TimeInterval :endTime :TimePoint|rdfs:Literal datatype schema:Date|
 
 ---
 ---
@@ -309,7 +309,7 @@ Linked Linguistic Knowledge Graph
 |(:HAS_OCCURENCE) begin: int|wn:Example [powla:start](http://purl.org/powla/powla.owl#start) xsd:unsignedInt|
 |(:HAS_EXAMPLE) end: int|wn:Example [powla:end](http://purl.org/powla/powla.owl#end) xsd:unsignedInt|
 |(:HAS_OCCURENCE) end: int|wn:Example [powla:end](http://purl.org/powla/powla.owl#end) xsd:unsignedInt|
-|(:HAS_EXAMPLE) grade: float|wn:Example :grade xsd:float | 
+|(:HAS_EXAMPLE) grade: float|wn:Example llkg:grade xsd:float | 
 
 ### Relations
 
