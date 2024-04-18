@@ -6,3 +6,5 @@ SPARQLWrapper
 nltk
 py4j
 oxrdflib
+dvc
+dvc_gdrive
