@@ -1,1 +1,1 @@
-Due to GitHub limitations on file size, the Etymologican WordNet is available on its [official page](http://etym.org/). Lexvo dump can be downloaded [here](http://www.lexvo.org/resources/lexvo_2013-02-09.nt.gz).
+Due to GitHub limitations on file size, the Etymologican WordNet is available on its [official page](http://etym.org/). Lexvo .nt dump can be downloaded [here](http://lexvo.org/linkeddata/resources.html).
