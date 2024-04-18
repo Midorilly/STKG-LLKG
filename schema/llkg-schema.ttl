@@ -119,7 +119,8 @@ llkg:wn30ID rdfs:subPropertyOf dct:identifier;
     rdfs:domain ontolex:LexicalSensel ;
     rdfs:range rdfs:Literal .
 
-ontolex:LexicalSense dct:description rdfs:Literal .
+ontolex:LexicalSense dct:description rdfs:Literal ;
+    rdfs:seeAlso rdfs:Resource .
 
 # LexicalConcept
 
@@ -142,14 +143,14 @@ llkg:etymology rdfs:subPropertyOf vartrans:lexicalRel ;
     rdfs:comment "An etymology link ties a term to its etymology; in particular, object is the etymology of subject" ;
     rdfs:domain ontolex:LexicalEntry ;
     rdfs:range ontolex:LexicalEntry ;
-    owl:inverseOf :etymologicalOriginOf .
+    owl:inverseOf llkg:etymologicalOriginOf .
 
 llkg:etymologicalOriginOf rdfs:subPropertyOf vartrans:lexicalRel ;
     rdfs:label "etymologicalOriginOf"@en ;
     rdfs:comment "An etymological origin link connects a term to one or more source forms which originates the term; precisely, subject etymologically originates object" ;
     rdfs:domain ontolex:LexicalEntry ;
     rdfs:range ontolex:LexicalEntry ;
-    owl:inverseOf :etymology .
+    owl:inverseOf llkg:etymology .
 
 llkg:etymologicallyRelated rdfs:subPropertyOf vartrans:lexicalRel ;
     rdfs:label "etymologicallyRelated"@en ;
@@ -162,14 +163,14 @@ llkg:hasDerivedForm rdfs:subPropertyOf vartrans:lexicalRel ;
     rdfs:comment "subject has derived form object" ;
     rdfs:domain ontolex:LexicalEntry ;
     rdfs:range ontolex:LexicalEntry ;
-    owl:inverseOf :isDerivedFrom .
+    owl:inverseOf llkg:isDerivedFrom .
 
 llkg:isDerivedFrom rdfs:subPropertyOf vartrans:lexicalRel ;
     rdfs:label "isDerivedFrom"@en ;
     rdfs:comment "subject is derived from object" ;
     rdfs:domain ontolex:LexicalEntry ;
     rdfs:range ontolex:LexicalEntry ;
-    owl:inversOf :hasDerivedForm .
+    owl:inversOf llkg:hasDerivedForm .
 
 llkg:orthographyVariant a rdf:Property ;
     rdfs:label "orthographyVariant"@en ;
@@ -183,7 +184,7 @@ llkg:orthographyVariant a rdf:Property ;
 
 #ISO 8601 date format for both TimePoint (YYYY-MM-DD) and TemporalInterval (XXXX/YYYY)
 
-schema:Date a rdfs:Class ; 
+schema:Date a rdfs:Datatype;
     rdfs:label "Date"@en .
 
 ################################################
