@@ -1,3 +1,5 @@
 .env/
 data/etymwn/
 data/llkg/llkg.ttl
+src/__pycache__/
+src/utils/__pycache__/
