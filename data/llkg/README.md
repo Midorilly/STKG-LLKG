@@ -1,1 +1,1 @@
-Due to GitHub limitations on file size, the resource is available on [Google Drive](https://drive.google.com/file/d/1tG2dL_OoYPFnumg2WRcKAIPEEGaizeHV/view?usp=sharing).
+Due to GitHub limitations on file size, the resource is available on [Google Drive](https://drive.google.com/drive/folders/18fqI_YrC4m01vvhc_u0gB4rEAc4YT89H?usp=sharing).
