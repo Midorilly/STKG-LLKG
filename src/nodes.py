@@ -8,9 +8,12 @@ import re
 from namespaces import *
 import logging
 from SPARQLWrapper import SPARQLExceptions
+from relations import addCanonicalForm
 
 logging.basicConfig(format='%(asctime)s %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+externalLinks = 0
 
 lilaPosMapping = {'N' : LILA.noun, 'ADJ' : LILA.adjective, 'V' : LILA.verb}
 lexinfoPosMapping = {'N' : LEXINFO.noun , 'ADJ' : LEXINFO.adjective, 'V' : LEXINFO.verb}
@@ -22,6 +25,11 @@ def addResourceNode(resource: str, label: str, g: Graph):
     resource = URIRef(resource)
     g.add((resource, RDF.type, RDFS.Resource))
     g.add((resource, RDFS.label, Literal(label, lang='en')))
+
+def addFramework(framework: str, g: Graph):
+    frameworkURI = URIRef(LLKG+framework)
+    g.add((frameworkURI, RDF.type, DCTERMS.Standard))
+    g.add((frameworkURI, RDFS.label, Literal(framework, datatype=XSD.string)))
 
 def addFormNode(writtenRep, pos, id, g: Graph):
     try:
@@ -36,6 +44,7 @@ def addFormNode(writtenRep, pos, id, g: Graph):
             g.add((lemma, LLKG.llkgID, Literal(id, datatype=XSD.unsignedInt)))
             g.add((lemma, ONTOLEX.writtenRep, Literal(writtenRep, lang='la'))) 
             g.add((lemma, LEXINFO.partOfSpeech, URIRef(lexinfoPosMapping[pos])))
+            externalLinks = externalLinks+1
 
 def addLexicalEntryNode(entry, id, language, iso, llkg, g: Graph):
     wordString = str(entry).lower()
@@ -53,6 +62,8 @@ def addLexicalEntryNode(entry, id, language, iso, llkg, g: Graph):
         if lang != None:
             g.add((wordURI, DCTERMS.language, URIRef(str(lang))))
         g.add((wordURI, LLKG.llkgID, Literal(id, datatype=XSD.unsignedInt)))
+        externalLinks = externalLinks+1
+
     else:
         g.add((wordURI, LLKG.llkgID, Literal(id, datatype=XSD.unsignedInt)))
 
@@ -80,6 +91,7 @@ def addLexicalSenseNode(resource, sense, gloss, id, g: Graph):
             g.add((senseURI, DCTERMS.source, resourceNode))
             g.add((senseURI, DCTERMS.description, Literal(gloss, lang='en')))
             g.add((senseURI, LLKG.wn30ID, Literal(wn30id, datatype=XSD.string)))
+            externalLinks = externalLinks+1
 
     g.add((senseURI, LLKG.llkgID, Literal(id, datatype=XSD.unsignedInt)))
 
@@ -98,6 +110,7 @@ def addPersonNode(firstname, lastname, id, df, g: Graph):
     if fullname in df['fullname'].values:
         authorEntity = df.loc[(df['fullname'] == fullname), 'id'].values[0]
         authorURI = URIRef(WIKIENTITY+authorEntity) 
+        externalLinks = externalLinks+1
         wikiEntity = []    
     else:
         try: 
@@ -106,10 +119,10 @@ def addPersonNode(firstname, lastname, id, df, g: Graph):
             logger.info('{}'.format(e))
         finally:  
             if len(wikiEntity) > 0:
-                authorURI = URIRef(wikiEntity[0]['authorURI'])
+                authorURI = URIRef(wikiEntity[0]['authorURI'])  
+                externalLinks = externalLinks+1             
             else:
                 authorURI = URIRef(LLKG+quote(label))
-
     g.add((authorURI, RDF.type, SCHEMA.Person))
     g.add((authorURI, RDFS.label, Literal(label, datatype=XSD.string)))
     if len(firstname)>0:
@@ -121,12 +134,13 @@ def addPersonNode(firstname, lastname, id, df, g: Graph):
 
 def addOccupationNode(occupation, id, dict, g: Graph):
     occupationURI = URIRef(WIKIENTITY+dict[occupation])
+    externalLinks = externalLinks+1
     g.add((occupationURI, RDF.type, SCHEMA.Occupation))
     g.add((occupationURI, RDFS.label, Literal(occupation, datatype=XSD.string)))
     g.add((occupationURI, SCHEMA.name, Literal(occupation, datatype=SCHEMA.Text)))
     g.add((occupationURI, LLKG.llkgID, Literal(id, datatype=XSD.unsignedInt)))
 
-def addQuotationNode(quotation, language, id, g: Graph):
+def addQuotationNode(quotation, language, id, framework, g: Graph):
     text = URIRef(LLKG+'text_{}'.format(id))
     g.add((text, RDF.type, SCHEMA.Quotation))
     g.add((text, SCHEMA.text, Literal(quotation, datatype=SCHEMA.Text)))
@@ -136,6 +150,7 @@ def addQuotationNode(quotation, language, id, g: Graph):
     g.add((example, RDF.type, WORDNET.Example))
     g.add((example, DCTERMS.isPartOf, text))
     g.add((example, LLKG.llkgID, Literal(id, datatype=XSD.unsignedInt)))
+    g.add((example, DCTERMS.cornformsTo, g.value(predicate=RDFS.label, object=Literal(framework, datatype=XSD.string))))
 
 def addDummyBookNode(title, id, g: Graph):
     document = URIRef(LLKG+quote(title))
@@ -153,6 +168,7 @@ def addBookNode(document, author, g: Graph):
         logger.info('{}'.format(e))
     finally: 
         if len(documentEntity) > 0:
+            externalLinks = externalLinks+1
             documentURI = URIRef(documentEntity[0]['documentURI'])
             language = URIRef(str(g.value(subject=None, predicate=LLKG.iso6393, object=Literal(documentEntity[0]['languageISO'], datatype=XSD.string))))
             for s, p, o in g.triples((document, None, None)):
@@ -168,6 +184,7 @@ def addCollectionNode(title, id, g: Graph):
     g.add((corpusURI, LLKG.llkgID, Literal(id, datatype=XSD.unsignedInt)))
 
 def addLanguageNode(language, l: Graph, g: Graph):
+    externalLinks = externalLinks+1
     languageURI = URIRef(str(language))
     g.add((languageURI, RDF.type, DCTERMS.LinguisticSystem))
     g.add((languageURI, RDFS.label, Literal(l.value(subject=language, predicate=SKOS.prefLabel, object=None), lang='en')))

@@ -10,6 +10,8 @@ from SPARQLWrapper import SPARQLExceptions
 logging.basicConfig(format='%(asctime)s %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+externalLinks = 0
+
 subClassOfLexicalEntry = [s for s in llkgSchema.subjects(predicate=RDFS.subClassOf, object=ONTOLEX.LexicalEntry)]
 subClassOfCreativeWork = [s for s in llkgSchema.subjects(predicate=RDFS.subClassOf, object=SCHEMA.CreativeWork)]
 
@@ -22,9 +24,17 @@ def addCanonicalForm(subj, obj, g: Graph):
     subj: ontolex:LexicalEntry
     obj: ontolex:Form
     '''
-    if subj != obj :
+    if subj == obj:
+        obj = g.value(predicate=RDF.label, object=Literal(str(obj)))
+    if g.value(subject=subj, predicate=RDF.type, object=None) in canonicalForm['domain'] and g.value(subject=obj, predicate=RDF.type, object=None) in canonicalForm['range']:
+        g.add((URIRef(str(subj)), ONTOLEX.canonicalForm, URIRef(str(obj))))
+    '''if subj != obj :
         if g.value(subject=subj, predicate=RDF.type, object=None) in canonicalForm['domain'] and g.value(subject=obj, predicate=RDF.type, object=None) in canonicalForm['range']:
-            g.add((URIRef(str(subj)), ONTOLEX.canonicalForm, URIRef(str(obj))))  
+            g.add((URIRef(str(subj)), ONTOLEX.canonicalForm, URIRef(str(obj))))
+    elif subj == obj:
+        obj = g.value(predicate=RDF.label, object=Literal(str(obj)))
+        if g.value(subject=subj, predicate=RDF.type, object=None) in canonicalForm['domain'] and g.value(subject=obj, predicate=RDF.type, object=None) in canonicalForm['range']:
+'''
 
 sense = {'domain': subClassOfLexicalEntry, 'range': [ONTOLEX.LexicalSense]}
 
@@ -36,14 +46,13 @@ def addSense(subj, obj, g: Graph):
     subj: ontolex:LexicalEntry
     obj: ontolex:LexicalSense
     '''
+    # according to Ontolex schema, Form entities are not directly linked to LexicalSense entities
     if g.value(subject=subj, predicate=RDF.type, object=None) in sense['domain'] and g.value(subject=obj, predicate=RDF.type, object=None) in sense['range']:
-        for o in g.objects(subject = subj, predicate=RDF.type):
-            if o != ONTOLEX.Form: # according to Ontolex schema, Form entities are not directly linked to LexicalSense entities
-                g.add((URIRef(str(subj)), ONTOLEX.sense, URIRef(str(obj))))
-                g.add((URIRef(str(obj)), ONTOLEX.isSenseOf, URIRef(str(subj))))
+        g.add((URIRef(str(subj)), ONTOLEX.sense, URIRef(str(obj))))
+        g.add((URIRef(str(obj)), ONTOLEX.isSenseOf, URIRef(str(subj))))
 
-                lemmaURI = g.value(subject = subj, predicate = ONTOLEX.canonicalForm, object=None)
-                addSeeAlso(obj, lemmaURI, g)
+        lemmaURI = g.value(subject = subj, predicate = ONTOLEX.canonicalForm, object=None)
+        addSeeAlso(obj, lemmaURI, g)
 
 def addSeeAlso(obj, lemmaURI, g: Graph):
     '''
@@ -57,6 +66,7 @@ def addSeeAlso(obj, lemmaURI, g: Graph):
             print('{} occurred'.format(e))
         else:
             for r in lilaURI:
+                externalLinks = externalLinks+1
                 g.add((o, RDFS.seeAlso, URIRef(r.senseURI)))
 
 senseRel = {'domain': [ONTOLEX.LexicalSense], 'range': [ONTOLEX.LexicalSense]}
