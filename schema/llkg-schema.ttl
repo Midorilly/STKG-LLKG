@@ -15,22 +15,46 @@
 
 @prefix wn: <https://globalwordnet.github.io/schemas/wn#> .
 
+#########################################
+############### Datatypes ###############
+#########################################
+
+schema:Text a rdfs:Datatype ;
+    rdfs:label "Text"@en .
+
+xsd:unsignedInt a rdfs:Datatype ;
+    rdfs:label "unsignedInt"@en .
+
+xsd:string a rdfs:Datatype ;
+    rdfs:label "string"@en .
+
+xsd:float a rdfs:Datatype ; 
+    rdfs:label "float"@en .
+
+##################################################
+############### Generic properties ###############
+##################################################  
+
 dct:title a rdf:Property ;
     rdfs:label "title"@en ;
-    rdfs:range rdfs:Literal .
+    rdfs:range xsd:string .
 
 dct:isPartOf a rdf:Property ;
     rdfs:label "isPartOf"@en .
 
 dct:description a rdf:Property ;
     rdfs:label "description"@en ;
-    rdfs:range rdfs:Literal .
+    rdfs:range xsd:string .
 
 dct:identifier a rdf:Property ;
     rdfs:label "identifier"@en .
 
 llkg:llkgID rdfs:subPropertyOf dct:identifier ;
     rdfs:label "LLKG identifier"@en .
+
+#######################################
+############### Lexicon ###############
+#######################################
 
 lime:Lexicon a rdfs:Class ;
     rdfs:label "Lexicon"@en .
@@ -52,15 +76,15 @@ dct:LinguisticSystem a rdfs:Class ;
 llkg:iso6391 rdfs:subPropertyOf dct:identifier ;
     rdfs:label "ISO639-1"@en ;
     rdfs:domain dct:LinguisticSystem ;
-    rdfs:range rdfs:Literal .
+    rdfs:range xsd:string .
 llkg:iso6392 rdfs:subPropertyOf dct:identifier ; 
     rdfs:label "ISO639-2"@en ;
     rdfs:domain dct:LinguisticSystem ;
-    rdfs:range rdfs:Literal .
+    rdfs:range xsd:string .
 llkg:iso6393 rdfs:subPropertyOf dct:identifier ;
     rdfs:label "ISO639-3"@en ;
     rdfs:domain dct:LinguisticSystem ;
-    rdfs:range rdfs:Literal .
+    rdfs:range xsd:string .
 dct:language a rdf:Property ;
     rdfs:label "language"@en ;
     rdfs:range dct:LinguisticSystem .
@@ -102,6 +126,10 @@ ontolex:sense a rdf:Property ;
     rdfs:label "sense"@en ;
     rdfs:domain ontolex:LexicalEntry ;
     rdfs:range ontolex:LexicalSense .
+ontolex:isSenseOf a rdf:Property ;
+    rdfs:label "isSenseOf"@en ;
+    rdfs:domain ontolex:LexicalSense ;
+    rdfs:range ontolex:LexicalEntry .
 vartrans:senseRel a rdf:Property ;
     rdfs:label "senseRelation"@en ;
     rdfs:domain ontolex:LexicalSense ;
@@ -116,25 +144,33 @@ owl:sameAs a rdf:Property ;
     rdfs:range ontolex:LexicalSense .
 llkg:wn30ID rdfs:subPropertyOf dct:identifier;
     rdfs:label "wn30"@en ;
-    rdfs:domain ontolex:LexicalSensel ;
-    rdfs:range rdfs:Literal .
+    rdfs:domain ontolex:LexicalSense ;
+    rdfs:range xsd:string .
 
-ontolex:LexicalSense dct:description rdfs:Literal ;
+ontolex:LexicalSense dct:description xsd:string ;
     rdfs:seeAlso rdfs:Resource .
 
 # LexicalConcept
 
-ontolex:LexicaConcept a rdfs:Class ;
+ontolex:LexicalConcept a rdfs:Class ;
     rdfs:label "LexicalConcept"@en .
 
 ontolex:isLexicalizedSenseOf a rdf:Property ;
     rdfs:label "isLexicalizedSenseOf"@en ;
     rdfs:domain ontolex:LexicalSense ;
     rdfs:range ontolex:LexicalConcept .
+ontolex:lexicalizedSense a rdf:Property ;
+    rdfs:label "lexicalizedSense"@en ;
+    rdfs:domain ontolex:LexicalConcept ;
+    rdfs:range ontolex:LexicalSense .
 ontolex:evokes a rdf:Property ;
     rdfs:label "evokes"@en ;
     rdfs:domain ontolex:LexicalEntry ;
     rdfs:range ontolex:LexicalConcept .
+ontolex:isEvokedBy a rdf:Property ;
+    rdfs:label "isEvokedBy"@en ;
+    rdfs:domain ontolex:LexicalConcept ;
+    rdfs:range ontolex:LexicalEntry .
 
 # Etymological WordNet 
 
@@ -219,6 +255,7 @@ schema:hasOccupation a rdf:Property ;
 
 schema:Occupation schema:name schema:Text .
 
+
 schema:Organization a rdfs:Class ; # research project publishing a resource
     rdfs:label "Organization"@en .
 schema:Project rdfs:subClassOf schema:Organization ;
@@ -251,8 +288,11 @@ schema:text a rdf:Property ;
     rdfs:domain schema:Quotation ;
     rdfs:range schema:Text .
 schema:author a rdf:Property ;
-    rdfs:label "author"@en ;
-    rdfs:range schema:Person .
+    rdfs:label "author"@en .
+llkg:documentAuthor rdfs:subPropertyOf schema:author ;
+    rdfs:label "documentAuthor"@en .
+llkg:corpusAuthor rdfs:subPropertyOf schema:author ;
+    rdfs:label "corpusAuthor"@en .
 
 schema:CreativeWork schema:name schema:Text .
 
@@ -265,22 +305,31 @@ wn:Example a rdfs:Class ;
 
 ontolex:LexicalEntry dct:isPartOf wn:Example .
 
+dct:Standard a rdfs:Class ;
+    rdfs:label "Standard"@en, "Framework"@en ;
+    rdfs:comment "Annotation framework" .
+
 wn:example a rdf:Property ; # An example usage of a sense or synset
     rdfs:label "example"@en ;
     rdfs:domain ontolex:LexicalSense ;
     rdfs:range wn:Example .
 powla:start a rdf:Property ;
-    rdfs:lable "start"@en ;
+    rdfs:label "start"@en ;
     rdfs:domain wn:Example ;
-    rdfs:range xsd:unisgnedInt .
+    rdfs:range xsd:unsignedInt .
 powla:end a rdf:Property ;
     rdfs:label "end"@en ;
     rdfs:domain wn:Example ;
     rdfs:range xsd:unsignedInt .  
+dct:conformsTo a rdf:Property ;
+    rdfs:label "conformsTo"@en ;
+    rdfs:domain llkg:grade ;
+    rdfs:range dct:Standard .
 llkg:grade a rdf:Property ;
     rdfs:label "grade"@en ;
     rdfs:domain wn:Example ;
-    rdfs:range xsd:float .
+    rdfs:range xsd:float ;
+    dct:conformsTo dct:Standard .
 powla:next a rdf:Property ;
     rdfs:label "next"@en ;
     rdfs:domain wn:Example .
