@@ -12,11 +12,22 @@ from SPARQLWrapper import SPARQLExceptions
 logging.basicConfig(format='%(asctime)s %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+links = 0
+
+def count():
+    global links
+    links += 1
+
 lilaPosMapping = {'N' : LILA.noun, 'ADJ' : LILA.adjective, 'V' : LILA.verb}
 lexinfoPosMapping = {'N' : LEXINFO.noun , 'ADJ' : LEXINFO.adjective, 'V' : LEXINFO.verb}
 
 def updateEntry(entry, llkg, g: Graph):
     g.add((llkg, LIME.entry, entry))
+
+def addFrameworkNode(framework: str, g: Graph):
+    frameworkURI = URIRef(LLKG+framework)
+    g.add((frameworkURI, RDF.type, DCTERMS.Standard))
+    g.add((frameworkURI, RDFS.label, Literal(framework, datatype=XSD.string)))
 
 def addResourceNode(resource: str, label: str, g: Graph):
     resource = URIRef(resource)
@@ -36,11 +47,13 @@ def addFormNode(writtenRep, pos, id, g: Graph):
             g.add((lemma, LLKG.llkgID, Literal(id, datatype=XSD.unsignedInt)))
             g.add((lemma, ONTOLEX.writtenRep, Literal(writtenRep, lang='la'))) 
             g.add((lemma, LEXINFO.partOfSpeech, URIRef(lexinfoPosMapping[pos])))
+            count()
 
 def addLexicalEntryNode(entry, id, language, iso, llkg, g: Graph):
     wordString = str(entry).lower()
     wordURI = URIRef(LEXVO+'{}/{}'.format(language, quote(wordString)))
     if not (wordURI, None, None) in g:
+        count()
         updateEntry(wordURI, llkg, g)
         if bool(re.search(r'\s', wordString)):
             g.add((wordURI, RDF.type, ONTOLEX.MultiwordExpression))
@@ -80,6 +93,7 @@ def addLexicalSenseNode(resource, sense, gloss, id, g: Graph):
             g.add((senseURI, DCTERMS.source, resourceNode))
             g.add((senseURI, DCTERMS.description, Literal(gloss, lang='en')))
             g.add((senseURI, LLKG.wn30ID, Literal(wn30id, datatype=XSD.string)))
+            count()
 
     g.add((senseURI, LLKG.llkgID, Literal(id, datatype=XSD.unsignedInt)))
 
@@ -97,7 +111,8 @@ def addPersonNode(firstname, lastname, id, df, g: Graph):
 
     if fullname in df['fullname'].values:
         authorEntity = df.loc[(df['fullname'] == fullname), 'id'].values[0]
-        authorURI = URIRef(WIKIENTITY+authorEntity) 
+        authorURI = URIRef(WIKIENTITY+authorEntity)
+        count()
         wikiEntity = []    
     else:
         try: 
@@ -107,6 +122,7 @@ def addPersonNode(firstname, lastname, id, df, g: Graph):
         finally:  
             if len(wikiEntity) > 0:
                 authorURI = URIRef(wikiEntity[0]['authorURI'])
+                count()
             else:
                 authorURI = URIRef(LLKG+quote(label))
 
@@ -121,6 +137,7 @@ def addPersonNode(firstname, lastname, id, df, g: Graph):
 
 def addOccupationNode(occupation, id, dict, g: Graph):
     occupationURI = URIRef(WIKIENTITY+dict[occupation])
+    count()
     g.add((occupationURI, RDF.type, SCHEMA.Occupation))
     g.add((occupationURI, RDFS.label, Literal(occupation, datatype=XSD.string)))
     g.add((occupationURI, SCHEMA.name, Literal(occupation, datatype=SCHEMA.Text)))
@@ -153,6 +170,7 @@ def addBookNode(document, author, g: Graph):
         logger.info('{}'.format(e))
     finally: 
         if len(documentEntity) > 0:
+            count()
             documentURI = URIRef(documentEntity[0]['documentURI'])
             language = URIRef(str(g.value(subject=None, predicate=LLKG.iso6393, object=Literal(documentEntity[0]['languageISO'], datatype=XSD.string))))
             for s, p, o in g.triples((document, None, None)):
@@ -168,9 +186,10 @@ def addCollectionNode(title, id, g: Graph):
     g.add((corpusURI, LLKG.llkgID, Literal(id, datatype=XSD.unsignedInt)))
 
 def addLanguageNode(language, l: Graph, g: Graph):
+    count()
     languageURI = URIRef(str(language))
     g.add((languageURI, RDF.type, DCTERMS.LinguisticSystem))
-    g.add((languageURI, RDFS.label, Literal(l.value(subject=language, predicate=SKOS.prefLabel, object=None), lang='en')))
+    g.add((languageURI, RDFS.label, Literal(l.value(subject=language, predicate=SKOS08.prefLabel, object=None), lang='en')))
     iso6391 = l.value(subject=language, predicate=LVONT.iso639P1Code, object=None, any=False)
     if iso6391 != None:
         g.add((languageURI, LLKG.iso6391, Literal(iso6391, datatype=XSD.string)))

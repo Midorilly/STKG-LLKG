@@ -11,7 +11,7 @@ q = Graph()
 
 q.bind("ontolex", ONTOLEX)
 q.bind("lila", LILA)
-q.bind("skos", SKOS)
+q.bind("skos", SKOS04)
 q.bind("wd", WIKIENTITY)
 q.bind("wdt", WIKIPROP)
 q.bind("wikibase", WIKIBASE)

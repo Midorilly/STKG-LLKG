@@ -7,6 +7,12 @@ import urllib.error
 import logging
 from SPARQLWrapper import SPARQLExceptions
 
+relationslinks = 0
+
+def count():
+    global relationslinks
+    relationslinks += 1
+
 logging.basicConfig(format='%(asctime)s %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -22,10 +28,12 @@ def addCanonicalForm(subj, obj, g: Graph):
     subj: ontolex:LexicalEntry
     obj: ontolex:Form
     '''
-    if subj != obj :
-        if g.value(subject=subj, predicate=RDF.type, object=None) in canonicalForm['domain'] and g.value(subject=obj, predicate=RDF.type, object=None) in canonicalForm['range']:
-            g.add((URIRef(str(subj)), ONTOLEX.canonicalForm, URIRef(str(obj))))  
-
+    if subj == obj:
+        if g.value(predicate=RDFS.label, object=Literal(str(subj))) is not None:
+            subj = g.value(predicate=RDFS.label, object=Literal(str(subj)))
+    if g.value(subject=subj, predicate=RDF.type, object=None) in canonicalForm['domain'] and g.value(subject=obj, predicate=RDF.type, object=None) in canonicalForm['range']:
+        g.add((URIRef(str(subj)), ONTOLEX.canonicalForm, URIRef(str(obj))))
+      
 sense = {'domain': subClassOfLexicalEntry, 'range': [ONTOLEX.LexicalSense]}
 
 def addSense(subj, obj, g: Graph):
@@ -57,7 +65,9 @@ def addSeeAlso(obj, lemmaURI, g: Graph):
             print('{} occurred'.format(e))
         else:
             for r in lilaURI:
-                g.add((o, RDFS.seeAlso, URIRef(r.senseURI)))
+                if r.senseURI not in g.objects(subject = o, predicate = RDFS.seeAlso):
+                    count()
+                    g.add((o, RDFS.seeAlso, URIRef(r.senseURI)))
 
 senseRel = {'domain': [ONTOLEX.LexicalSense], 'range': [ONTOLEX.LexicalSense]}
 
@@ -154,6 +164,8 @@ def addExample(subj, obj, grade, g: Graph):
     if g.value(subject=subj, predicate=RDF.type, object=None) in example['domain'] and g.value(subject=obj, predicate=RDF.type, object=None) in example['range']:
         g.add((URIRef(str(subj)), WORDNET.example, URIRef(str(obj))))
         g.add((URIRef(str(obj)), LLKG.grade, Literal(grade, datatype=XSD.float)))
+        #g.add((g.value(subject=URIRef(str(obj)), predicate=LLKG.grade), DCTERMS.conformsTo, g.value(predicate=RDFS.label, object=Literal(framework, datatype=XSD.string))))
+        
 
 author = {'domain': subClassOfCreativeWork, 'range': [SCHEMA.Person, SCHEMA.Organization]}
 
