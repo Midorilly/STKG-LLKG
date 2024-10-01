@@ -8,6 +8,8 @@ import re
 from namespaces import *
 import logging
 from SPARQLWrapper import SPARQLExceptions
+import relations
+import hashlib
 
 logging.basicConfig(format='%(asctime)s %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -34,11 +36,11 @@ def addResourceNode(resource: str, label: str, g: Graph):
     g.add((resource, RDF.type, RDFS.Resource))
     g.add((resource, RDFS.label, Literal(label, lang='en')))
 
-def addFormNode(writtenRep, pos, id, g: Graph):
+def addFormNode(writtenRep, pos, id, llkg, g: Graph):
     try:
         result = queries.queryRetry(query = queries.lemmaQuery, initNs = {'ontolex' : ONTOLEX, 'lila': LILA}, initBindings={'written': Literal(writtenRep), 'pos' : URIRef(lilaPosMapping[pos]) })
     except urllib.error.URLError or TimeoutError as e:
-        print('{} occurred'.format(e))
+        logger.info('{}: {} occurred'.format(writtenRep, e))
     else:
         for r in result:
             lemma = r.lemma   
@@ -47,7 +49,8 @@ def addFormNode(writtenRep, pos, id, g: Graph):
             g.add((lemma, LLKG.llkgID, Literal(id, datatype=XSD.unsignedInt)))
             g.add((lemma, ONTOLEX.writtenRep, Literal(writtenRep, lang='la'))) 
             g.add((lemma, LEXINFO.partOfSpeech, URIRef(lexinfoPosMapping[pos])))
-            count()
+            g.serialize()
+            addLexicalEntryNode(writtenRep, id, 'lat', '3', llkg, g)
 
 def addLexicalEntryNode(entry, id, language, iso, llkg, g: Graph):
     wordString = str(entry).lower()
@@ -108,23 +111,25 @@ def addPersonNode(firstname, lastname, id, df, g: Graph):
 
     if fullname[-1] == ' ': label = fullname[:-1]
     else: label = fullname
+    
+    print('Fullname : {}'.format(fullname))
 
-    if fullname in df['fullname'].values:
-        authorEntity = df.loc[(df['fullname'] == fullname), 'id'].values[0]
-        authorURI = URIRef(WIKIENTITY+authorEntity)
-        count()
-        wikiEntity = []    
-    else:
-        try: 
+    wikiEntity = []    
+    try: 
+        if fullname in df['fullname'].values.tolist():
+            authorEntity = df.loc[(df['fullname'] == fullname), 'id'].values[0]
+            authorURI = URIRef(WIKIENTITY+authorEntity)
+            count()
+        else:
             wikiEntity = queries.query(queries.authorQuery.format(label))
-        except urllib.error.HTTPError or SPARQLExceptions.EndPointInternalError or urllib.error.URLError as e:
-            logger.info('{}'.format(e))
-        finally:  
-            if len(wikiEntity) > 0:
-                authorURI = URIRef(wikiEntity[0]['authorURI'])
-                count()
-            else:
-                authorURI = URIRef(LLKG+quote(label))
+    except urllib.error.HTTPError or SPARQLExceptions.EndPointInternalError or urllib.error.URLError as e:
+        logger.info('{}'.format(e))
+    finally:  
+        if len(wikiEntity) > 0:
+            authorURI = URIRef(wikiEntity[0]['authorURI'])
+            count()
+        else:
+            authorURI = URIRef(LLKG+quote(label))
 
     g.add((authorURI, RDF.type, SCHEMA.Person))
     g.add((authorURI, RDFS.label, Literal(label, datatype=XSD.string)))
@@ -143,12 +148,17 @@ def addOccupationNode(occupation, id, dict, g: Graph):
     g.add((occupationURI, SCHEMA.name, Literal(occupation, datatype=SCHEMA.Text)))
     g.add((occupationURI, LLKG.llkgID, Literal(id, datatype=XSD.unsignedInt)))
 
-def addQuotationNode(quotation, language, id, g: Graph):
+def addQuotationNode(quotation: str, language: str, id, g: Graph):
     text = URIRef(LLKG+'text_{}'.format(id))
     g.add((text, RDF.type, SCHEMA.Quotation))
     g.add((text, SCHEMA.text, Literal(quotation, datatype=SCHEMA.Text)))
     g.add((text, DCTERMS.language, URIRef(str(g.value(subject=None, predicate=RDFS.label, object=Literal(language, lang='en'), any=False))))) 
     g.add((text, LLKG.llkgID, Literal(id, datatype=XSD.unsignedInt)))
+    splitSentence = re.sub('\"', '"', quotation).split(' ', 5)
+    spaceJoin = ' '.join(splitSentence[:5]).encode('utf-8')
+    sentenceHash = int(hashlib.md5(spaceJoin).hexdigest(), 16)
+    g.add((text, LLKG.hashID, Literal(sentenceHash, datatype=XSD.integer)))
+
     example = URIRef(LLKG+'example_{}'.format(id))
     g.add((example, RDF.type, WORDNET.Example))
     g.add((example, DCTERMS.isPartOf, text))

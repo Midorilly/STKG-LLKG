@@ -34,7 +34,7 @@ senseQuery = '''SELECT ?senseURI
     WHERE {{ SERVICE <https://lila-erc.eu/sparql/lila_knowledge_base/sparql> {{ 
             ?resource lime:entry ?lexentry.
             ?lexentry ontolex:canonicalForm ?lemmaURI ;
-            ontolex:sense ?senseURI .
+                ontolex:sense ?senseURI .
             FILTER(regex(?senseURI,"{}")).	         
         }}
     }}'''
@@ -66,9 +66,20 @@ authorQuery = '''SELECT ?authorURI
     }} LIMIT 1
 '''
 
+timePeriodQuery = ''' SELECT ?timePeriodURI ?beforeURI ?afterURI
+    WHERE {{
+        wd:{} wdt:P2348 ?timePeriodURI .
+        ?timePeriodURI wdt:P155 ?beforeURI ;
+                    wdt:P156 ?afterURI .
+    SERVICE wikibase:label {{ bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }}
+    }} LIMIT 1
+
+
+'''
+
 MAXRETRY = 5
 def queryRetry(query: str, initNs, initBindings) -> rdflib.query.Result:
-    backoff = 1
+    backoff = 2
     for i in range(MAXRETRY):
         try:
             result = q.query(query, initNs = initNs, initBindings = initBindings)

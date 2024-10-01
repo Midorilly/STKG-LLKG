@@ -36,6 +36,6 @@ llkgSchema.bind("lime", LIME)
 llkgSchema.bind("wn", WORDNET)
 llkgSchema.bind("llkg", LLKG)
 
-schemaFile = '../STKG-LLKG/schema/llkg-schema.ttl'
+schemaFile = '../schema/llkg-schema.ttl'
 
 llkgSchema.parse(schemaFile, format='ttl')

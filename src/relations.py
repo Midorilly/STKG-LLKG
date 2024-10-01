@@ -8,10 +8,15 @@ import logging
 from SPARQLWrapper import SPARQLExceptions
 
 relationslinks = 0
+occurr = 0
 
 def count():
     global relationslinks
     relationslinks += 1
+
+def countOcc():
+    global occurr
+    occurr += 1
 
 logging.basicConfig(format='%(asctime)s %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -21,16 +26,25 @@ subClassOfCreativeWork = [s for s in llkgSchema.subjects(predicate=RDFS.subClass
 
 canonicalForm = {'domain': subClassOfLexicalEntry, 'range': [ONTOLEX.Form]}
 
-def addCanonicalForm(subj, obj, g: Graph):
+def addCanonicalForm(subj, obj, subjID, objID, g: Graph):
     '''
     ontolex:LexicalEntry ontolex:canonicalForm ontolex:Form
 
     subj: ontolex:LexicalEntry
     obj: ontolex:Form
     '''
-    if subj == obj:
-        if g.value(predicate=RDFS.label, object=Literal(str(subj))) is not None:
-            subj = g.value(predicate=RDFS.label, object=Literal(str(subj)))
+    if g.value(subject=subj, predicate=RDF.type, object=None) in canonicalForm['range']: # should be LexicalEntry subclass
+        entries = g.subjects(predicate=RDF.type, object=ONTOLEX.Word)
+        for e in entries:
+            if g.value(subject=e, predicate=LLKG.llkgID) == Literal(subjID, datatype=XSD.integer):
+                subj = e
+                break
+    if g.value(subject=obj, predicate=RDF.type, object=None) in canonicalForm['domain']: # should be Form class
+        lemmas = g.subjects(predicate=RDF.type, object=ONTOLEX.Form)
+        for l in lemmas:
+            if g.value(subject=l, predicate=LLKG.llkgID) == Literal(objID, datatype=XSD.integer):
+                obj = l
+                break
     if g.value(subject=subj, predicate=RDF.type, object=None) in canonicalForm['domain'] and g.value(subject=obj, predicate=RDF.type, object=None) in canonicalForm['range']:
         g.add((URIRef(str(subj)), ONTOLEX.canonicalForm, URIRef(str(obj))))
       
@@ -51,6 +65,7 @@ def addSense(subj, obj, g: Graph):
                 g.add((URIRef(str(obj)), ONTOLEX.isSenseOf, URIRef(str(subj))))
 
                 lemmaURI = g.value(subject = subj, predicate = ONTOLEX.canonicalForm, object=None)
+                print(lemmaURI, subj)
                 addSeeAlso(obj, lemmaURI, g)
 
 def addSeeAlso(obj, lemmaURI, g: Graph):
@@ -64,10 +79,11 @@ def addSeeAlso(obj, lemmaURI, g: Graph):
         except urllib.error.URLError or TimeoutError as e:
             print('{} occurred'.format(e))
         else:
-            for r in lilaURI:
-                if r.senseURI not in g.objects(subject = o, predicate = RDFS.seeAlso):
-                    count()
-                    g.add((o, RDFS.seeAlso, URIRef(r.senseURI)))
+            if len(lilaURI) > 0:
+                for r in lilaURI:
+                    if r.senseURI not in g.objects(subject = o, predicate = RDFS.seeAlso):
+                        count()
+                        g.add((o, RDFS.seeAlso, URIRef(r.senseURI)))
 
 senseRel = {'domain': [ONTOLEX.LexicalSense], 'range': [ONTOLEX.LexicalSense]}
 
@@ -138,13 +154,25 @@ def addEvokes(subj, obj, g: Graph): #    UNAVAILABLE DATA
 
 DCTIsPartOf = {'domain': subClassOfLexicalEntry, 'range': [WORDNET.Example]}
 
-def addDCTIsPartOf(subj, obj, g: Graph):
+def addDCTIsPartOf(subj, obj, subjID, objID, g: Graph):
     '''
     ontolex:LexicalEntry dct:isPartOf wn:Example
 
     subj: ontolex:LexicalEntry
     obj: wn:Example
     '''
+    if g.value(subject=subj, predicate=RDF.type) == ONTOLEX.Form:
+        entries = g.subjects(predicate=RDF.type, object=ONTOLEX.Word)
+        for e in entries:
+            if g.value(subject=e, predicate=LLKG.llkgID, object=None) == Literal(subjID, datatype=XSD.integer):
+                subj = e
+                break 
+    if g.value(subject=obj, predicate=RDF.type) == SCHEMA.Quotation:
+        examples = g.subjects(predicate=RDF.type, object=WORDNET.Example)
+        for e in examples:
+            if g.value(subject=e, predicate=LLKG.llkgID, object=None) == Literal(objID, datatype=XSD.integer):
+                obj = e
+                break
     if g.value(subject=subj, predicate=RDF.type, object=None) in DCTIsPartOf['domain'] and g.value(subject=obj, predicate=RDF.type, object=None) in DCTIsPartOf['range']:
         g.add((URIRef(str(subj)), DCTERMS.isPartOf, URIRef(str(obj))))
         #g.add((URIRef(str(obj), POWLA.start, Literal())))              UNAVAILABLE DATA
@@ -152,7 +180,7 @@ def addDCTIsPartOf(subj, obj, g: Graph):
 
 example = {'domain': [ONTOLEX.LexicalSense], 'range': [WORDNET.Example]}
 
-def addExample(subj, obj, grade, g: Graph):
+def addExample(subj, obj, grade, objID, g: Graph):
     '''
     ontolex:LexicalSense wn:example wn:Example
     wn:Example :grade xsd:float
@@ -161,6 +189,12 @@ def addExample(subj, obj, grade, g: Graph):
     obj: wn:Example
     grade: float value assigned according to DuRel annotation framework
     '''
+    if g.value(subject=obj, predicate=RDF.type) == SCHEMA.Quotation:
+        examples = g.subjects(predicate=RDF.type, object=WORDNET.Example)
+        for e in examples:
+            if g.value(subject=e, predicate=LLKG.llkgID) == Literal(objID, datatype=XSD.integer):
+                obj = e
+                break
     if g.value(subject=subj, predicate=RDF.type, object=None) in example['domain'] and g.value(subject=obj, predicate=RDF.type, object=None) in example['range']:
         g.add((URIRef(str(subj)), WORDNET.example, URIRef(str(obj))))
         g.add((URIRef(str(obj)), LLKG.grade, Literal(grade, datatype=XSD.float)))
@@ -180,6 +214,7 @@ def addAuthor(subj, obj, g: Graph):
     '''
     if g.value(subject=subj, predicate=RDF.type, object=None) in author['domain'] and g.value(subject=obj, predicate=RDF.type, object=None) in author['range']:
         g.add((URIRef(str(subj)), SCHEMA.author, URIRef(str(obj))))
+        g.add((URIRef(str(obj)), LLKG.isAuthor, URIRef(str(subj))))
         
             
 hasOccupation = {'domain': [SCHEMA.Person], 'range': [SCHEMA.Occupation]}
@@ -221,6 +256,9 @@ def addDateInterval(subj, start, end, relation, g: Graph):
     startString = convertDate(start)
     endString = convertDate(end)
     date = Literal('{}/{}'.format(startString, endString), datatype=SCHEMA.Date)
+    
+    if g.value(subject=subj, predicate=RDF.type, object=None) == WORDNET.Example:
+        subj  = g.value(subject=subj, predicate=DCTERMS.isPartOf, object=None)
 
     if g.value(subject=subj, predicate=RDF.type, object=None) in dateCreativeWork['domain']:
         if relation == 'PUBLISHED_IN': g.add((URIRef(str(subj)), SCHEMA.datePublished, date))
@@ -244,6 +282,9 @@ def addDatePoint(subj, point, relation, g: Graph):
     pointString = convertDate(point)
     date = Literal(pointString, datatype=SCHEMA.Date)
 
+    if g.value(subject=subj, predicate=RDF.type, object=None) == WORDNET.Example:
+        subj  = g.value(subject=subj, predicate=DCTERMS.isPartOf, object=None)
+
     if g.value(subject=subj, predicate=RDF.type, object=None) in dateCreativeWork['domain']:
         if relation == 'PUBLISHED_IN': g.add((URIRef(str(subj)), SCHEMA.datePublished, date))
     elif g.value(subject=subj, predicate=RDF.type, object=None) in datePerson['domain']:
@@ -260,7 +301,8 @@ def addSCHEMAIsPartOf(subj, obj, g: Graph):
     subj: schema:Book OR schema:Quotation
     obj: schema:Book OR schema:Collection
     '''
-
+    if g.value(subject=subj, predicate=RDF.type, object=None) == WORDNET.Example:
+        subj  = g.value(subject=subj, predicate=DCTERMS.isPartOf, object=None)
     if g.value(subject=subj, predicate=RDF.type, object=None) in SCHEMAIsPartOf['domain'] and g.value(subject=obj, predicate=RDF.type, object=None) in SCHEMAIsPartOf['range']:
         g.add((URIRef(str(subj)), SCHEMA.isPartOf, URIRef(str(obj))))
         g.add((URIRef(str(obj)), SCHEMA.hasPart, URIRef(str(subj))))
