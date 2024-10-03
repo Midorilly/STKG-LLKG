@@ -81,6 +81,9 @@ Linked Linguistic Knowledge Graph
 **lexinfo** : <http://www.lexinfo.net/ontology/2.0/lexinfo#>    
 **vartrans** : <http://www.w3.org/ns/lemon/vartrans#>  
 
+![Linguistics sub-graph](img/linguistic-bg.svg "Linguistics sub-graph")  
+Linguistics sub-graph
+
 ### Entities
 | LKG | L-LKG |
 |-----|---------|
@@ -169,6 +172,9 @@ Linked Linguistic Knowledge Graph
 ### Prefixes
 
 **schema** : <https://schema.org/>  
+
+![Date, Corpus, Author sub-graphs](img/corpus-bg.svg "Date, Corpus, Author sub-graphs")  
+Date, Corpus, Author sub-graphs
 
 ### Entities
 
@@ -292,6 +298,9 @@ Linked Linguistic Knowledge Graph
 
 **wn** : <https://globalwordnet.github.io/schemas/wn#>  
 **powla** : http://purl.org/powla/powla.owl#
+
+![Example sub-graph](img/example-bg.svg "Example sub-graph")  
+Example sub-graph
 
 ### Entities
 
