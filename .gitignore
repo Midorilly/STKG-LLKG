@@ -1,6 +1,5 @@
 .env/
 data/etymwn/
-data/llkg/llkg.ttl
 data/lexvo/
 src/__pycache__/
 src/utils/__pycache__/
