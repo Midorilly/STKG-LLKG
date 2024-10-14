@@ -66,20 +66,10 @@ authorQuery = '''SELECT ?authorURI
     }} LIMIT 1
 '''
 
-timePeriodQuery = ''' SELECT ?timePeriodURI ?beforeURI ?afterURI
-    WHERE {{
-        wd:{} wdt:P2348 ?timePeriodURI .
-        ?timePeriodURI wdt:P155 ?beforeURI ;
-                    wdt:P156 ?afterURI .
-    SERVICE wikibase:label {{ bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }}
-    }} LIMIT 1
-
-
-'''
-
 MAXRETRY = 5
 def queryRetry(query: str, initNs, initBindings) -> rdflib.query.Result:
     backoff = 2
+    connectionBackoff = 5
     for i in range(MAXRETRY):
         try:
             result = q.query(query, initNs = initNs, initBindings = initBindings)
@@ -92,6 +82,14 @@ def queryRetry(query: str, initNs, initBindings) -> rdflib.query.Result:
             backoff += 1
             logger.info('{} \nwaiting for {}s and retrying'.format(e, backoffS))
             time.sleep(backoffS)
+        except ConnectionError as c: 
+            if i == MAXRETRY-1:
+                raise e
+            backoffS = 2 ** connectionBackoff
+            connectionBackoff += 1
+            logger.info('{} \nwaiting for {}s and retrying'.format(c, backoffS))
+            time.sleep(backoffS)
+
 
 def transform2dicts(results):
     new_results = []
@@ -110,6 +108,7 @@ def query(queryString):
     sparql.setReturnFormat(JSON)
     results = []
     n = 2
+    logger.info('Querying Wikidata...')
     for i in range(MAXRETRY):
         try:
             results = sparql.queryAndConvert()['results']['bindings']

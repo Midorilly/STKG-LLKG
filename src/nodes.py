@@ -2,7 +2,11 @@ from rdflib import Namespace, Graph, Literal, URIRef, BNode
 from rdflib.namespace import RDF, RDFS, OWL, XSD, DCTERMS
 from urllib.parse import quote
 import urllib.error
-from nltk.corpus import wordnet as wn
+import nltk
+nltk.download('wordnet')
+nltk.download('wordnet31')
+from nltk.corpus import wordnet as wn30
+from nltk.corpus import wordnet31 as wn31
 import queries
 import re
 from namespaces import *
@@ -38,22 +42,23 @@ def addResourceNode(resource: str, label: str, g: Graph):
 
 def addFormNode(writtenRep, pos, id, llkg, g: Graph):
     try:
-        result = queries.queryRetry(query = queries.lemmaQuery, initNs = {'ontolex' : ONTOLEX, 'lila': LILA}, initBindings={'written': Literal(writtenRep), 'pos' : URIRef(lilaPosMapping[pos]) })
+        logger.info('Querying LiLa for {}...'.format(writtenRep))
+        result = queries.queryRetry(query = queries.lemmaQuery, initNs = {'ontolex' : ONTOLEX, 'lila': LILA}, initBindings={'written': Literal(writtenRep, lang='la'), 'pos' : URIRef(lilaPosMapping[pos]) })
     except urllib.error.URLError or TimeoutError as e:
         logger.info('{}: {} occurred'.format(writtenRep, e))
     else:
         for r in result:
-            lemma = r.lemma   
+            lemma = r.lemma  
+            logger.info('URI {}'.format(lemma)) 
             g.add((lemma, RDF.type, ONTOLEX.Form))
             g.add((lemma, RDFS.label, Literal(writtenRep)))
             g.add((lemma, LLKG.llkgID, Literal(id, datatype=XSD.unsignedInt)))
             g.add((lemma, ONTOLEX.writtenRep, Literal(writtenRep, lang='la'))) 
             g.add((lemma, LEXINFO.partOfSpeech, URIRef(lexinfoPosMapping[pos])))
-            g.serialize()
             addLexicalEntryNode(writtenRep, id, 'lat', '3', llkg, g)
 
 def addLexicalEntryNode(entry, id, language, iso, llkg, g: Graph):
-    wordString = str(entry).lower()
+    wordString = str(entry).lower().replace(' ', '')
     wordURI = URIRef(LEXVO+'{}/{}'.format(language, quote(wordString)))
     if not (wordURI, None, None) in g:
         count()
@@ -85,10 +90,18 @@ def addLexicalSenseNode(resource, sense, gloss, id, g: Graph):
             g.add((senseURI, DCTERMS.description, Literal(gloss, lang='en')))    
 
     elif resource == 'Universal WordNet':
-        wn30sense = wn.synset(sense)
+        wn30sense = wn30.synset(sense)
         wn30offset = str(wn30sense.offset())
         wn30pos = str(wn30sense.pos())
         wn30id = '{}-{}'.format(wn30offset.zfill(8),wn30pos)
+
+        wn31sense = wn31.synset(sense)
+        wn31offset = str(wn31sense.offset())
+        wn31pos = str(wn31sense.pos())
+        wn31id = '{}-{}'.format(wn31offset.zfill(8),wn31pos)
+
+        print(wn30id, wn31id)
+
         senseURI = URIRef(UWN+'{}{}'.format(wn30pos, wn30offset))
         if not (senseURI, None, None) in g:     
             g.add((senseURI, RDF.type, ONTOLEX.LexicalSense))
@@ -96,6 +109,7 @@ def addLexicalSenseNode(resource, sense, gloss, id, g: Graph):
             g.add((senseURI, DCTERMS.source, resourceNode))
             g.add((senseURI, DCTERMS.description, Literal(gloss, lang='en')))
             g.add((senseURI, LLKG.wn30ID, Literal(wn30id, datatype=XSD.string)))
+            g.add((senseURI, LLKG.wn31ID, Literal(wn31id, datatype=XSD.string)))
             count()
 
     g.add((senseURI, LLKG.llkgID, Literal(id, datatype=XSD.unsignedInt)))
@@ -111,8 +125,6 @@ def addPersonNode(firstname, lastname, id, df, g: Graph):
 
     if fullname[-1] == ' ': label = fullname[:-1]
     else: label = fullname
-    
-    print('Fullname : {}'.format(fullname))
 
     wikiEntity = []    
     try: 

@@ -39,14 +39,16 @@ g.bind("llkg", LLKG)
 logging.basicConfig(format='%(asctime)s %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
 llkg = URIRef(LLKG.LLKG)
-llkgGraph = '../knowledge-graph/data/llkg/llkg-lite-new-v3.nt'
+etymwnGraph = '../knowledge-graph/data/llkg/etymwn-llkg.ttl'
+latiniseGraph = '../knowledge-graph/data/llkg/etymwn-latinise-llkg.ttl'
+llkgGraph = '../knowledge-graph/data/llkg/llkg.ttl'
 
 def setupGraph():
     g.add((llkg, RDF.type, LIME.Lexicon))
     g.add((llkg, RDFS.label, Literal('Linked Linguistic Knowledge Graph', lang='en')))
     g.add((llkg, CC.license, URIRef('https://creativecommons.org/licenses/by-sa/4.0/deed.en')))
 
-    g.serialize(format='nt')
+    g.serialize(format='ttl')
 
 etymFolder = '../knowledge-graph/data/etymwn' 
 lexvoFolder = '../knowledge-graph/data/lexvo'
@@ -63,7 +65,7 @@ def languageNodes():
     l.close()
     logger.info('Language nodes generated!')
     logger.info('Serializing language nodes...')
-    g.serialize(format='nt')
+    g.serialize(format='ttl')
 
 def etymNodes(wordsPath):
     logger.info('Generating words nodes...')
@@ -79,7 +81,7 @@ def etymNodes(wordsPath):
     file.close()
     logger.info('Word nodes generated!')
     logger.info('Serializing EtymWN nodes...')
-    g.serialize(format='nt')
+    g.serialize(format='ttl')
 
 def etymRelations(wordsDict, dataset):
 
@@ -119,11 +121,9 @@ def resourceNodes():
     nodes.addResourceNode(resource='https://lila-erc.eu/data/lexicalResources/LatinWordNet/Lexicon', label='Latin WordNet', g=g)
     nodes.addResourceNode(resource='https://www.mpi-inf.mpg.de/departments/databases-and-information-systems/research/yago-naga/uwn', label='Universal WordNet', g=g)
     logger.info('Serializing resources...')
-    g.serialize(format='nt')
 
 def frameworkNodes():
     nodes.addFrameworkNode(framework='DuRel', g=g)
-    g.serialize(format='nt')
     
 def lemmaNodes():
     logger.info('Generating lemma nodes...')
@@ -237,22 +237,23 @@ def lkgRelations():
 
     intervalsDict, pointsDict = dateDictionary()
 
-    logger.info('Connecting nodes...')
-
     with jsonlines.open(lkgDataset, 'r') as lkg:
         relationships = [line for line in lkg if line['jtype'] == 'relationship']
+        logger.info('Connecting canonical forms...')
         for line in relationships:
             property = line['name']
             subj = g.value(predicate=LLKG.llkgID, object=Literal(line['subject'], datatype=XSD.unsignedInt))
             obj = g.value(predicate=LLKG.llkgID, object=Literal(line['object'], datatype=XSD.unsignedInt))
 
             if property == 'HAS_LEMMA':    
+                #logger.info('{} {}'.format(subj,obj))
                 relations.addCanonicalForm(subj, obj, line['subject'], line['object'], g)
-    
-    g.serialize(format='nt')
+    logger.info('Serializing canonical form relation...')
+    g.serialize(format='ttl')
 
     with jsonlines.open(lkgDataset, 'r') as lkg:
         relationships = [line for line in lkg if line['jtype'] == 'relationship']
+        logger.info('Connecting nodes...')
         for line in relationships:
             property = line['name']
             subj = g.value(predicate=LLKG.llkgID, object=Literal(line['subject'], datatype=XSD.unsignedInt))
@@ -283,7 +284,7 @@ def lkgRelations():
 
     with jsonlines.open(lkgDataset, 'r') as lkg:
         concepts = [line for line in lkg if line['jtype'] == 'relationship' and line['name'] == 'HAS_CONCEPT']
-
+        logger.info('Connecting senses...')
         for line in concepts:
             subj = g.value(predicate=LLKG.llkgID, object=Literal(line['subject'], datatype=XSD.unsignedInt))
             obj = g.value(predicate=LLKG.llkgID, object=Literal(line['object'], datatype=XSD.unsignedInt))
@@ -292,14 +293,7 @@ def lkgRelations():
 
     logger.info('Nodes successfully connected!')
 
-if __name__ == '__main__':
-    importlib.reload(nodes)
-    importlib.reload(relations)
-    importlib.reload(etymwn)
-    importlib.reload(queries)
-
-    g.remove((None, None, None))
-
+def generateEtymologicalNodes(etymFolder, etymwnGraph):
     setupGraph()
     languageNodes()
     dataset, entries = etymwn.loadDataset(os.path.join(etymFolder, 'etymwn.tsv'))
@@ -307,9 +301,19 @@ if __name__ == '__main__':
     wordsDict = etymwn.loadDictionary(os.path.join(etymFolder, 'words.csv'))
     etymNodes(wordsPath='words.csv')
     etymRelations(wordsDict, dataset)
+    logger.info('Serializing EtymWN...')
+    g.serialize(destination=etymwnGraph,format='ttl',encoding='utf-8')
+    logger.info('EtymWN successfully serialized!')
+    logger.info('{}, {} external links'.format(nodes.links, relations.relationslinks))
+
+
+def generateLatinISENodes(etymwnGraph, latiniseGraph):
+    logger.info('Parsing EtymWN graph...')
+    g.parse(etymwnGraph, format='ttl')
     resourceNodes()
     frameworkNodes()
     lemmaNodes()
+    g.serialize(format='ttl')
     entryNodes()
     senseNodes()
     authorNodes()
@@ -317,9 +321,30 @@ if __name__ == '__main__':
     textNodes()
     documentNodes()
     corpusNodes()
-    logger.info('Serializing nodes...')
-    g.serialize(format='nt')
-    lkgRelations()
-    g.serialize(destination=llkgGraph,format='nt',encoding='utf-8')
-    logger.info('Serializing graph...')
+    logger.info('Serializing LatinISE...')
+    g.serialize(destination=latiniseGraph,format='ttl', encoding='utf-8')
+    logger.info('LatinISE successfully serialized!')
     logger.info('{}, {} external links'.format(nodes.links, relations.relationslinks))
+
+
+def generateLinks(latiniseGraph, llkgGraph):
+    logger.info('Parsing graph...')
+    g.parse(latiniseGraph, format='ttl')
+    lkgRelations()
+    logger.info('Serializing relations...')
+    g.serialize(destination=llkgGraph,format='ttl',encoding='utf-8')
+    logger.info('LLKG successfully serialized!')
+    logger.info('{}, {} external links'.format(nodes.links, relations.relationslinks))
+
+
+if __name__ == '__main__':
+    importlib.reload(nodes)
+    importlib.reload(relations)
+    importlib.reload(etymwn)
+    importlib.reload(queries)
+
+    generateEtymologicalNodes(etymFolder,etymwnGraph)
+    generateLatinISENodes(etymwnGraph, latiniseGraph)
+    generateLinks(latiniseGraph,llkgGraph)
+
+

@@ -33,6 +33,7 @@ def addCanonicalForm(subj, obj, subjID, objID, g: Graph):
     subj: ontolex:LexicalEntry
     obj: ontolex:Form
     '''
+    #logger.info('{} has canonical form {}'.format(subj,obj))
     if g.value(subject=subj, predicate=RDF.type, object=None) in canonicalForm['range']: # should be LexicalEntry subclass
         entries = g.subjects(predicate=RDF.type, object=ONTOLEX.Word)
         for e in entries:
@@ -65,7 +66,6 @@ def addSense(subj, obj, g: Graph):
                 g.add((URIRef(str(obj)), ONTOLEX.isSenseOf, URIRef(str(subj))))
 
                 lemmaURI = g.value(subject = subj, predicate = ONTOLEX.canonicalForm, object=None)
-                print(lemmaURI, subj)
                 addSeeAlso(obj, lemmaURI, g)
 
 def addSeeAlso(obj, lemmaURI, g: Graph):
@@ -73,7 +73,7 @@ def addSeeAlso(obj, lemmaURI, g: Graph):
     uwn:sense rdfs:seeALso URI
     '''
     for o in g.objects(subject = obj, predicate=OWL.sameAs):
-        wnID = g.value(subject = o, predicate=LLKG.wn30ID, object=None)
+        wnID = g.value(subject = o, predicate=LLKG.wn31ID, object=None)
         try:
             lilaURI = queries.queryRetry(query = queries.senseQuery.format(wnID), initNs = {'ontolex' : ONTOLEX, 'lime': LIME}, initBindings={'lemmaURI': URIRef(lemmaURI), 'resource': URIRef('http://lila-erc.eu/data/lexicalResources/LatinWordNet/Lexicon')})
         except urllib.error.URLError or TimeoutError as e:
@@ -83,6 +83,7 @@ def addSeeAlso(obj, lemmaURI, g: Graph):
                 for r in lilaURI:
                     if r.senseURI not in g.objects(subject = o, predicate = RDFS.seeAlso):
                         count()
+                        logger.info('Addinf seeAlso')
                         g.add((o, RDFS.seeAlso, URIRef(r.senseURI)))
 
 senseRel = {'domain': [ONTOLEX.LexicalSense], 'range': [ONTOLEX.LexicalSense]}
