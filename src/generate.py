@@ -39,9 +39,9 @@ g.bind("llkg", LLKG)
 logging.basicConfig(format='%(asctime)s %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
 llkg = URIRef(LLKG.LLKG)
-etymwnGraph = '../knowledge-graph/data/llkg/etymwn-llkg.ttl'
-latiniseGraph = '../knowledge-graph/data/llkg/etymwn-latinise-llkg.ttl'
-llkgGraph = '../knowledge-graph/data/llkg/llkg.ttl'
+etymwnGraph = '../data/llkg/etymwn-llkg.ttl'
+latiniseGraph = '../data/llkg/etymwn-latinise-llkg.ttl'
+llkgGraph = '../data/llkg/llkg.ttl'
 
 def setupGraph():
     g.add((llkg, RDF.type, LIME.Lexicon))
@@ -50,8 +50,8 @@ def setupGraph():
 
     g.serialize(format='ttl')
 
-etymFolder = '../knowledge-graph/data/etymwn' 
-lexvoFolder = '../knowledge-graph/data/lexvo'
+etymFolder = '../data/etymwn' 
+lexvoFolder = '../data/lexvo'
 
 def languageNodes():
     l = Graph()
@@ -112,8 +112,8 @@ def etymRelations(wordsDict, dataset):
     logger.info('Serializing EtymWN relations...')
     g.serialize(format='ttl')
 
-lkgDataset = '../knowledge-graph/data/lkg/full-dataset-v3.jsonl'
-wikidataMap = '../knowledge-graph/data/lkg/wikidata_metadata/'
+lkgDataset = '../data/lkg/full-dataset-v3.jsonl'
+wikidataMap = '../data/lkg/wikidata_metadata/'
 
 def resourceNodes():
     logger.info('Generating resources nodes...')
