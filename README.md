@@ -22,4 +22,8 @@ Project Organization
     └── requirements.txt
 
 
-    
+To run
+------------
+On Windows
+1. Install the requirements with `pip install -r requirements.txt`
+2. Generate the graph with `python3 src/generate.py`
