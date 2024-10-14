@@ -118,6 +118,10 @@ llkg:wn30ID rdfs:subPropertyOf dct:identifier;
     rdfs:label "wn30"@en ;
     rdfs:domain ontolex:LexicalSensel ;
     rdfs:range rdfs:Literal .
+llkg:wn31ID rdfs:subPropertyOf dct:identifier;
+    rdfs:label "wn31"@en ;
+    rdfs:domain ontolex:LexicalSensel ;
+    rdfs:range rdfs:Literal .
 
 ontolex:LexicalSense dct:description rdfs:Literal ;
     rdfs:seeAlso rdfs:Resource .
@@ -239,7 +243,7 @@ schema:Collection rdfs:subClassOf schema:CreativeWork ;
 schema:Book rdfs:subClassOf schema:CreativeWork ;
     rdfs:label "Document"@en .
 schema:Quotation rdfs:subClassOf schema:CreativeWork ;
-    rdfs:label "Text"@en .
+    rdfs:label "Quotation"@en .
 
 schema:isPartOf a rdf:Property ;
     rdfs:label "isPartOf"@en .
