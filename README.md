@@ -9,6 +9,8 @@ Project Organization
 
     ├── data               
         ├── lkg             <- Input resource.
+        ├── etymwn          <- Input resource.
+        ├── lexvo           <- Input resource.
         └── llkg            <- Output resource.
     ├── doc                 <- Project documentation.  
     ├── schema              <- LLKG schema.
@@ -23,4 +25,5 @@ To run
 ------------
 On Windows
 1. Install the requirements with `pip install -r requirements.txt`
-2. Generate the graph with `python3 src/generate.py`
+2. Download [Etymological WordNet](http://etym.org/) and [Lexvo .nt dump](http://lexvo.org/linkeddata/resources.html) resources and store them in the `data` directory
+3. Generate the LLKG with `python3 src/generate.py`
