@@ -70,7 +70,10 @@ def addSense(subj, obj, g: Graph):
 
 def addSeeAlso(obj, lemmaURI, g: Graph):
     '''
-    uwn:sense rdfs:seeALso URI
+    ontolex:LexicalSense rdfs:seeALso ontolex:LexicalSense
+
+    subj: ontolex:LexicalSense
+    obj: ontolex:LexicalSense
     '''
     for o in g.objects(subject = obj, predicate=OWL.sameAs):
         wnID = g.value(subject = o, predicate=LLKG.wn31ID, object=None)
