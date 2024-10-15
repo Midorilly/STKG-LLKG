@@ -159,8 +159,11 @@ Linguistics sub-graph
 |---------|
 |ontolex:LexicalEntry [ontolex:evokes](https://www.w3.org/2016/05/ontolex/#evokes-object-property) ontolex:LexicalConcept |
 |dct:LinguisticSystem :iso6393<sup>1</sup> rdfs:Literal|
-|ontolex:LexicalEntry :wn30ID rdfs:Literal |
+|ontolex:LexicalSense :wn30ID rdfs:Literal |
+|ontolex:LexicalSense :wn31ID rdfs:Literal |
 |ontolex:LexicalEntry :etymwnID rdfs:Literal|
+|ontolex:LexicalSense rdfs:seeAlso ontolex:LexicalSense|
+
 
 
 
