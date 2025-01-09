@@ -80,6 +80,7 @@ Linked Linguistic Knowledge Graph
 **ontolex** : <http://www.w3.org/ns/lemon/ontolex#>   
 **lexinfo** : <http://www.lexinfo.net/ontology/2.0/lexinfo#>    
 **vartrans** : <http://www.w3.org/ns/lemon/vartrans#>  
+**wn** : <https://globalwordnet.github.io/schemas/wn#>  
 
 ![Linguistics sub-graph](img/linguistic-bg.svg "Linguistics sub-graph")  
 Linguistics sub-graph
@@ -129,7 +130,8 @@ Linguistics sub-graph
 |WordForm IS_A LeixconEntry|ontolex:LexicalEntry|
 |Lemma IS_A LexiconEntry|ontolex:LexicalEntry [ontolex:canonicalForm](https://www.w3.org/2016/05/ontolex/#canonical-form-object-property) ontolex:Form|
 |LexiconEntry :{LEX_RELATION} LexiconEntry | ontolex:LexicalEntry [vartrans:lexicalRel](https://www.w3.org/2016/05/ontolex/#lexicalrel-object-property) ontolex:LexicalEntry|
-|LexiconConcept :{SEM_RELATION} LexiconConcept| ontolex:LexicalSense [vartrans:senseRel](https://www.w3.org/2016/05/ontolex/#senserel-object-property) ontolex:LexicalSense |
+|LexiconConcept :{SEM_RELATION} LexiconConcept| ontolex:LexicalSense [wn:hyponym](https://globalwordnet.github.io/schemas/wn#hyponym) ontolex:LexicalSense |
+|LexiconConcept :{SEM_RELATION} LexiconConcept| ontolex:LexicalSense [wn:hypernym](https://globalwordnet.github.io/schemas/wn#hypernym) ontolex:LexicalSense |
 |LexiconEntry :HAS_CONCEPT LexiconConcept|ontolex:LexicalEntry [ontolex:sense](https://www.w3.org/2016/05/ontolex/#sense-object-property) ontolex:LexicalSense|
 |LexiconConcept :REFER_TO Concept|ontolex:LexicalSense [ontolex:isLexicalizedSenseOf](https://www.w3.org/2016/05/ontolex/#lexicalized-sense-object-property) ontolex:LexicalConcept |
 |LexiconConcept :HAS_DEFINITION Text <sup>2</sup>|ontolex:LexicalSense [dct:description](http://purl.org/dc/terms/description) rdfs:Literal|
