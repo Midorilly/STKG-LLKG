@@ -1,5 +1,5 @@
 .env/
-data/etymwn/
-data/lexvo/
+data/etymwn/*
+data/lexvo/*
 src/__pycache__/
 src/utils/__pycache__/
