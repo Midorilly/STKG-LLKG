@@ -30,6 +30,14 @@ lemmaQuery = (""" SELECT ?lemma
         }
     }""")
 
+wdlexemeQuery = ("""SELECT ?lexeme
+    WHERE {{
+    ?lexeme a ontolex:LexicalEntry ;
+        wdt:P11033 ?lila .
+    FILTER(regex(?lila,"{}"))
+    SERVICE wikibase:label {{ bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en" }}
+    }}""")
+
 senseQuery = '''SELECT ?senseURI
     WHERE {{ SERVICE <https://lila-erc.eu/sparql/lila_knowledge_base/sparql> {{ 
             ?resource lime:entry ?lexentry.
@@ -100,11 +108,11 @@ def transform2dicts(results):
         new_results.append(new_result)
     return new_results
 
-def query(queryString):
+def query(query: str):
     socket.getaddrinfo('localhost',8080)
     endpoint = "https://query.wikidata.org/sparql"
     sparql = SPARQLWrapper(endpoint)
-    sparql.setQuery(queryString)
+    sparql.setQuery(query)
     sparql.setReturnFormat(JSON)
     results = []
     n = 2

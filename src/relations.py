@@ -70,10 +70,7 @@ def addSense(subj, obj, g: Graph):
 
 def addSeeAlso(obj, lemmaURI, g: Graph):
     '''
-    ontolex:LexicalSense rdfs:seeALso ontolex:LexicalSense
-
-    subj: ontolex:LexicalSense
-    obj: ontolex:LexicalSense
+    uwn:sense rdfs:seeALso URI
     '''
     for o in g.objects(subject = obj, predicate=OWL.sameAs):
         wnID = g.value(subject = o, predicate=LLKG.wn31ID, object=None)
@@ -99,7 +96,26 @@ def addSenseRel(subj, obj, g: Graph):
     obj: ontolex:LexicalSense
     '''
     if g.value(subject=subj, predicate=RDF.type, object=None) in senseRel['domain'] and g.value(subject=obj, predicate=RDF.type, object=None) in senseRel['range']:
-        g.add((URIRef(str(subj)), VARTRANS.senseRel, URIRef(str(obj)))) # TO NVESTIGATE IF SYMMETRIC
+        uwnRef = g.value(subject=None, predicate=RDFS.label, object=Literal('Universal WordNet', lang='en'))
+        print(uwnRef)
+        if g.value(subject=subj, predicate=DCTERMS.source, object=None) == uwnRef and g.value(subject=obj, predicate=DCTERMS.source, object=None) == uwnRef:
+            subjLabel = g.value(subject=subj, predicate=RDFS.label, object=None)
+            objLabel = g.value(subject=obj, predicate=RDFS.label, object=None)
+            #print(subjSyn, objSyn)
+            subjSyn = wn.synset(subjLabel)
+            objSyn = wn.synset(objLabel)
+
+            if objSyn in subjSyn.hypernyms():
+                g.add((URIRef(str(subj)), WORDNET.hyponym, URIRef(str(obj)))) 
+                g.add((URIRef(str(obj)), WORDNET.hypernym, URIRef(str(subj))))
+                print('{} hypernym of {}'.format(objSyn, subjSyn))
+            elif objSyn in subjSyn.hyponyms():
+                g.add((URIRef(str(subj)), WORDNET.hypernym, URIRef(str(obj)))) 
+                g.add((URIRef(str(obj)), WORDNET.hyponym, URIRef(str(subj))))
+                print('{} hyponym of {}'.format(objSyn, subjSyn))
+        
+        else:
+            g.add((URIRef(str(subj)), VARTRANS.senseRel, URIRef(str(obj))))
 
 lexicalRel = {'domain':subClassOfLexicalEntry, 'range': subClassOfLexicalEntry}
 

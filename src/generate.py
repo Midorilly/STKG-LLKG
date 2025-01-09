@@ -39,9 +39,6 @@ g.bind("llkg", LLKG)
 logging.basicConfig(format='%(asctime)s %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
 llkg = URIRef(LLKG.LLKG)
-etymwnGraph = '../data/llkg/etymwn-llkg.ttl'
-latiniseGraph = '../data/llkg/etymwn-latinise-llkg.ttl'
-llkgGraph = '../data/llkg/llkg.ttl'
 
 def setupGraph():
     g.add((llkg, RDF.type, LIME.Lexicon))
@@ -49,9 +46,6 @@ def setupGraph():
     g.add((llkg, CC.license, URIRef('https://creativecommons.org/licenses/by-sa/4.0/deed.en')))
 
     g.serialize(format='ttl')
-
-etymFolder = '../data/etymwn' 
-lexvoFolder = '../data/lexvo'
 
 def languageNodes():
     l = Graph()
@@ -112,8 +106,8 @@ def etymRelations(wordsDict, dataset):
     logger.info('Serializing EtymWN relations...')
     g.serialize(format='ttl')
 
-lkgDataset = '../data/lkg/full-dataset-v3.jsonl'
-wikidataMap = '../data/lkg/wikidata_metadata/'
+lkgDataset = '../knowledge-graph/data/lkg/full-dataset-v3.jsonl'
+wikidataMap = '../knowledge-graph/data/lkg/wikidata_metadata/'
 
 def resourceNodes():
     logger.info('Generating resources nodes...')
@@ -246,7 +240,6 @@ def lkgRelations():
             obj = g.value(predicate=LLKG.llkgID, object=Literal(line['object'], datatype=XSD.unsignedInt))
 
             if property == 'HAS_LEMMA':    
-                #logger.info('{} {}'.format(subj,obj))
                 relations.addCanonicalForm(subj, obj, line['subject'], line['object'], g)
     logger.info('Serializing canonical form relation...')
     g.serialize(format='ttl')
@@ -281,6 +274,20 @@ def lkgRelations():
                     relations.addDateInterval(subj, start, end, property, g)
                 elif line['object'] in pointsDict.keys():
                     relations.addDatePoint(subj, pointsDict[line['object']], property, g)
+    '''
+
+    with jsonlines.open(lkgDataset, 'r') as lkg:
+        concepts = [line for line in lkg if line['jtype'] == 'relationship' and line['name'] == 'HAS_CONCEPT']
+        logger.info('Connecting senses...')
+        for line in concepts:
+            subj = g.value(predicate=LLKG.llkgID, object=Literal(line['subject'], datatype=XSD.unsignedInt))
+            obj = g.value(predicate=LLKG.llkgID, object=Literal(line['object'], datatype=XSD.unsignedInt))
+
+            relations.addSense(subj, obj, g)
+    '''
+    logger.info('Nodes successfully connected!')
+
+def lkgSeeAlso():
 
     with jsonlines.open(lkgDataset, 'r') as lkg:
         concepts = [line for line in lkg if line['jtype'] == 'relationship' and line['name'] == 'HAS_CONCEPT']
@@ -294,8 +301,6 @@ def lkgRelations():
     logger.info('Nodes successfully connected!')
 
 def generateEtymologicalNodes(etymFolder, etymwnGraph):
-    setupGraph()
-    languageNodes()
     dataset, entries = etymwn.loadDataset(os.path.join(etymFolder, 'etymwn.tsv'))
     etymwn.writeWords(entries, os.path.join(etymFolder, 'words.csv'))
     wordsDict = etymwn.loadDictionary(os.path.join(etymFolder, 'words.csv'))
@@ -326,7 +331,6 @@ def generateLatinISENodes(etymwnGraph, latiniseGraph):
     logger.info('LatinISE successfully serialized!')
     logger.info('{}, {} external links'.format(nodes.links, relations.relationslinks))
 
-
 def generateLinks(latiniseGraph, llkgGraph):
     logger.info('Parsing graph...')
     g.parse(latiniseGraph, format='ttl')
@@ -336,6 +340,23 @@ def generateLinks(latiniseGraph, llkgGraph):
     logger.info('LLKG successfully serialized!')
     logger.info('{}, {} external links'.format(nodes.links, relations.relationslinks))
 
+def generateSeeAlso(llkgGraph, finalGraph):
+    logger.info('Parsing graph...')
+    g.parse(llkgGraph, format='ttl')
+    senseNodes()
+    logger.info('Serializing new senses...')
+    g.serialize(format='ttl')
+    lkgSeeAlso()
+    logger.info('Serializing relations...')
+    g.serialize(destination=finalGraph,format='ttl',encoding='utf-8')  
+
+
+etymFolder = '../knowledge-graph/data/etymwn' 
+lexvoFolder = '../knowledge-graph/data/lexvo'
+etymwnGraph = '../knowledge-graph/data/llkg/etymwn-llkg.ttl'
+latiniseGraph = '../knowledge-graph/data/llkg/etymwn-latinise-llkg.ttl'
+llkgGraph = '../knowledge-graph/data/llkg/llkg-cr.ttl'
+finalGraph = '../knowledge-graph/data/llkg/final-llkg-cr.ttl'
 
 if __name__ == '__main__':
     importlib.reload(nodes)
@@ -343,8 +364,12 @@ if __name__ == '__main__':
     importlib.reload(etymwn)
     importlib.reload(queries)
 
-    generateEtymologicalNodes(etymFolder,etymwnGraph)
-    generateLatinISENodes(etymwnGraph, latiniseGraph)
-    generateLinks(latiniseGraph,llkgGraph)
+    setupGraph()
+    languageNodes()
+
+    #generateEtymologicalNodes(etymFolder,etymwnGraph)
+    #generateLatinISENodes(etymwnGraph, latiniseGraph)
+    #generateLinks(latiniseGraph,llkgGraph)
+    generateSeeAlso(llkgGraph, finalGraph)
 
 

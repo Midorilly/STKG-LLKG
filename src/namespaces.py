@@ -18,6 +18,7 @@ WIKIPROP = Namespace("http://www.wikidata.org/prop/direct/")
 WIKIBASE = Namespace("http://wikiba.se/ontology#")
 BIGDATA = Namespace("http://www.bigdata.com/rdf#")
 LLKG = Namespace("http://llkg.com/")
+LEMONETY = Namespace("http://lari-datasets.ilc.cnr.it/lemonEty#")
 CC = Namespace("https://creativecommons.org/ns#")
 
 llkgSchema = Graph()
@@ -36,6 +37,6 @@ llkgSchema.bind("lime", LIME)
 llkgSchema.bind("wn", WORDNET)
 llkgSchema.bind("llkg", LLKG)
 
-schemaFile = '../schema/llkg-schema.ttl'
+schemaFile = '/home/ghizzotae/knowledge-graph/schema/llkg-schema.ttl'
 
 llkgSchema.parse(schemaFile, format='ttl')

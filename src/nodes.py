@@ -57,6 +57,18 @@ def addFormNode(writtenRep, pos, id, llkg, g: Graph):
             g.add((lemma, LEXINFO.partOfSpeech, URIRef(lexinfoPosMapping[pos])))
             addLexicalEntryNode(writtenRep, id, 'lat', '3', llkg, g)
 
+    try: 
+        logger.info('Querying Wikidata Lexeme for {}...'.format(writtenRep))
+        result = queries.query(query = queries.wdlexemeQuery.format(lemma.split('id/')[1]))
+    except urllib.error.HTTPError or SPARQLExceptions.EndPointInternalError or urllib.error.URLError as e:
+        logger.info('{}'.format(e))
+    finally:
+        if len(result) > 0:
+            count()
+            lexemeURI = URIRef(result[0]['lexeme'])
+            logger.info('Wikidata Lexeme URI: {}'.format(lexemeURI))
+            g.add((lemma, RDFS.seeAlso, lexemeURI))
+
 def addLexicalEntryNode(entry, id, language, iso, llkg, g: Graph):
     wordString = str(entry).lower().replace(' ', '')
     wordURI = URIRef(LEXVO+'{}/{}'.format(language, quote(wordString)))
@@ -76,6 +88,40 @@ def addLexicalEntryNode(entry, id, language, iso, llkg, g: Graph):
         g.add((wordURI, LLKG.llkgID, Literal(id, datatype=XSD.unsignedInt)))
     else:
         g.add((wordURI, LLKG.llkgID, Literal(id, datatype=XSD.unsignedInt)))
+        
+def addEtymologyLinkNode(g: Graph):
+    ety = {}
+    etymology = (URIRef(LLKG+'etymology'))
+    g.add((etymology, RDF.type, LEMONETY.EtyLink))
+    g.add((etymology, LEMONETY.etyLinkType, Literal('etymology', lang='en')))
+    ety['etymology'] = etymology
+
+    etymologicalOrigin = (URIRef(LLKG+'etymologicalOrigin')) # inverse of etymology
+    g.add((etymologicalOrigin, RDF.type, LEMONETY.EtyLink))
+    g.add((etymologicalOrigin, LEMONETY.etyLinkType, Literal('etymologicalOrigin', lang='en')))
+    ety['etymologicalOrigin'] = etymologicalOrigin
+
+    etymologicallyRelated = (URIRef(LLKG+'etymologicallyRelated')) 
+    g.add((etymologicallyRelated, RDF.type, LEMONETY.EtyLink))
+    g.add((etymologicallyRelated, LEMONETY.etyLinkType, Literal('etymologicallyRelated', lang='en')))
+    ety['etymologicallyRelated'] = etymologicallyRelated
+
+    derivedForm = (URIRef(LLKG+'derivedForm')) 
+    g.add((derivedForm, RDF.type, LEMONETY.EtyLink))
+    g.add((derivedForm, LEMONETY.etyLinkType, Literal('derivedForm', lang='en')))
+    ety['derivedForm'] = derivedForm
+
+    derivesFrom = (URIRef(LLKG+'derivesFrom')) 
+    g.add((derivesFrom, RDF.type, LEMONETY.EtyLink))
+    g.add((derivesFrom, LEMONETY.etyLinkType, Literal('derivesFrom', lang='en')))
+    ety['derivesFrom']= derivesFrom
+
+    orthographyVariant = (URIRef(LLKG+'orthographyVariant')) 
+    g.add((orthographyVariant, RDF.type, LEMONETY.EtyLink))
+    g.add((orthographyVariant, LEMONETY.etyLinkType, Literal('orthographyVariant', lang='en')))
+    ety['orthographyVariant'] = orthographyVariant
+
+    return ety
 
 def addLexicalSenseNode(resource, sense, gloss, id, g: Graph):
     senseURI = None
@@ -99,8 +145,6 @@ def addLexicalSenseNode(resource, sense, gloss, id, g: Graph):
         wn31offset = str(wn31sense.offset())
         wn31pos = str(wn31sense.pos())
         wn31id = '{}-{}'.format(wn31offset.zfill(8),wn31pos)
-
-        print(wn30id, wn31id)
 
         senseURI = URIRef(UWN+'{}{}'.format(wn30pos, wn30offset))
         if not (senseURI, None, None) in g:     
