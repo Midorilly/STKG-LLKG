@@ -274,17 +274,6 @@ def lkgRelations():
                     relations.addDateInterval(subj, start, end, property, g)
                 elif line['object'] in pointsDict.keys():
                     relations.addDatePoint(subj, pointsDict[line['object']], property, g)
-    '''
-
-    with jsonlines.open(lkgDataset, 'r') as lkg:
-        concepts = [line for line in lkg if line['jtype'] == 'relationship' and line['name'] == 'HAS_CONCEPT']
-        logger.info('Connecting senses...')
-        for line in concepts:
-            subj = g.value(predicate=LLKG.llkgID, object=Literal(line['subject'], datatype=XSD.unsignedInt))
-            obj = g.value(predicate=LLKG.llkgID, object=Literal(line['object'], datatype=XSD.unsignedInt))
-
-            relations.addSense(subj, obj, g)
-    '''
     logger.info('Nodes successfully connected!')
 
 def lkgSeeAlso():
@@ -310,7 +299,6 @@ def generateEtymologicalNodes(etymFolder, etymwnGraph):
     g.serialize(destination=etymwnGraph,format='ttl',encoding='utf-8')
     logger.info('EtymWN successfully serialized!')
     logger.info('{}, {} external links'.format(nodes.links, relations.relationslinks))
-
 
 def generateLatinISENodes(etymwnGraph, latiniseGraph):
     logger.info('Parsing EtymWN graph...')
@@ -367,9 +355,9 @@ if __name__ == '__main__':
     setupGraph()
     languageNodes()
 
-    #generateEtymologicalNodes(etymFolder,etymwnGraph)
-    #generateLatinISENodes(etymwnGraph, latiniseGraph)
-    #generateLinks(latiniseGraph,llkgGraph)
+    generateEtymologicalNodes(etymFolder,etymwnGraph)
+    generateLatinISENodes(etymwnGraph, latiniseGraph)
+    generateLinks(latiniseGraph,llkgGraph)
     generateSeeAlso(llkgGraph, finalGraph)
 
 
