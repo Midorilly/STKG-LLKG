@@ -1,0 +1,1 @@
+Linked Linguistic Knowledge Graph is available on [Zenodo](https://zenodo.org/records/14623212).
