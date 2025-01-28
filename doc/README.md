@@ -64,7 +64,7 @@ The principal objectives of ***Linked Linguistic Knowledge Graph*** are to **reo
 ![Linguistic Knowledge Graph](img/LKG.PNG "Linguistic Knowledge Graph")  
 Linguistic Knowledge Graph
 
-![Linked Linguistic Knowledge Graph](img/LLKG.svg "Linked Linguistic Knowledge Graph")  
+![Linked Linguistic Knowledge Graph](img/llkg-new-palette.svg "Linked Linguistic Knowledge Graph")  
 Linked Linguistic Knowledge Graph
 
 ### General purpose prefixes
@@ -82,7 +82,7 @@ Linked Linguistic Knowledge Graph
 **vartrans** : <http://www.w3.org/ns/lemon/vartrans#>  
 **wn** : <https://globalwordnet.github.io/schemas/wn#>  
 
-![Linguistics sub-graph](img/linguistic-bg.svg "Linguistics sub-graph")  
+![Linguistics sub-graph](img/linguistic.svg "Linguistics sub-graph")  
 Linguistics sub-graph
 
 ### Entities
