@@ -1,6 +1,6 @@
 # STKG-LLKG
 
-![Linked Linguistic Knowledge Graph](/doc/img/LLKG.svg "Linked Linguistic Knowledge Graph")  
+![Linked Linguistic Knowledge Graph](/doc/img/llkg-new-palette.svg "Linked Linguistic Knowledge Graph")  
 
 **Linked Linguistic Knowledge Graph**
 
