@@ -178,7 +178,7 @@ Linguistics sub-graph
 
 **schema** : <https://schema.org/>  
 
-![Date, Corpus, Author sub-graphs](img/corpus-bg.svg "Date, Corpus, Author sub-graphs")  
+![Date, Corpus, Author sub-graphs](img/corpus.svg "Date, Corpus, Author sub-graphs")  
 Date, Corpus, Author sub-graphs
 
 ### Entities
@@ -304,7 +304,7 @@ Date, Corpus, Author sub-graphs
 **wn** : <https://globalwordnet.github.io/schemas/wn#>  
 **powla** : http://purl.org/powla/powla.owl#
 
-![Example sub-graph](img/example-bg.svg "Example sub-graph")  
+![Example sub-graph](img/example.svg "Example sub-graph")  
 Example sub-graph
 
 ### Entities
