@@ -31,6 +31,8 @@ On Windows
 Citation
 ------------
 ```
-Ghizzota, E., Basile, P., d'Amato, C., & Fanizzi, N. (2025). Linked Linguistic Knowledge Graph (1.0.0) [Data set]. Global WordNet Conference 2025 (GWC2025), Pavia, Italy. Zenodo. 
+Ghizzota, E., Basile, P., d'Amato, C., & Fanizzi, N. (2025). 
+Linked Linguistic Knowledge Graph (1.0.0) [Data set]. 
+Global WordNet Conference 2025 (GWC2025), Pavia, Italy. Zenodo. 
 ```
 LLKG can be downloaded from [Zenodo](https://doi.org/10.5281/zenodo.14623212).
