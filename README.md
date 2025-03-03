@@ -27,3 +27,10 @@ On Windows
 1. Install the requirements with `pip install -r requirements.txt`
 2. Download [Etymological WordNet](http://etym.org/) and [Lexvo .nt dump](http://lexvo.org/linkeddata/resources.html) resources and store them in the `data` directory
 3. Generate the LLKG with `python3 src/generate.py`
+
+Citation
+------------
+```
+Ghizzota, E., Basile, P., d'Amato, C., & Fanizzi, N. (2025). Linked Linguistic Knowledge Graph (1.0.0) [Data set]. Global WordNet Conference 2025 (GWC2025), Pavia, Italy. Zenodo. 
+```
+LLKG can be downloaded from [Zenodo](https://doi.org/10.5281/zenodo.14623212).
