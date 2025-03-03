@@ -77,7 +77,8 @@ ontolex:MultiwordExpression rdfs:subClassOf ontolex:LexicalEntry ;
 ontolex:Affix rdfs:subClassOf ontolex:LexicalEntry ;
     rdfs:label "Affix"@en .
 ontolex:Form a rdfs:Class ;
-    rdfs:label "Form"@en .
+    rdfs:label "Form"@en ;
+    rdfs:seeAlso ontolex:LexicalEntry .
 lexinfo:PartOfSpeech a rdfs:Class ;
     rdfs:label "PartOfSpeech"@en .
 
@@ -131,7 +132,7 @@ llkg:wn31ID rdfs:subPropertyOf dct:identifier;
     rdfs:range rdfs:Literal .
 
 ontolex:LexicalSense dct:description rdfs:Literal ;
-    rdfs:seeAlso rdfs:Resource .
+    rdfs:seeAlso ontolex:LexicalSense .
 
 # LexicalConcept
 

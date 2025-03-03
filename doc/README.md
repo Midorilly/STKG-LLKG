@@ -11,11 +11,16 @@
 
 The principal objectives of ***Linked Linguistic Knowledge Graph*** are to **reorganize** and **link** the content of [Linguistic Knowledge Graph](https://ceur-ws.org/Vol-3365/short7.pdf) and [Etymological Wordnet](http://www.lrec-conf.org/proceedings/lrec2014/pdf/1083_Paper.pdf); as for the former aim, we adopt the lexicon model for ontolgies [*lemon*](https://www.w3.org/2016/05/ontolex/), while entities have been linked manually.
 
+**Key words**
+- *missing*: an entity or a relation do not occur in the data, although they are specified in the schema or graphical representation
+- *not specified*: an entity or a relation are not specified in the schema or the graphical representation, although they occur in the data
+- *unaltered*: same representation across schema, graph representation and data
+
 ### Entities
 
 | Schema | Graphical representation | Data | 
 |-----|---------|---------|
-|Word|LexiconEntry|*not specified*|
+|Word|LexiconEntry|*missing*|
 |Lemma|Lemma|Lemma|
 |InflectedWord|WordForm|InflectedWord|
 |Stem|Stem|*missing*|
@@ -25,23 +30,23 @@ The principal objectives of ***Linked Linguistic Knowledge Graph*** are to **reo
 |Sentence|Sentence|*missing*|
 |Document|Document|Document|
 |Corpus|Corpus|Corpus|
-|TemporalSpecification|Date|*not specified*|
+|TemporalSpecification|Date|*missing*|
 |TimePoint|Date|TimePoint|
 |TemporalInterval|Date|TemporalInterval| 
 |Person|Person|Person|
 |Language|Language|*missing*|
-|Category|*missing*|*missing*|
-|*missing*|*missing*|Occupation|
+|Category|*not specified*|*missing*|
+|*not specified*|*not specified*|Occupation|
 
 ### Relations
 
 | Schema | Graphical representation | Data | 
 |-----|---------|---------|
-|Sentence IS_A Text|Sentence IS_A Text|*not specified*|
-|Lemma $\cup$ InflectedWord IS_A Word |Lemma $\cup$ WordForm IS_A LexiconEntry|*not specified*|
+|Sentence IS_A Text|Sentence IS_A Text|*missing*|
+|Lemma $\cup$ InflectedWord IS_A Word |Lemma $\cup$ WordForm IS_A LexiconEntry|*missing*|
 |Text BELONG_TO Document|*unaltered*|*unaltered*|
-|Document BELONG_TO Corpus|*unaltered*|Document HAS_CORPUS Corpus|
-|Corpus BELONG_TO Category|*missing*|*missing*|
+|Document BELONG_TO Corpus|Document BELONG_TO Corpus|Document HAS_CORPUS Corpus|
+|Corpus BELONG_TO Category|*not specified*|*missing*|
 |Word HAS_OCCURENCE Text|LexiconEntry HAS_OCCURENCE Text|InflectedWord HAS_OCCURENCE Text|
 |Word {LEX_RELATION} Word|LexiconEntry {LEX_RELATION} LexiconEntry|*missing*|
 |Word HAS_LEMMA Lemma|WordForm HAS_LEMMA Lemma|InflectedWord HAS_LEMMA Lemma|
@@ -58,7 +63,7 @@ The principal objectives of ***Linked Linguistic Knowledge Graph*** are to **reo
 |TimeInterval endTime TimePoint|*not specified*|TimeInterval endTime TimePoint|
 |Text $\cup$ Document $\cup$ Corpus $\cup$ Word HAS_LANGUAGE Language|Text $\cup$ Document $\cup$ Corpus $\cup$ LexiconEntry HAS_LANGUAGE Language|*missing*|
 |*not specified*|WordForm HAS_STEM Stem|*missing*|
-|*not specified*|*unspecified*|LexiconConcept SAME_AS LexiconConcept|
+|*not specified*|*not specified*|LexiconConcept SAME_AS LexiconConcept|
 |Document HAS_CORPUS Corpus|Document BELONG_TO Corpus|Document HAS_CORPUS Corpus|
 
 ![Linguistic Knowledge Graph](img/LKG.PNG "Linguistic Knowledge Graph")  
@@ -164,7 +169,11 @@ Linguistics sub-graph
 |ontolex:LexicalSense :wn30ID rdfs:Literal |
 |ontolex:LexicalSense :wn31ID rdfs:Literal |
 |ontolex:LexicalEntry :etymwnID rdfs:Literal|
-|ontolex:LexicalSense rdfs:seeAlso ontolex:LexicalSense|
+|ontolex:LexicalSense rdfs:seeAlso ontolex:LexicalSense <sup>8</sup>|
+|ontolex:Form rdfs:seeAlso ontolex:LexicalEntry <sup>9</sup>| 
+
+> <sup>8</sup> external link to Latin WordNet sense in LiLa  
+> <sup>9</sup> external link to Wikidata Lexeme
 
 
 
