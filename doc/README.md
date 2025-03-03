@@ -93,12 +93,14 @@ Linguistics sub-graph
 ### Entities
 | LKG | L-LKG |
 |-----|---------|
-|LexiconEntry, WordForm|[ontolex:LexicalEntry](https://www.w3.org/2016/05/ontolex/#lexical-entry-class) |
-|Lemma|ontolex:LexicalEntry [ontolex:canonicalForm](https://www.w3.org/2016/05/ontolex/#canonical-form-object-property) [ontolex:Form](https://www.w3.org/2016/05/ontolex/#form-class)|
+|LexiconEntry, WordForm|[ontolex:LexicalEntry](https://www.w3.org/2016/05/ontolex/#lexical-entry-class)|
+|Lemma|ontolex:LexicalEntry [ontolex:canonicalForm](https://www.w3.org/2016/05/ontolex/#canonical-form-object-property) [ontolex:Form](https://www.w3.org/2016/05/ontolex/#form-class) <sup>10</sup>|
 |LexiconConcept|[ontolex:LexicalSense](https://www.w3.org/2016/05/ontolex/#lexicalsense-class) |
 |Concept|[ontolex:LexicalConcept](https://www.w3.org/2016/05/ontolex/#lexical-concept-class) |
 |Stem|*deprecated*|
 |Language|[dct:LinguisticSystem](http://purl.org/dc/terms/LinguisticSystem)|
+
+> <sup>10</sup> external link to ontolex:Form in LiLa 
 
 | Etymological Wordnet | L-LKG |
 |-----|---------|
@@ -228,11 +230,12 @@ Date, Corpus, Author sub-graphs
 
 | LKG | L-LKG |
 |-----|---------|
-|Person <sup>5</sup> |[schema:Person](https://schema.org/Person), [schema:Organization](https://schema.org/Organization) | 
-|*missing* |[schema:Occupation](https://schema.org/Occupation) <sup>6</sup> | 
+|Person <sup>5</sup> |[schema:Person](https://schema.org/Person) <sup>11</sup>, [schema:Organization](https://schema.org/Organization) | 
+|*not specified* |[schema:Occupation](https://schema.org/Occupation) <sup>6</sup> | 
 
 > <sup>5</sup> we split the originally merged usage of entity `Person` for representing both the author of texts and documents, and the author of curated corpora, which usually are the result of an organization project; indeed, `schema:Organization` includes among its specializations [`schema:Project`](https://schema.org/Project) and [`schema:ResearchOrganization`](https://schema.org/ResearchOrganization).  
 > <sup>6</sup> Entity Occupation is not mentioned in LKG schema but actually occurrs in the dataset.
+> <sup>11</sup> external link to Wikidata
 
 ### Properties
 
@@ -273,8 +276,10 @@ Date, Corpus, Author sub-graphs
 |-----|---------|
 |Text|[schema:Quotation](https://schema.org/Quotation)| 
 |Sentence|*deprecated*|
-|Document|[schema:Book](https://schema.org/Book)|
+|Document|[schema:Book](https://schema.org/Book) <sup>12</sup>|
 |Corpus|[schema:Collection](https://schema.org/Collection)| 
+
+><sup>12</sup> external link to Wikidata
 
 ### Properties
 
@@ -320,7 +325,7 @@ Example sub-graph
 
 | LKG | L-LKG |
 |-----|---------|
-|*missing*|[wn:Example](https://globalwordnet.github.io/schemas/wn#Example) <sup>7</sup>|
+|*not specified*|[wn:Example](https://globalwordnet.github.io/schemas/wn#Example) <sup>7</sup>|
 
 > <sup>7</sup> LKG schema does not specify Example as an entity, but expresses this concept with the relation [`:HAS_EXAMPLE`](occurrence-properties) between `LexiconConcept` and `Text`, with attributes `begin`, `end` and `grade`; similarly, LKG expresses the concept of a word occurring in a text with the relation [`:HAS_OCCURRENCE`](occurrence-properties) between `LexiconEntry` and `Text`. In our schema, we merge these relations in entity `wn:Example`
 
