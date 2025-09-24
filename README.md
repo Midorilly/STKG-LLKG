@@ -30,9 +30,19 @@ On Windows
 
 Citation
 ------------
+Please cite the paper
+```
+@article{ghizzota2025enhancing,
+  title={Enhancing Linguistic Resources for Diachronic Analysis via Linked Data},
+  author={Ghizzota, Eleonora and Basile, Pierpaolo and d’Amato, Claudia and Fanizzi, Nicola},
+  journal={GWC 2025},
+  pages={192},
+  year={2025}
+}
+```
+and the resource (can be downloaded from [Zenodo](https://doi.org/10.5281/zenodo.14623212))
 ```
 Ghizzota, E., Basile, P., d'Amato, C., & Fanizzi, N. (2025). 
 Linked Linguistic Knowledge Graph (1.0.0) [Data set]. 
 Global WordNet Conference 2025 (GWC2025), Pavia, Italy. Zenodo. 
 ```
-LLKG can be downloaded from [Zenodo](https://doi.org/10.5281/zenodo.14623212).
